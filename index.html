@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lunafrost — AI Dev. App. Contents</title>
+<meta name="description" content="AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 Moonyth의 공간입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --frost: #c8dff5;
+    --frost-dim: #8fb8dc;
+    --dark: #080c12;
+    --surface: #0d1320;
+    --text: #e8edf5;
+    --text-muted: #7a91aa;
+    --border: rgba(200, 223, 245, 0.12);
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 20%, rgba(60, 100, 160, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 80%, rgba(30, 60, 110, 0.15) 0%, transparent 60%),
+      var(--dark);
+  }
+
+  /* Frost lines */
+  .bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(135deg, rgba(200,223,245,0.03) 1px, transparent 1px),
+      linear-gradient(45deg, rgba(200,223,245,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Nav */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--frost);
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: var(--text-muted);
+    font-weight: 300;
+    font-size: 0.85rem;
+    margin-left: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--frost); }
+
+  /* Hero */
+  main {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--frost-dim);
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--frost);
+  }
+
+  .subtitle {
+    max-width: 500px;
+    margin: 2rem auto 3rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* Divider */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--frost-dim);
+    margin: 0 auto 2rem;
+    opacity: 0.4;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    background: rgba(200,223,245,0.04);
+  }
+
+  /* Cards */
+  .cards {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card {
+    background: var(--surface);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .card:hover { background: rgba(13, 19, 32, 0.6); }
+
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--frost);
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--frost); }
+
+  /* Animate */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow  { animation: fadeUp 0.6s ease 0.1s both; }
+  h1        { animation: fadeUp 0.6s ease 0.2s both; }
+  .subtitle { animation: fadeUp 0.6s ease 0.35s both; }
+  .divider  { animation: fadeUp 0.6s ease 0.45s both; }
+  .tags     { animation: fadeUp 0.6s ease 0.5s both; }
+
+  @media (max-width: 640px) {
+    nav { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+    footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    h1 { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<nav>
+  <a href="/" class="logo">lunafrost <span>by Moonyth</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aimoonyth.com">블로그</a></li>
+    <li><a href="/privacy-policy.html">개인정보처리방침</a></li>
+    <li><a href="/terms.html">이용약관</a></li>
+  </ul>
+</nav>
+
+<main>
+  <p class="eyebrow">AI · Dev · App · Contents</p>
+
+  <h1>luna<em>frost</em></h1>
+
+  <div class="divider"></div>
+
+  <p class="subtitle">
+    AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 공간.<br>
+    기술과 창작의 경계를 걷는 Moonyth의 기록입니다.
+  </p>
+
+  <div class="tags">
+    <span class="tag">AI Tools</span>
+    <span class="tag">App Development</span>
+    <span class="tag">Content Strategy</span>
+    <span class="tag">YouTube</span>
+  </div>
+</main>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-icon">◈</div>
+    <h3>AI 트렌드</h3>
+    <p>최신 AI 도구와 서비스를 직접 사용하고 분석한 실용적인 인사이트를 공유합니다.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">◇</div>
+    <h3>앱 개발</h3>
+    <p>비개발자의 시선으로 AI를 활용해 실제 서비스를 만들어가는 과정을 기록합니다.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">◆</div>
+    <h3>콘텐츠 제작</h3>
+    <p>YouTube 쇼츠, 블로그, 자동화 파이프라인으로 콘텐츠를 만드는 방법을 탐구합니다.</p>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2025 lunafrost — Moonyth. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="https://aimoonyth.com/privacy-policy/">개인정보처리방침</a></li>
+    <li><a href="https://aimoonyth.com/terms-of-service/">서비스 이용약관</a></li>
+    <li><a href="https://aimoonyth.com">블로그</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
