@@ -40,10 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# media files in root (put videos in public/videos/)
+# media files (YouTube로 호스팅)
 /*.mp4
 /*.mov
 /*.png
 /*.jpg
 /*.jpeg
 /*.webp
+/public/videos/
