@@ -6,7 +6,8 @@ export function formatDate(dateStr: string): string {
   });
 }
 
-export function estimateReadingTime(content: string): string {
+export function estimateReadingTime(content: string | undefined): string {
+  if (!content) return "1분";
   const words = content.split(/\s+/).length;
   const minutes = Math.ceil(words / 200);
   return `${minutes}분`;

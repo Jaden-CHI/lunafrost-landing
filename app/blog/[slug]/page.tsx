@@ -53,6 +53,7 @@ export default async function BlogPostPage({
   } catch {
     notFound();
   }
+  if (!post) notFound();
 
   return (
     <>
