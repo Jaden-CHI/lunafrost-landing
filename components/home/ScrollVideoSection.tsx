@@ -1,53 +1,22 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
-  videoSrc?: string;
+  youtubeId?: string;
 }
 
-export default function ScrollVideoSection({ videoSrc }: Props) {
+export default function ScrollVideoSection({ youtubeId }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.85, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.4], [0.88, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-
-  // GSAP scroll-scrub video
-  useEffect(() => {
-    if (!videoRef.current || !videoSrc) return;
-
-    const video = videoRef.current;
-
-    const onMetadata = () => {
-      const duration = video.duration;
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
-        onUpdate: (self) => {
-          video.currentTime = self.progress * duration;
-        },
-      });
-    };
-
-    video.addEventListener("loadedmetadata", onMetadata);
-    return () => {
-      video.removeEventListener("loadedmetadata", onMetadata);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, [videoSrc]);
+  const titleY = useTransform(scrollYProgress, [0, 0.4], [50, 0]);
 
   return (
     <section
@@ -55,9 +24,9 @@ export default function ScrollVideoSection({ videoSrc }: Props) {
       className="relative py-32 px-6 overflow-hidden"
       style={{ background: "var(--dark)" }}
     >
-      {/* Section label */}
+      {/* Section header */}
       <motion.div
-        style={{ opacity, y }}
+        style={{ opacity, y: titleY }}
         className="text-center mb-16"
       >
         <p
@@ -68,10 +37,7 @@ export default function ScrollVideoSection({ videoSrc }: Props) {
         </p>
         <h2
           className="font-[family-name:var(--font-cormorant)] font-light"
-          style={{
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-            color: "var(--text)",
-          }}
+          style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "var(--text)" }}
         >
           무엇을 만드는가
         </h2>
@@ -81,25 +47,23 @@ export default function ScrollVideoSection({ videoSrc }: Props) {
       <motion.div
         style={{ scale, opacity }}
         className="relative max-w-5xl mx-auto rounded-2xl overflow-hidden"
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
+        {/* Border glow */}
         <div
           className="absolute inset-0 rounded-2xl z-10 pointer-events-none"
-          style={{
-            boxShadow: "inset 0 0 0 1px rgba(200,223,245,0.12)",
-          }}
+          style={{ boxShadow: "inset 0 0 0 1px rgba(200,223,245,0.12)" }}
         />
 
-        {videoSrc ? (
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            muted
-            playsInline
-            className="w-full aspect-video object-cover"
-          />
+        {youtubeId ? (
+          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&controls=1&playlist=${youtubeId}&playsinline=1&rel=0&modestbranding=1`}
+              className="absolute inset-0 w-full h-full"
+              allow="autoplay; fullscreen"
+              style={{ border: "none" }}
+            />
+          </div>
         ) : (
-          /* Placeholder */
           <div
             className="w-full aspect-video flex flex-col items-center justify-center gap-4"
             style={{ background: "var(--surface)" }}
@@ -109,23 +73,22 @@ export default function ScrollVideoSection({ videoSrc }: Props) {
               style={{ borderColor: "var(--frost-dim)" }}
             >
               <div
-                className="w-0 h-0"
+                className="w-0 h-0 ml-1"
                 style={{
                   borderTop: "10px solid transparent",
                   borderBottom: "10px solid transparent",
-                  borderLeft: `16px solid var(--frost-dim)`,
-                  marginLeft: "4px",
+                  borderLeft: "16px solid var(--frost-dim)",
                 }}
               />
             </div>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              영상을 업로드하면 여기에 표시됩니다
+              영상을 연결하면 여기에 표시됩니다
             </p>
           </div>
         )}
       </motion.div>
 
-      {/* Bottom label */}
+      {/* Bottom caption */}
       <motion.p
         style={{ opacity, color: "var(--text-muted)" }}
         className="text-center mt-12 text-sm leading-relaxed max-w-lg mx-auto"

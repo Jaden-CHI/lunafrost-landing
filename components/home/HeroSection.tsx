@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -9,40 +8,37 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      delay: i * 0.12,
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   }),
 };
 
 interface Props {
-  videoSrc?: string;
+  youtubeId?: string;
 }
 
-export default function HeroSection({ videoSrc }: Props) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
+export default function HeroSection({ youtubeId }: Props) {
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      {/* Background video */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        {videoSrc ? (
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
+        {youtubeId ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&controls=0&playlist=${youtubeId}&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1`}
+            className="absolute w-[300%] h-[300%] -top-[100%] -left-[100%]"
+            allow="autoplay; fullscreen"
+            style={{ border: "none", pointerEvents: "none" }}
           />
         ) : (
-          /* Animated gradient placeholder when no video */
           <div
             className="w-full h-full"
             style={{
               background: `
                 radial-gradient(ellipse 80% 60% at 20% 20%, rgba(60,100,160,0.25) 0%, transparent 60%),
                 radial-gradient(ellipse 60% 80% at 80% 80%, rgba(30,60,110,0.2) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 40% at 60% 30%, rgba(100,140,200,0.12) 0%, transparent 50%),
                 var(--dark)
               `,
             }}
@@ -53,16 +49,16 @@ export default function HeroSection({ videoSrc }: Props) {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(8,12,18,0.5) 0%, rgba(8,12,18,0.2) 50%, rgba(8,12,18,0.85) 100%)",
+              "linear-gradient(to bottom, rgba(8,12,18,0.55) 0%, rgba(8,12,18,0.25) 50%, rgba(8,12,18,0.88) 100%)",
           }}
         />
-        {/* Grid pattern */}
+        {/* Grid */}
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-25"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(200,223,245,0.04) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(200,223,245,0.04) 1px, transparent 1px)
+              linear-gradient(rgba(200,223,245,0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(200,223,245,0.05) 1px, transparent 1px)
             `,
             backgroundSize: "80px 80px",
           }}
@@ -94,8 +90,7 @@ export default function HeroSection({ videoSrc }: Props) {
             letterSpacing: "-0.02em",
           }}
         >
-          luna
-          <em style={{ fontStyle: "italic", color: "var(--frost)" }}>frost</em>
+          luna<em style={{ fontStyle: "italic", color: "var(--frost)" }}>frost</em>
         </motion.h1>
 
         <motion.div
@@ -129,22 +124,15 @@ export default function HeroSection({ videoSrc }: Props) {
         >
           <Link
             href="/blog"
-            className="px-8 py-3 text-sm tracking-widest uppercase no-underline transition-all duration-300 rounded-full"
-            style={{
-              background: "var(--frost)",
-              color: "var(--dark)",
-              fontWeight: 500,
-            }}
+            className="px-8 py-3 text-sm tracking-widest uppercase no-underline rounded-full transition-opacity duration-300 hover:opacity-80"
+            style={{ background: "var(--frost)", color: "var(--dark)", fontWeight: 500 }}
           >
             블로그 보기
           </Link>
           <Link
             href="/about"
-            className="px-8 py-3 text-sm tracking-widest uppercase no-underline transition-all duration-300 rounded-full border"
-            style={{
-              borderColor: "rgba(200,223,245,0.3)",
-              color: "var(--text-muted)",
-            }}
+            className="px-8 py-3 text-sm tracking-widest uppercase no-underline rounded-full border transition-colors duration-300"
+            style={{ borderColor: "rgba(200,223,245,0.3)", color: "var(--text-muted)" }}
           >
             About
           </Link>

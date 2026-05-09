@@ -4,11 +4,8 @@ import HeroSection from "@/components/home/HeroSection";
 import ScrollVideoSection from "@/components/home/ScrollVideoSection";
 import PortfolioCards from "@/components/home/PortfolioCards";
 
-// 영상 URL을 여기서 설정하세요
-// 로컬 파일: "/videos/hero.mp4" (public/videos/ 폴더에 넣으면 됩니다)
-// 외부 URL: "https://..."
-const HERO_VIDEO = "";        // Hero 섹션 배경 영상
-const SCROLL_VIDEO = "";      // 스크롤 영상
+const HERO_YOUTUBE_ID = "63s2T25_11I";
+const SCROLL_YOUTUBE_ID = "tvJ1JHT-63s";
 
 export default function HomePage() {
   return (
@@ -21,10 +18,10 @@ export default function HomePage() {
 
         <main className="flex-1">
           {/* 1. Hero — 전체 화면 영상 배경 */}
-          <HeroSection videoSrc={HERO_VIDEO || undefined} />
+          <HeroSection youtubeId={HERO_YOUTUBE_ID} />
 
           {/* 2. Scroll Video — 스크롤 연동 영상 */}
-          <ScrollVideoSection videoSrc={SCROLL_VIDEO || undefined} />
+          <ScrollVideoSection youtubeId={SCROLL_YOUTUBE_ID} />
 
           {/* 3. Portfolio Cards */}
           <PortfolioCards />
