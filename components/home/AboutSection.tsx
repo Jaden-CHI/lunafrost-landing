@@ -53,28 +53,37 @@ export default function AboutSection() {
                 borderColor: "rgba(170, 212, 249, 0.4)",
               }}
             />
-            {/* Visual placeholder */}
-            <div
-              className="w-full h-full relative overflow-hidden"
-              style={{ background: "rgba(49, 53, 60, 0.1)" }}
-            >
-              <div
-                className="absolute inset-0 technical-grid opacity-60"
+            {/* Chip image */}
+            <div className="w-full h-full relative overflow-hidden group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPK8MY6Y3wVKdEQAgThLJJV1yJwIf0VtxbuhoZwligw5pcE-0fY_zl1KtPghEpTrGOKcAIypYBx1MKberp0URggiz3gBagqkeaKnE4focQZNibBHQaxB5pQsxBQSdQOabqnod-L79pRa9luQwHL4q3e2W8u8Ed5S61tPpzFjJeaRiS5JXJ6O6nE8WVs-T-kBJAtqdc-TMFweYs0_1Nd-VLZv8DbortDE-CzktIKJWyIbEb1QZCyspePbY_NDIHSmXvyQDYT5iWSoY"
+                alt="Technical innovation imagery"
+                className="w-full h-full object-cover transition-all duration-1000"
+                style={{
+                  filter: "grayscale(1)",
+                  opacity: 0.6,
+                  transform: "scale(1.1)",
+                }}
+                onMouseEnter={(e) => {
+                  const img = e.currentTarget;
+                  img.style.filter = "grayscale(0)";
+                  img.style.opacity = "1";
+                  img.style.transform = "scale(1)";
+                }}
+                onMouseLeave={(e) => {
+                  const img = e.currentTarget;
+                  img.style.filter = "grayscale(1)";
+                  img.style.opacity = "0.6";
+                  img.style.transform = "scale(1.1)";
+                }}
               />
               <div
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <span
-                  className="font-[family-name:var(--font-cormorant)] italic"
-                  style={{
-                    fontSize: "clamp(3rem, 6vw, 5rem)",
-                    color: "rgba(170, 212, 249, 0.15)",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  lunafrost
-                </span>
-              </div>
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: "linear-gradient(to top, rgba(24, 28, 34, 0.6), transparent)",
+                }}
+              />
             </div>
           </div>
         </motion.div>
