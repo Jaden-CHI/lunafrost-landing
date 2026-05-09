@@ -13,6 +13,7 @@ export default function Footer() {
         {[
           { href: "/privacy-policy", label: "개인정보처리방침" },
           { href: "/terms", label: "이용약관" },
+          { href: "/copyright", label: "저작권 정책" },
           { href: "/blog", label: "블로그" },
         ].map((item) => (
           <li key={item.href}>
