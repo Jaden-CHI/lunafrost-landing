@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --frost: #c8dff5;
+  --frost-dim: #8fb8dc;
+  --dark: #080c12;
+  --surface: #0d1320;
+  --text: #e8edf5;
+  --text-muted: #7a91aa;
+  --border: rgba(200, 223, 245, 0.12);
+}
+
+html,
+body {
+  background: var(--dark);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+.feature-card {
+  display: block;
+  background: var(--surface);
+  transition: background 0.2s;
+}
+
+.feature-card:hover {
+  background: rgba(13, 19, 32, 0.6);
+}
+
+/* Prose overrides for blog content */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--frost);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.prose p,
+.prose li {
+  color: var(--text-muted);
+}
+
+.prose a {
+  color: var(--frost-dim);
+}
+
+.prose code {
+  color: var(--frost);
+  background: var(--surface);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.prose pre {
+  background: var(--surface) !important;
+  border: 1px solid var(--border);
+}
+
