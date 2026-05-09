@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --frost: #c8dff5;
+  --frost: #aad4f9;
   --frost-dim: #8fb8dc;
-  --dark: #080c12;
-  --surface: #0d1320;
-  --text: #e8edf5;
-  --text-muted: #7a91aa;
-  --border: rgba(200, 223, 245, 0.12);
+  --frost-bright: #c8dff5;
+  --dark: #10141a;
+  --surface: #10141a;
+  --surface-low: #181c22;
+  --surface-container: #1c2026;
+  --text: #dfe2eb;
+  --text-muted: #c2c7ce;
+  --outline: #8c9198;
+  --outline-variant: rgba(66, 71, 77, 0.4);
+  --border: rgba(66, 71, 77, 0.3);
+  --primary: #aad4f9;
+  --primary-container: #8fb8dc;
+  --on-primary: #003350;
+  --on-primary-container: #1c4968;
 }
 
 html,
@@ -16,6 +25,22 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Stitch design utilities */
+.technical-grid {
+  background-image:
+    linear-gradient(rgba(200, 223, 245, 0.03) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(200, 223, 245, 0.03) 0.5px, transparent 0.5px);
+  background-size: 60px 60px;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(143, 184, 220, 0.08) 0%, rgba(16, 20, 26, 0) 70%);
+}
+
+.rim-light {
+  box-shadow: inset 0.5px 0.5px 0px rgba(255, 255, 255, 0.05);
 }
 
 @keyframes fadeUp {
@@ -33,23 +58,13 @@ body {
   animation: fadeUp 0.6s ease both;
 }
 
-.feature-card {
-  display: block;
-  background: var(--surface);
-  transition: background 0.2s;
-}
-
-.feature-card:hover {
-  background: rgba(13, 19, 32, 0.6);
-}
-
 /* Prose overrides for blog content */
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
   color: var(--frost);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant), serif;
 }
 
 .prose p,
@@ -63,14 +78,14 @@ body {
 
 .prose code {
   color: var(--frost);
-  background: var(--surface);
+  background: var(--surface-low);
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.85em;
+  font-family: var(--font-mono), monospace;
 }
 
 .prose pre {
-  background: var(--surface) !important;
+  background: var(--surface-low) !important;
   border: 1px solid var(--border);
 }
-
