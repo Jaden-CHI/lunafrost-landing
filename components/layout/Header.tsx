@@ -54,7 +54,7 @@ export default function Header() {
         </ul>
 
         <Link
-          href="/about"
+          href="/contact"
           className="hidden md:inline-flex no-underline px-6 py-2.5 border text-xs uppercase tracking-[0.15em] transition-all duration-300 rim-light"
           style={{
             borderColor: "rgba(170, 212, 249, 0.3)",
