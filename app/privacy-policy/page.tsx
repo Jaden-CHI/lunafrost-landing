@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="leading-relaxed">
               Moonyth(이하 "회사")는 이용자의 개인정보를 매우 중요하게 생각하며, 개인정보 보호 관련 법령을 준수합니다.
-              본 방침은 WellDay 모바일 앱 및 aimoonyth.com 웹사이트에 공통 적용됩니다.
+              본 방침은 WellDay 모바일 앱 및 moonyth.app 웹사이트에 공통 적용됩니다.
             </p>
           </section>
 
