@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "/privacy-policy", label: "개인정보처리방침" },
-  { href: "/terms", label: "이용약관" },
-  { href: "/copyright", label: "저작권 정책" },
-  { href: "/blog", label: "블로그" },
+  { href: "/privacy-policy", label: "개인정보처리방침", bold: true },
+  { href: "/terms", label: "이용약관", bold: false },
+  { href: "/copyright", label: "저작권 정책", bold: false },
+  { href: "/blog", label: "블로그", bold: false },
 ];
 
 export default function Footer() {
@@ -34,6 +34,7 @@ export default function Footer() {
                   fontFamily: "var(--font-mono)",
                   fontSize: "0.75rem",
                   color: "rgba(194, 199, 206, 0.6)",
+                  fontWeight: item.bold ? 700 : 400,
                 }}
               >
                 {item.label}
