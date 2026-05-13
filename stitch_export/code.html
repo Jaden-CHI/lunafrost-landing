@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>lunafrost — Moonyth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#31353c",
+                        "on-surface-variant": "#c2c7ce",
+                        "primary-fixed-dim": "#a2cbf0",
+                        "secondary-fixed": "#cbe6ff",
+                        "surface": "#10141a",
+                        "secondary-container": "#004e75",
+                        "on-tertiary-container": "#324859",
+                        "on-primary-container": "#1c4968",
+                        "surface-container-high": "#262a31",
+                        "tertiary-container": "#a0b6cb",
+                        "secondary": "#95ccfa",
+                        "background": "#10141a",
+                        "on-secondary-fixed-variant": "#004b71",
+                        "on-primary-fixed": "#001e31",
+                        "surface-container": "#1c2026",
+                        "on-tertiary": "#1c3343",
+                        "surface-bright": "#353940",
+                        "on-tertiary-fixed": "#051d2e",
+                        "error-container": "#93000a",
+                        "on-surface": "#dfe2eb",
+                        "inverse-primary": "#396282",
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#2d3137",
+                        "outline-variant": "#42474d",
+                        "surface-container-low": "#181c22",
+                        "on-primary": "#003350",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#a2cbf0",
+                        "tertiary": "#bbd2e7",
+                        "primary-fixed": "#cbe6ff",
+                        "on-background": "#dfe2eb",
+                        "primary": "#aad4f9",
+                        "surface-container-highest": "#31353c",
+                        "surface-container-lowest": "#0a0e14",
+                        "surface-dim": "#10141a",
+                        "on-primary-fixed-variant": "#1e4a69",
+                        "on-secondary": "#00344f",
+                        "primary-container": "#8fb8dc",
+                        "outline": "#8c9198",
+                        "inverse-surface": "#dfe2eb",
+                        "tertiary-fixed-dim": "#b2c9df",
+                        "on-tertiary-fixed-variant": "#33495b",
+                        "on-secondary-container": "#86beec",
+                        "on-secondary-fixed": "#001e30",
+                        "tertiary-fixed": "#cee5fb",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#95ccfa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "section-gap": "160px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["EB Garamond", "serif"],
+                        "headline-lg": ["EB Garamond", "serif"],
+                        "title-md": ["DM Sans", "sans-serif"],
+                        "body-lg": ["DM Sans", "sans-serif"],
+                        "headline-lg-mobile": ["EB Garamond", "serif"],
+                        "body-md": ["DM Sans", "sans-serif"],
+                        "label-sm": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #10141a;
+            color: #dfe2eb;
+            overflow-x: hidden;
+        }
+        .technical-grid {
+            background-image: linear-gradient(rgba(200, 223, 245, 0.03) 0.5px, transparent 0.5px), 
+                              linear-gradient(90deg, rgba(200, 223, 245, 0.03) 0.5px, transparent 0.5px);
+            background-size: 60px 60px;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(143, 184, 220, 0.08) 0%, rgba(16, 20, 26, 0) 70%);
+        }
+        .rim-light {
+            box-shadow: inset 0.5px 0.5px 0px rgba(255, 255, 255, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<a class="font-display-lg text-title-md tracking-tighter text-on-surface" href="/">lunafrost <span class="text-label-sm font-label-sm uppercase opacity-40 ml-2 tracking-widest">BY MOONYTH</span></a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md font-medium text-on-surface-variant hover:text-primary transition-all duration-300 relative group" href="#">
+                블로그
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+</a>
+<a class="font-body-md text-body-md font-medium text-on-surface-variant hover:text-primary transition-all duration-300 relative group" href="#">
+                AI 도구
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+</a>
+<a class="font-body-md text-body-md font-medium text-on-surface-variant hover:text-primary transition-all duration-300 relative group" href="#">
+                앱
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+</a>
+<a class="font-body-md text-body-md font-medium text-on-surface-variant hover:text-primary transition-all duration-300 relative group" href="#">
+                YouTube
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+</a>
+<a class="font-body-md text-body-md font-medium text-on-surface-variant hover:text-primary transition-all duration-300 relative group" href="#">
+                About
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+</a>
+<button class="ml-4 px-6 py-2.5 border border-primary/30 font-label-sm text-label-sm text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300 uppercase tracking-widest rim-light">Contact</button>
+</div>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
+<div class="absolute inset-0 technical-grid -z-20"></div>
+<div class="absolute inset-0 hero-glow -z-10"></div>
+<div class="max-w-4xl mx-auto text-center px-margin-mobile">
+<div class="mb-12">
+<span class="font-label-sm text-label-sm tracking-[0.4em] text-primary/60 uppercase">AI · DEV · APP · CONTENTS</span>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[100px] text-on-surface italic mb-8">
+            luna<span class="font-extralight text-primary">frost</span>
+</h1>
+<div class="w-16 h-[1px] bg-outline-variant/30 mx-auto mb-12"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto leading-relaxed mb-16">
+            AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 공간.<br/>
+            기술과 창작의 경계를 걷는 Moonyth의 기록입니다.
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="w-full sm:w-auto px-10 py-4 bg-primary-container text-on-primary-container font-title-md text-label-sm rim-light hover:brightness-110 transition-all duration-300" href="#">
+                블로그 보기
+            </a>
+<a class="w-full sm:w-auto px-10 py-4 border border-outline-variant text-on-surface font-title-md text-label-sm hover:bg-surface-variant/20 transition-all duration-300" href="#">
+                ABOUT
+            </a>
+</div>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+<span class="font-label-sm text-label-sm tracking-[0.3em] text-on-surface-variant/40 uppercase">SCROLL</span>
+<div class="w-[1px] h-12 bg-gradient-to-b from-primary/40 to-transparent"></div>
+</div>
+</header>
+<!-- Portfolio Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div class="space-y-4">
+<span class="font-label-sm text-label-sm tracking-widest text-primary/60 uppercase">PORTFOLIO</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">만들어온 것들</h2>
+</div>
+<a class="group flex items-center gap-4 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+            모든 프로젝트
+            <div class="w-12 h-[1px] bg-outline-variant group-hover:bg-primary transition-colors"></div>
+</a>
+</div>
+<!-- Portfolio Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Project Card 1 -->
+<article class="p-12 border border-outline-variant/20 bg-surface-container-low/40 backdrop-blur-md group hover:border-primary/40 hover:bg-surface-container-low/60 transition-all duration-500 flex flex-col h-full">
+<div class="flex justify-between items-start mb-8">
+<div class="space-y-1">
+<span class="font-label-sm text-[11px] tracking-wider text-primary/70 uppercase">WEB · NEXT.JS</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">lunafrost Landing</h3>
+</div>
+<span class="px-2.5 py-0.5 bg-surface-variant/60 border border-outline-variant/40 font-label-sm text-[10px] text-on-surface-variant tracking-wider uppercase">운영 중</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-10 leading-relaxed flex-grow">
+                카페24 워드프레스에서 Vercel Next.js로 전환한 개인 브랜드 플랫폼. Notion CMS 연동 및 고성능 ISR 적용.
+            </p>
+<div class="flex flex-wrap gap-2.5 mb-12">
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Nextjs 14</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Tailwind CSS</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Notion API</span>
+</div>
+<a class="w-full inline-flex items-center justify-between px-6 py-4 border border-outline-variant/30 text-label-sm font-label-sm text-on-surface group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 uppercase tracking-widest" href="#">
+                자세히 보기
+                <span class="material-symbols-outlined text-lg leading-none">arrow_forward_ios</span>
+</a>
+</article>
+<!-- Project Card 2 -->
+<article class="p-12 border border-outline-variant/20 bg-surface-container-low/40 backdrop-blur-md group hover:border-primary/40 hover:bg-surface-container-low/60 transition-all duration-500 flex flex-col h-full">
+<div class="flex justify-between items-start mb-8">
+<div class="space-y-1">
+<span class="font-label-sm text-[11px] tracking-wider text-primary/70 uppercase">APP · CHROME EXTENSION</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">AlwaysPDF Tools</h3>
+</div>
+<span class="px-2.5 py-0.5 bg-primary/20 border border-primary/30 font-label-sm text-[10px] text-primary tracking-wider uppercase">출시 완료</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-10 leading-relaxed flex-grow">
+                PDF 작업을 브라우저에서 바로 처리하는 강력한 확장 프로그램. OCR, 변환, 편집 기능을 한곳에.
+            </p>
+<div class="flex flex-wrap gap-2.5 mb-12">
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Chrome MV3</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Tesseract.js</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">TypeScript</span>
+</div>
+<a class="w-full inline-flex items-center justify-between px-6 py-4 border border-outline-variant/30 text-label-sm font-label-sm text-on-surface group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 uppercase tracking-widest" href="#">
+                자세히 보기
+                <span class="material-symbols-outlined text-lg leading-none">arrow_forward_ios</span>
+</a>
+</article>
+<!-- Project Card 3 -->
+<article class="p-12 border border-outline-variant/20 bg-surface-container-low/40 backdrop-blur-md group hover:border-primary/40 hover:bg-surface-container-low/60 transition-all duration-500 flex flex-col h-full">
+<div class="flex justify-between items-start mb-8">
+<div class="space-y-1">
+<span class="font-label-sm text-[11px] tracking-wider text-primary/70 uppercase">TOOL · AI WORKFLOW</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">AI 콘텐츠 스튜디오</h3>
+</div>
+<span class="px-2.5 py-0.5 bg-surface-variant/60 border border-outline-variant/40 font-label-sm text-[10px] text-on-surface-variant tracking-wider uppercase">개발 중</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-10 leading-relaxed flex-grow">
+                YouTube 쇼츠 및 블로그 자동화 파이프라인. Claude API와 영상 제작 도구를 연동한 지능형 워크플로우.
+            </p>
+<div class="flex flex-wrap gap-2.5 mb-12">
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Claude API</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Python</span>
+<span class="px-3 py-1.5 bg-surface-container-highest/60 border border-outline-variant/30 text-[11px] font-label-sm text-on-surface font-medium">Automation</span>
+</div>
+<a class="w-full inline-flex items-center justify-between px-6 py-4 border border-outline-variant/30 text-label-sm font-label-sm text-on-surface group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 uppercase tracking-widest" href="#">
+                자세히 보기
+                <span class="material-symbols-outlined text-lg leading-none">arrow_forward_ios</span>
+</a>
+</article>
+</div>
+</section>
+<!-- Separator with Subtle Detail -->
+<div class="w-full border-t border-outline-variant/10 flex items-center justify-center">
+<div class="px-8 bg-surface -translate-y-1/2">
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+</div>
+</div>
+<!-- Experience / Info Section -->
+<section class="relative py-[200px] bg-surface-container-low/20 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-32 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="aspect-square border border-outline-variant/20 p-8 flex items-center justify-center max-w-lg mx-auto lg:ml-0">
+<div class="absolute -top-4 -left-4 w-12 h-12 border-t border-l border-primary/40"></div>
+<div class="absolute -bottom-4 -right-4 w-12 h-12 border-b border-r border-primary/40"></div>
+<div class="w-full h-full bg-surface-variant/10 overflow-hidden relative group">
+<img alt="Technical innovation imagery" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-110 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPK8MY6Y3wVKdEQAgThLJJV1yJwIf0VtxbuhoZwligw5pcE-0fY_zl1KtPghEpTrGOKcAIypYBx1MKberp0URggiz3gBagqkeaKnE4focQZNibBHQaxB5pQsxBQSdQOabqnod-L79pRa9luQwHL4q3e2W8u8Ed5S61tPpzFjJeaRiS5JXJ6O6nE8WVs-T-kBJAtqdc-TMFweYs0_1Nd-VLZv8DbortDE-CzktIKJWyIbEb1QZCyspePbY_NDIHSmXvyQDYT5iWSoY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low/60 to-transparent"></div>
+</div>
+</div>
+</div>
+<div class="space-y-12 order-1 lg:order-2">
+<div class="space-y-4">
+<span class="font-label-sm text-label-sm tracking-widest text-primary/60 uppercase">CORE VALUES</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight italic">Exploring the frontier of technical creativity.</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-xl">
+                단순히 코드를 짜는 것을 넘어, 기술이 우리의 일상과 창작 방식을 어떻게 변화시키는지 탐구합니다. 인공지능이라는 거대한 도구를 활용해 더 나은 사용자 경험과 효율적인 시스템을 설계하는 것이 저의 목표입니다.
+            </p>
+<div class="grid grid-cols-2 gap-12 pt-8 border-t border-outline-variant/10">
+<div>
+<div class="font-display-lg text-headline-lg text-primary mb-2">08+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant/50 uppercase tracking-widest">Years Experience</div>
+</div>
+<div>
+<div class="font-display-lg text-headline-lg text-primary mb-2">124+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant/50 uppercase tracking-widest">Projects Shared</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface border-t border-outline-variant/10 w-full pt-32 pb-16">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center md:text-left">
+<span class="font-display-lg text-label-sm text-on-surface-variant opacity-60">© 2025 lunafrost — Moonyth. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-body-md text-label-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">개인정보처리방침</a>
+<a class="font-body-md text-label-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">이용약관</a>
+<a class="font-body-md text-label-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">저작권 정책</a>
+<a class="font-body-md text-label-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">블로그</a>
+</div>
+</div>
+</footer>
+</body></html>

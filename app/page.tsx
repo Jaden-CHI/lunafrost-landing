@@ -1,26 +1,27 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import HeroSection from "@/components/home/HeroSection";
-import PortfolioCards from "@/components/home/PortfolioCards";
-import AboutSection from "@/components/home/AboutSection";
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import HeroSection from '@/components/home/HeroSection';
+import PortfolioCards from '@/components/home/PortfolioCards';
+import AboutSection from '@/components/home/AboutSection';
+import LatestArticles from '@/components/home/LatestArticles';
+import Newsletter from '@/components/home/Newsletter';
+import { LensCursor } from '@/components/ui/LensCursor';
+import { ScrollAnimations } from '@/components/ScrollAnimations';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen" style={{ background: "var(--dark)" }}>
+    <div className="min-h-screen" style={{ background: 'var(--dark)' }}>
       <Header />
       <main>
         <HeroSection />
+        <LatestArticles />
         <PortfolioCards />
-        {/* Separator */}
-        <div className="flex items-center justify-center border-t" style={{ borderColor: "rgba(66, 71, 77, 0.1)" }}>
-          <div
-            className="rounded-full -translate-y-1/2"
-            style={{ width: "0.5rem", height: "0.5rem", background: "rgba(170, 212, 249, 0.2)" }}
-          />
-        </div>
         <AboutSection />
+        <Newsletter />
       </main>
       <Footer />
+      <LensCursor />
+      <ScrollAnimations />
     </div>
   );
 }

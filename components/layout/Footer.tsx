@@ -1,51 +1,151 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-const footerLinks = [
-  { href: "/privacy-policy", label: "개인정보처리방침", bold: true },
-  { href: "/terms", label: "이용약관", bold: false },
-  { href: "/copyright", label: "저작권 정책", bold: false },
-  { href: "/blog", label: "블로그", bold: false },
+const READ_LINKS = [
+  { label: '블로그', href: '/blog' },
+  { label: 'AI 도구', href: '/tools' },
+  { label: '앱', href: '/apps' },
+  { label: '영상', href: '/youtube' },
 ];
+
+const BUILD_LINKS = [
+  { label: 'lunafrost Landing', href: '/apps' },
+  { label: 'AlwaysPDF Tools', href: '/apps' },
+  { label: 'AI 콘텐츠 스튜디오', href: '/tools' },
+];
+
+const ELSEWHERE_LINKS = [
+  { label: '@Moonyth', href: 'https://www.youtube.com/@Moonyth' },
+  { label: '@genai1001', href: 'https://www.youtube.com/@genai1001' },
+  { label: 'GitHub', href: 'https://github.com/Jaden-CHI' },
+];
+
+const CONTACT_LINKS = [
+  { label: 'moonyth.contact@gmail.com', href: '/contact' },
+  { label: '협업 문의', href: '/contact' },
+];
+
+const LEGAL_LINKS = [
+  { label: '개인정보처리방침', href: '/privacy-policy', bold: true },
+  { label: '이용약관', href: '/terms' },
+  { label: '저작권 정책', href: '/copyright' },
+];
+
+function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  const isExternal = (href: string) => href.startsWith('http');
+  return (
+    <div className="space-y-4">
+      <h3
+        className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-widest"
+        style={{ color: 'rgba(170,212,249,0.6)' }}
+      >
+        {title}
+      </h3>
+      <ul className="space-y-3 list-none">
+        {links.map(link => (
+          <li key={link.label}>
+            {isExternal(link.href) ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline text-sm transition-colors duration-300 footer-col-link"
+                style={{ color: 'rgba(194,199,206,0.6)' }}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                href={link.href}
+                className="no-underline text-sm transition-colors duration-300 footer-col-link"
+                style={{ color: 'rgba(194,199,206,0.6)' }}
+              >
+                {link.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer
-      className="w-full pt-24 pb-16 border-t"
-      style={{
-        background: "var(--surface)",
-        borderColor: "rgba(66, 71, 77, 0.15)",
-      }}
-    >
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 px-5 md:px-16 max-w-[1280px] mx-auto">
-        <span
-          className="font-[family-name:var(--font-mono)] text-xs"
-          style={{ color: "rgba(194, 199, 206, 0.5)" }}
-        >
-          © 2025 lunafrost — Moonyth. All rights reserved.
-        </span>
+    <footer className="pt-24 pb-12 px-5 md:px-16 border-t" style={{ borderColor: 'rgba(66,71,77,0.15)' }}>
+      <div className="max-w-[1280px] mx-auto">
 
-        <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 list-none">
-          {footerLinks.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="no-underline transition-colors duration-300 footer-link"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  color: "rgba(194, 199, 206, 0.6)",
-                  fontWeight: item.bold ? 700 : 400,
-                }}
+        {/* 5-col sitemap */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-20">
+          {/* Brand col */}
+          <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
+            <Link href="/" className="no-underline">
+              <span
+                className="font-[family-name:var(--font-cormorant)] italic block"
+                style={{ fontSize: '20px', color: 'var(--text)' }}
               >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                lunafrost
+              </span>
+              <span
+                className="font-[family-name:var(--font-mono)] uppercase block mt-1"
+                style={{ fontSize: '9px', letterSpacing: '0.3em', color: 'rgba(194,199,206,0.3)' }}
+              >
+                BY MOONYTH
+              </span>
+            </Link>
+            <p className="text-xs leading-relaxed" style={{ color: 'rgba(194,199,206,0.4)' }}>
+              AI와 기술, 창작의 경계에서<br />탐구하는 Moonyth의 기록.
+            </p>
+          </div>
+
+          <FooterColumn title="READ"      links={READ_LINKS} />
+          <FooterColumn title="BUILD"     links={BUILD_LINKS} />
+          <FooterColumn title="ELSEWHERE" links={ELSEWHERE_LINKS} />
+          <FooterColumn title="CONTACT"   links={CONTACT_LINKS} />
+        </div>
+
+        {/* Grow rule separator */}
+        <div className="grow-rule mb-8" />
+
+        {/* Colophon */}
+        <div className="mb-6">
+          <p
+            className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] leading-relaxed"
+            style={{ color: 'rgba(140,145,152,0.4)' }}
+          >
+            COLOPHON · SET IN CORMORANT GARAMOND &amp; DM SANS · METADATA IN JETBRAINS MONO<br />
+            BUILT WITH NEXT.JS · HOSTED ON VERCEL · CONTENT VIA NOTION CMS
+          </p>
+        </div>
+
+        {/* Legal */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <span
+            className="font-[family-name:var(--font-mono)] text-[10px]"
+            style={{ color: 'rgba(194,199,206,0.4)' }}
+          >
+            © 2025 lunafrost — Moonyth. All rights reserved.
+          </span>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 list-none">
+            {LEGAL_LINKS.map(link => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="no-underline transition-colors duration-300 footer-col-link font-[family-name:var(--font-mono)] text-[10px]"
+                  style={{
+                    color: 'rgba(194,199,206,0.5)',
+                    fontWeight: link.bold ? 700 : 400,
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <style>{`
-        .footer-link:hover { color: var(--primary) !important; }
+        .footer-col-link:hover { color: var(--primary) !important; }
       `}</style>
     </footer>
   );
