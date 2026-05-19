@@ -40,6 +40,18 @@ const projects = [
     href: '/tools',
     isAI: true,
   },
+  {
+    id: 4,
+    featured: false,
+    title: 'TaskSnap',
+    category: 'APP · CHROME EXTENSION',
+    description: 'Todoist의 단순함과 ClickUp의 파워를 결합한 스마트 태스크 매니저. 브라우저 안에서 바로 사용하는 생산성 도구.',
+    tech: ['Chrome MV3', 'TypeScript'],
+    status: 'shipped' as Status,
+    href: 'https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn',
+    external: true,
+    isAI: false,
+  },
 ];
 
 function FeaturedCard({ project }: { project: typeof projects[0] }) {
@@ -116,6 +128,9 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
 }
 
 function SmallCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const linkProps = project.external
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {};
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -123,7 +138,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link href={project.href} className="no-underline block h-full">
+      <Link href={project.href} className="no-underline block h-full" {...linkProps}>
         <article
           className="pf-card border h-full flex flex-col"
           style={{

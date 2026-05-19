@@ -14,13 +14,13 @@ const cormorant = Cormorant_Garamond({
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500", "600"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function RootLayout({
       lang="ko"
       className={`${cormorant.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)] font-light">
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)] font-normal">
         {children}
         <Analytics />
         <SpeedInsights />

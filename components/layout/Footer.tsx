@@ -10,6 +10,7 @@ const READ_LINKS = [
 const BUILD_LINKS = [
   { label: 'lunafrost Landing', href: '/apps' },
   { label: 'AlwaysPDF Tools', href: '/apps' },
+  { label: 'TaskSnap', href: '/apps' },
   { label: 'AI 콘텐츠 스튜디오', href: '/tools' },
 ];
 
