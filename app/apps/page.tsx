@@ -13,7 +13,21 @@ const projects = [
     description: "AI 기반 개인 브랜드 플랫폼. Next.js + Tailwind + Vercel로 구축.",
     tech: ["Next.js", "Tailwind CSS", "Vercel", "Notion API"],
     status: "운영 중",
-    link: "https://aimoonyth.com",
+    link: "https://moonyth.app",
+  },
+  {
+    title: "AlwaysPDF Tools",
+    description: "PDF 작업을 브라우저에서 바로 처리하는 크롬 확장 프로그램. OCR, 변환, 편집 등 12가지 기능 탑재.",
+    tech: ["Chrome MV3", "Tesseract.js", "TypeScript"],
+    status: "출시 완료",
+    link: "",
+  },
+  {
+    title: "TaskSnap",
+    description: "Todoist의 단순함과 ClickUp의 파워를 결합한 스마트 태스크 매니저. 브라우저 안에서 바로 사용하는 생산성 도구.",
+    tech: ["Chrome MV3", "TypeScript"],
+    status: "출시 완료",
+    link: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn",
   },
 ];
 

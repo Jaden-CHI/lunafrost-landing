@@ -61,7 +61,15 @@ export default function AboutPage() {
               Contact
             </h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              문의사항이 있으시면 블로그를 통해 연락해주세요.
+              문의사항은{' '}
+              <a
+                href="mailto:moonyth.contact@gmail.com"
+                className="no-underline transition-colors duration-200"
+                style={{ color: "var(--frost-dim)" }}
+              >
+                moonyth.contact@gmail.com
+              </a>
+              으로 연락해주세요. 보통 1–2일 내에 답변드립니다.
             </p>
           </section>
         </div>

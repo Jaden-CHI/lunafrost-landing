@@ -124,7 +124,7 @@ export default function Footer() {
             className="font-[family-name:var(--font-mono)] text-[10px]"
             style={{ color: 'rgba(194,199,206,0.4)' }}
           >
-            © 2025 lunafrost — Moonyth. All rights reserved.
+            © 2026 lunafrost — Moonyth. All rights reserved.
           </span>
           <ul className="flex flex-wrap gap-x-6 gap-y-2 list-none">
             {LEGAL_LINKS.map(link => (

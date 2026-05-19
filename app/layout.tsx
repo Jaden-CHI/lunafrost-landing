@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://aimoonyth.com",
+    url: "https://moonyth.app",
     siteName: "lunafrost",
   },
   robots: {
