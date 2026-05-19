@@ -1,7 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getBlogPosts } from '@/lib/notion';
 import type { BlogPost } from '@/types/blog';
 import { formatDate } from '@/lib/utils';
+
+const COVER_OVERRIDES: Record<string, string> = {
+  'smart-task-snap-to-do-list': '/covers/tasksnap.png',
+};
 
 function FeaturedArticleCard({ article }: { article: BlogPost }) {
   return (
@@ -14,9 +19,18 @@ function FeaturedArticleCard({ article }: { article: BlogPost }) {
           padding: '2.5rem',
         }}
       >
-        {/* Thumbnail placeholder */}
-        <div className="img-ph w-full mb-6" style={{ aspectRatio: '16/9' }}>
-          FEATURED · THUMBNAIL
+        {/* Thumbnail */}
+        <div className="relative w-full mb-6 overflow-hidden" style={{ aspectRatio: '16/9' }}>
+          {(COVER_OVERRIDES[article.slug] ?? article.cover) ? (
+            <Image
+              src={COVER_OVERRIDES[article.slug] ?? article.cover}
+              alt={article.title}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="img-ph w-full h-full">FEATURED · THUMBNAIL</div>
+          )}
         </div>
 
         <div className="flex items-center gap-4 mb-4">
