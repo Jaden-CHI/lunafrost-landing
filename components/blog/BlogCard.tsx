@@ -3,7 +3,12 @@ import Image from "next/image";
 import type { BlogPost } from "@/types/blog";
 import { formatDate } from "@/lib/utils";
 
+const COVER_OVERRIDES: Record<string, string> = {
+  'smart-task-snap-to-do-list': '/covers/tasksnap.png',
+};
+
 export default function BlogCard({ post }: { post: BlogPost }) {
+  const coverSrc = COVER_OVERRIDES[post.slug] ?? post.cover;
   return (
     <Link href={`/blog/${post.slug}`} className="group no-underline">
       <article
@@ -15,9 +20,9 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           className="relative w-full h-48 flex-shrink-0"
           style={{ background: "var(--dark)" }}
         >
-          {post.cover ? (
+          {coverSrc ? (
             <Image
-              src={post.cover}
+              src={coverSrc}
               alt={post.title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
