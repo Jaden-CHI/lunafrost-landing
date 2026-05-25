@@ -52,6 +52,17 @@ const projects = [
     external: true,
     isAI: false,
   },
+  {
+    id: 5,
+    featured: false,
+    title: 'WellDay',
+    category: 'APP · iOS/ANDROID',
+    description: '일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. 간편한 인터페이스로 건강한 생활 습관을 형성하도록 지원합니다.',
+    tech: ['React Native', 'Expo', 'TypeScript'],
+    status: 'shipped' as Status,
+    href: '/apps',
+    isAI: false,
+  },
 ];
 
 function FeaturedCard({ project }: { project: typeof projects[0] }) {

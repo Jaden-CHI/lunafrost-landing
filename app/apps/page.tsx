@@ -29,6 +29,13 @@ const projects = [
     status: "출시 완료",
     link: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn",
   },
+  {
+    title: "WellDay",
+    description: "일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. 간편한 인터페이스로 건강한 생활 습관을 형성하도록 지원합니다.",
+    tech: ["React Native", "Expo", "TypeScript"],
+    status: "출시 완료",
+    link: "",
+  },
 ];
 
 export default function AppsPage() {
