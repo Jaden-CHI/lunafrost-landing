@@ -55,6 +55,10 @@ export default function PrivacyPolicyPage() {
                 <p className="font-medium mb-1" style={{ color: "var(--text)" }}>AlwaysPDF Tools</p>
                 <p>서버로의 데이터 전송 없이 모든 처리가 브라우저 내에서만 이루어집니다.</p>
               </div>
+              <div>
+                <p className="font-medium mb-1" style={{ color: "var(--text)" }}>TaskSnap</p>
+                <p>할 일 목록, 우선순위, 완료 상태 등 작업 데이터를 수집합니다. 모든 데이터는 사용자의 기기 로컬 스토리지에만 저장되며 외부 서버로 전송되지 않습니다.</p>
+              </div>
               <div className="p-4 rounded-lg border text-sm" style={{ borderColor: "var(--border)", background: "rgba(200,223,245,0.03)" }}>
                 <strong style={{ color: "var(--tertiary)" }}>중요 안내:</strong> WellDay 앱의 건강 기록은 이용자의 개인 기기 내에만 안전하게 저장되며 회사 서버로 전송되지 않습니다.
               </div>
