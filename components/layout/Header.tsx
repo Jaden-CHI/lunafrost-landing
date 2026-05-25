@@ -13,24 +13,24 @@ export default function Header() {
     <nav
       className="sticky top-0 w-full z-50 border-b"
       style={{
-        background: 'rgba(16, 20, 26, 0.85)',
-        borderColor: 'rgba(66, 71, 77, 0.15)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
+        background: 'rgba(255, 255, 255, 0.95)',
+        borderColor: 'var(--border)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
       }}
     >
       <div className="flex justify-between items-center h-20 px-5 md:px-16 max-w-[1280px] mx-auto">
         {/* Logo */}
         <Link href="/" className="no-underline flex items-baseline gap-2">
           <span
-            className="font-[family-name:var(--font-cormorant)] italic"
-            style={{ fontSize: '22px', color: 'var(--text)' }}
+            className="font-[family-name:var(--font-inter)] font-bold"
+            style={{ fontSize: '20px', color: 'var(--primary)' }}
           >
             lunafrost
           </span>
           <span
             className="font-[family-name:var(--font-mono)] uppercase hidden sm:inline"
-            style={{ fontSize: '9px', letterSpacing: '0.4em', color: 'rgba(194,199,206,0.3)' }}
+            style={{ fontSize: '9px', letterSpacing: '0.4em', color: 'var(--text-muted)' }}
           >
             BY MOONYTH
           </span>
@@ -49,7 +49,7 @@ export default function Header() {
                 </span>
                 <span
                   className="font-[family-name:var(--font-mono)] uppercase transition-colors duration-300"
-                  style={{ fontSize: '9px', letterSpacing: '0.12em', color: 'rgba(194,199,206,0.3)' }}
+                  style={{ fontSize: '9px', letterSpacing: '0.12em', color: 'var(--text-muted)' }}
                 >
                   {item.en}
                 </span>
@@ -57,7 +57,7 @@ export default function Header() {
               {/* underline */}
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
-                style={{ background: 'var(--primary)' }}
+                style={{ background: 'var(--tertiary)' }}
               />
             </li>
           ))}
@@ -74,8 +74,8 @@ export default function Header() {
       </div>
 
       <style>{`
-        .group:hover a span:first-child { color: var(--text) !important; }
-        .group:hover a span:last-child  { color: rgba(170,212,249,0.6) !important; }
+        .group:hover a span:first-child { color: var(--primary) !important; }
+        .group:hover a span:last-child  { color: var(--tertiary) !important; }
       `}</style>
     </nav>
   );

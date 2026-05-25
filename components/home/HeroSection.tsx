@@ -48,32 +48,32 @@ export default function HeroSection() {
 
       {/* 4-corner meta */}
       <CornerMeta position="top-left">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase" style={{ color: 'rgba(170,212,249,0.7)' }}>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase font-semibold" style={{ color: 'var(--tertiary)' }}>
           VOL.05 · 2026
         </div>
-        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mt-1" style={{ color: 'rgba(194,199,206,0.35)' }}>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mt-1" style={{ color: 'var(--text-muted)' }}>
           LOG · MOONYTH
         </div>
       </CornerMeta>
 
       <CornerMeta position="top-right">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase" style={{ color: 'rgba(194,199,206,0.5)' }}>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase" style={{ color: 'var(--text-muted)' }}>
           SEOUL · KST
         </div>
         <LiveClock />
       </CornerMeta>
 
       <CornerMeta position="bottom-left">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mb-1" style={{ color: 'rgba(194,199,206,0.35)' }}>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mb-1" style={{ color: 'var(--text-muted)' }}>
           NOW · WRITING
         </div>
-        <div className="text-[13px]" style={{ color: 'var(--text-muted)' }}>
+        <div className="text-[13px]" style={{ color: 'var(--text)' }}>
           {CURRENTLY}
         </div>
       </CornerMeta>
 
       <CornerMeta position="bottom-right">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mb-1" style={{ color: 'rgba(194,199,206,0.35)' }}>
+        <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.12em] uppercase mb-1" style={{ color: 'var(--text-muted)' }}>
           ARCHIVE
         </div>
         <div className="text-[13px] text-right" style={{ color: 'var(--text-muted)' }}>
@@ -86,7 +86,7 @@ export default function HeroSection() {
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-12">
           <span
             className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.4em]"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             AI · DEV · APP · CONTENTS
           </span>
@@ -94,16 +94,16 @@ export default function HeroSection() {
 
         <motion.h1
           custom={1} variants={fadeUp} initial="hidden" animate="visible"
-          className="font-[family-name:var(--font-cormorant)] italic leading-[0.95] mb-2 tracking-tight"
-          style={{ fontSize: 'clamp(4.5rem, 12vw, 7rem)', color: 'var(--text)' }}
+          className="font-[family-name:var(--font-inter)] font-bold leading-[0.95] mb-2 tracking-tight"
+          style={{ fontSize: 'clamp(4.5rem, 12vw, 7rem)', color: 'var(--primary)' }}
         >
-          luna<span style={{ fontWeight: 300, color: 'var(--primary)' }}>frost</span>
+          luna<span style={{ fontWeight: 400, color: 'var(--tertiary)' }}>frost</span>
         </motion.h1>
 
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible">
           <div
             className="font-[family-name:var(--font-mono)] mt-4 mb-12"
-            style={{ fontSize: '9px', letterSpacing: '0.5em', color: 'rgba(194,199,206,0.3)' }}
+            style={{ fontSize: '9px', letterSpacing: '0.5em', color: 'var(--text-muted)' }}
           >
             37.5665° N · 126.9780° E
           </div>
@@ -147,13 +147,13 @@ export default function HeroSection() {
       >
         <span
           className="font-[family-name:var(--font-mono)] uppercase"
-          style={{ fontSize: '10px', letterSpacing: '0.3em', color: 'rgba(194,199,206,0.4)' }}
+          style={{ fontSize: '10px', letterSpacing: '0.3em', color: 'var(--text-muted)' }}
         >
           SCROLL
         </span>
         <div
           className="w-px h-12"
-          style={{ background: 'linear-gradient(to bottom, rgba(170,212,249,0.4), transparent)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(0,122,255,0.3), transparent)' }}
         />
       </motion.div>
     </header>

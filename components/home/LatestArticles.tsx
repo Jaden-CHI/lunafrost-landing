@@ -14,8 +14,8 @@ function FeaturedArticleCard({ article }: { article: BlogPost }) {
       <article
         className="border h-full flex flex-col"
         style={{
-          borderColor: 'rgba(66,71,77,0.2)',
-          background: 'rgba(24,28,34,0.4)',
+          borderColor: 'var(--border)',
+          background: 'var(--surface)',
           padding: '2.5rem',
         }}
       >
@@ -37,27 +37,27 @@ function FeaturedArticleCard({ article }: { article: BlogPost }) {
           {article.category && (
             <span
               className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] px-2.5 py-1 border"
-              style={{ borderColor: 'rgba(170,212,249,0.2)', color: 'rgba(170,212,249,0.7)', background: 'rgba(170,212,249,0.05)' }}
+              style={{ borderColor: 'rgba(0,122,255,0.15)', color: 'var(--tertiary)', background: 'rgba(0,122,255,0.08)' }}
             >
               {article.category}
             </span>
           )}
           {article.date && (
-            <span className="font-[family-name:var(--font-mono)] text-[10px]" style={{ color: 'rgba(194,199,206,0.4)' }}>
+            <span className="font-[family-name:var(--font-mono)] text-[10px]" style={{ color: 'var(--text-muted)' }}>
               {formatDate(article.date)}
             </span>
           )}
         </div>
 
         <h3
-          className="font-[family-name:var(--font-cormorant)] italic mb-3 leading-tight group-hover:text-primary transition-colors duration-300"
+          className="font-[family-name:var(--font-inter)] font-bold mb-3 leading-tight group-hover:text-primary transition-colors duration-300"
           style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--text)' }}
         >
           {article.title}
         </h3>
 
         {article.description && (
-          <p className="text-sm leading-relaxed flex-grow" style={{ color: 'rgba(194,199,206,0.7)' }}>
+          <p className="text-sm leading-relaxed flex-grow" style={{ color: 'var(--text-muted)' }}>
             {article.description}
           </p>
         )}
@@ -72,8 +72,8 @@ function RecentArticleCard({ article }: { article: BlogPost }) {
       <article
         className="border flex flex-col"
         style={{
-          borderColor: 'rgba(66,71,77,0.2)',
-          background: 'rgba(24,28,34,0.4)',
+          borderColor: 'var(--border)',
+          background: 'var(--surface)',
           padding: '1.75rem',
         }}
       >
@@ -81,27 +81,27 @@ function RecentArticleCard({ article }: { article: BlogPost }) {
           {article.category && (
             <span
               className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] px-2 py-0.5 border"
-              style={{ borderColor: 'rgba(170,212,249,0.2)', color: 'rgba(170,212,249,0.7)', background: 'rgba(170,212,249,0.05)' }}
+              style={{ borderColor: 'rgba(0,122,255,0.15)', color: 'var(--tertiary)', background: 'rgba(0,122,255,0.08)' }}
             >
               {article.category}
             </span>
           )}
           {article.date && (
-            <span className="font-[family-name:var(--font-mono)] text-[10px]" style={{ color: 'rgba(194,199,206,0.4)' }}>
+            <span className="font-[family-name:var(--font-mono)] text-[10px]" style={{ color: 'var(--text-muted)' }}>
               {formatDate(article.date)}
             </span>
           )}
         </div>
 
         <h3
-          className="font-[family-name:var(--font-cormorant)] italic mb-2 leading-tight group-hover:text-primary transition-colors duration-300"
+          className="font-[family-name:var(--font-inter)] font-bold mb-2 leading-tight group-hover:text-primary transition-colors duration-300"
           style={{ fontSize: '1.375rem', color: 'var(--text)' }}
         >
           {article.title}
         </h3>
 
         {article.description && (
-          <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'rgba(194,199,206,0.6)' }}>
+          <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--text-muted)' }}>
             {article.description}
           </p>
         )}
@@ -130,12 +130,12 @@ export default async function LatestArticles() {
         <div className="space-y-3">
           <span
             className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             JOURNAL · 최근 발행
           </span>
           <h2
-            className="font-[family-name:var(--font-cormorant)] italic font-normal"
+            className="font-[family-name:var(--font-inter)] font-bold"
             style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', color: 'var(--text)' }}
           >
             이번 호의 글.

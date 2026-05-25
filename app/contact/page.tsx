@@ -17,12 +17,12 @@ export default function ContactPage() {
         <div className="mb-16">
           <p
             className="font-[family-name:var(--font-mono)] text-xs tracking-[0.3em] uppercase mb-4"
-            style={{ color: "rgba(170, 212, 249, 0.6)" }}
+            style={{ color: "var(--tertiary)" }}
           >
             Contact
           </p>
           <h1
-            className="font-[family-name:var(--font-cormorant)] text-5xl font-light italic mb-6"
+            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-6"
             style={{ color: "var(--text)" }}
           >
             연락하기
@@ -35,19 +35,19 @@ export default function ContactPage() {
         <div
           className="p-12 border"
           style={{
-            borderColor: "rgba(66, 71, 77, 0.2)",
-            background: "rgba(24, 28, 34, 0.4)",
+            borderColor: "var(--border)",
+            background: "var(--surface)",
           }}
         >
           <p
             className="font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase mb-4"
-            style={{ color: "rgba(170, 212, 249, 0.6)" }}
+            style={{ color: "var(--tertiary)" }}
           >
             Email
           </p>
           <a
             href="mailto:moonyth.contact@gmail.com"
-            className="font-[family-name:var(--font-cormorant)] no-underline transition-colors duration-300 block mb-2"
+            className="font-[family-name:var(--font-inter)] font-bold no-underline transition-colors duration-300 block mb-2"
             style={{
               fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
               color: "var(--text)",

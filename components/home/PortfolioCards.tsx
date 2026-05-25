@@ -68,8 +68,8 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
           className="pf-card lens-target border h-full flex flex-col"
           style={{
             padding: '3rem',
-            borderColor: 'rgba(66,71,77,0.2)',
-            background: 'rgba(24,28,34,0.4)',
+            borderColor: 'var(--border)',
+            background: 'var(--surface)',
             backdropFilter: 'blur(12px)',
             minHeight: '400px',
           }}
@@ -81,12 +81,12 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
             <div className="space-y-1">
               <span
                 className="block font-[family-name:var(--font-mono)] text-[11px] tracking-wider uppercase"
-                style={{ color: 'rgba(170,212,249,0.7)' }}
+                style={{ color: 'var(--tertiary)' }}
               >
                 {project.category}
               </span>
               <h3
-                className="font-[family-name:var(--font-cormorant)] italic"
+                className="font-[family-name:var(--font-inter)] font-bold"
                 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--text)' }}
               >
                 {project.title}
@@ -95,7 +95,7 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
             <StatusDot status={project.status} />
           </div>
 
-          <p className="leading-relaxed mb-10 flex-grow" style={{ fontSize: '15px', color: 'rgba(194,199,206,0.8)' }}>
+          <p className="leading-relaxed mb-10 flex-grow" style={{ fontSize: '15px', color: 'var(--text-muted)' }}>
             {project.description}
           </p>
 
@@ -105,8 +105,8 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
                 key={t}
                 className={`font-[family-name:var(--font-mono)] text-[10px] px-3 py-1.5 border ${project.isAI ? 'tag-ai' : ''}`}
                 style={project.isAI ? {} : {
-                  background: 'rgba(49,53,60,0.6)',
-                  borderColor: 'rgba(66,71,77,0.3)',
+                  background: 'var(--surface-low)',
+                  borderColor: 'var(--border)',
                   color: 'var(--text)',
                 }}
               >
@@ -117,7 +117,7 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
 
           <span
             className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.12em] transition-colors duration-300"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             자세히 보기 →
           </span>
@@ -143,8 +143,8 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
           className="pf-card border h-full flex flex-col"
           style={{
             padding: '2rem',
-            borderColor: 'rgba(66,71,77,0.2)',
-            background: 'rgba(24,28,34,0.4)',
+            borderColor: 'var(--border)',
+            background: 'var(--surface)',
             backdropFilter: 'blur(12px)',
           }}
         >
@@ -152,12 +152,12 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
             <div className="space-y-0.5">
               <span
                 className="block font-[family-name:var(--font-mono)] text-[10px] tracking-wider uppercase"
-                style={{ color: 'rgba(170,212,249,0.7)' }}
+                style={{ color: 'var(--tertiary)' }}
               >
                 {project.category}
               </span>
               <h3
-                className="font-[family-name:var(--font-cormorant)] italic text-xl"
+                className="font-[family-name:var(--font-inter)] font-bold text-xl"
                 style={{ color: 'var(--text)' }}
               >
                 {project.title}
@@ -166,7 +166,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
             <StatusDot status={project.status} />
           </div>
 
-          <p className="text-sm leading-relaxed flex-grow mb-6" style={{ color: 'rgba(194,199,206,0.8)' }}>
+          <p className="text-sm leading-relaxed flex-grow mb-6" style={{ color: 'var(--text-muted)' }}>
             {project.description}
           </p>
 
@@ -176,8 +176,8 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
                 key={t}
                 className={`font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1 border ${project.isAI ? 'tag-ai' : ''}`}
                 style={project.isAI ? {} : {
-                  background: 'rgba(49,53,60,0.6)',
-                  borderColor: 'rgba(66,71,77,0.3)',
+                  background: 'var(--surface-low)',
+                  borderColor: 'var(--border)',
                   color: 'var(--text)',
                 }}
               >
@@ -188,7 +188,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
 
           <span
             className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em]"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             자세히 보기 →
           </span>
@@ -209,12 +209,12 @@ export default function PortfolioCards() {
         <div className="space-y-3">
           <span
             className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             PORTFOLIO · 만들어온 것들
           </span>
           <h2
-            className="font-[family-name:var(--font-cormorant)] italic font-normal"
+            className="font-[family-name:var(--font-inter)] font-bold"
             style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', color: 'var(--text)' }}
           >
             손으로 빚은 것들.

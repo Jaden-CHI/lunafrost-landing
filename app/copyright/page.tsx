@@ -15,7 +15,7 @@ export default function CopyrightPage() {
 
       <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
         <h1
-          className="font-[family-name:var(--font-cormorant)] text-4xl font-light mb-2"
+          className="font-[family-name:var(--font-inter)] text-4xl font-bold mb-2"
           style={{ color: "var(--text)" }}
         >
           저작권 정책
@@ -30,7 +30,7 @@ export default function CopyrightPage() {
         <div className="space-y-10" style={{ color: "var(--text-muted)" }}>
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               1. 기본 원칙
             </h2>
             <p className="leading-relaxed">
@@ -38,10 +38,10 @@ export default function CopyrightPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               2. AI 생성 이미지 저작권
             </h2>
             <div className="space-y-3 leading-relaxed">
@@ -56,10 +56,10 @@ export default function CopyrightPage() {
             </div>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               3. 콘텐츠 이용 안내
             </h2>
             <div className="space-y-3 leading-relaxed">
@@ -78,10 +78,10 @@ export default function CopyrightPage() {
             </div>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               4. 금지 행위
             </h2>
             <p className="leading-relaxed mb-3">다음의 행위는 명시적으로 금지됩니다.</p>
@@ -93,10 +93,10 @@ export default function CopyrightPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               5. 문의
             </h2>
             <p className="leading-relaxed mb-3">
@@ -105,7 +105,7 @@ export default function CopyrightPage() {
             <a
               href="mailto:moonyth.blog@gmail.com"
               className="text-sm no-underline transition-colors duration-200"
-              style={{ color: "var(--frost-dim)" }}
+              style={{ color: "var(--tertiary)" }}
             >
               → moonyth.blog@gmail.com
             </a>

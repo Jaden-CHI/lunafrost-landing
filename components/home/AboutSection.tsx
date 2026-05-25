@@ -12,7 +12,7 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section className="relative py-40 overflow-hidden" style={{ background: 'rgba(24,28,34,0.2)' }}>
+    <section className="relative py-40 overflow-hidden" style={{ background: 'var(--surface-low)' }}>
       <div className="absolute inset-0 grid-bg-fine opacity-50" />
 
       <div className="max-w-[1280px] mx-auto px-5 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
@@ -63,16 +63,16 @@ export default function AboutSection() {
           <div className="space-y-4">
             <span
               className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"
-              style={{ color: 'rgba(170,212,249,0.6)' }}
+              style={{ color: 'var(--tertiary)' }}
             >
               CORE VALUES · 운영 철학
             </span>
             <h2
-              className="font-[family-name:var(--font-cormorant)] italic font-normal leading-tight"
+              className="font-[family-name:var(--font-inter)] font-bold leading-tight"
               style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--text)' }}
             >
               Exploring the frontier of{' '}
-              <span style={{ color: 'var(--primary)' }}>technical creativity.</span>
+              <span style={{ color: 'var(--tertiary)' }}>technical creativity.</span>
             </h2>
           </div>
 
@@ -85,20 +85,20 @@ export default function AboutSection() {
           {/* 4 stats */}
           <div
             className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t"
-            style={{ borderColor: 'rgba(66,71,77,0.15)' }}
+            style={{ borderColor: 'var(--border)' }}
           >
             {stats.map(stat => {
               const inner = (
                 <>
                   <div
-                    className="font-[family-name:var(--font-cormorant)] italic mb-1"
+                    className="font-[family-name:var(--font-inter)] font-bold mb-1"
                     style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: 'var(--primary)' }}
                   >
                     {stat.value}
                   </div>
                   <div
                     className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-widest"
-                    style={{ color: 'rgba(194,199,206,0.5)' }}
+                    style={{ color: 'var(--text-muted)' }}
                   >
                     {stat.label}
                   </div>

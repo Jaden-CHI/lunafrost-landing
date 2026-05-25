@@ -52,12 +52,12 @@ export default function YouTubePage() {
         <div className="mb-16">
           <p
             className="font-[family-name:var(--font-mono)] text-xs tracking-[0.3em] uppercase mb-4"
-            style={{ color: "rgba(170, 212, 249, 0.6)" }}
+            style={{ color: "var(--tertiary)" }}
           >
             YouTube
           </p>
           <h1
-            className="font-[family-name:var(--font-cormorant)] text-5xl font-light italic mb-4"
+            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             영상으로 기록하는 탐구
@@ -75,14 +75,14 @@ export default function YouTubePage() {
               <div
                 className="p-10 border mb-6"
                 style={{
-                  borderColor: "rgba(66, 71, 77, 0.2)",
-                  background: "rgba(24, 28, 34, 0.4)",
+                  borderColor: "var(--border)",
+                  background: "var(--surface)",
                 }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-6">
                   <div>
                     <h2
-                      className="font-[family-name:var(--font-cormorant)] text-3xl italic mb-3"
+                      className="font-[family-name:var(--font-inter)] text-3xl font-bold mb-3"
                       style={{ color: "var(--text)" }}
                     >
                       {channel.handle}
@@ -162,7 +162,7 @@ export default function YouTubePage() {
               </div>
 
               {idx < channels.length - 1 && (
-                <div className="w-10 h-px opacity-20" style={{ background: "var(--frost-dim)" }} />
+                <div className="w-10 h-px opacity-20" style={{ background: "var(--border)" }} />
               )}
             </div>
           ))}

@@ -18,7 +18,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         {/* Cover image */}
         <div
           className="relative w-full h-48 flex-shrink-0"
-          style={{ background: "var(--dark)" }}
+          style={{ background: "var(--surface-low)" }}
         >
           {coverSrc ? (
             <Image
@@ -47,8 +47,8 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               <span
                 className="px-2 py-0.5 rounded text-xs border"
                 style={{
-                  borderColor: "var(--frost-dim)",
-                  color: "var(--frost-dim)",
+                  borderColor: "rgba(0,122,255,0.15)",
+                  color: "var(--tertiary)",
                 }}
               >
                 {post.category}
@@ -58,7 +58,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           </div>
 
           <h3
-            className="font-[family-name:var(--font-cormorant)] text-xl font-normal mb-2 transition-colors duration-200 group-hover:text-[var(--frost)]"
+            className="font-[family-name:var(--font-inter)] text-xl font-bold mb-2 transition-colors duration-200 group-hover:text-[var(--tertiary)]"
             style={{ color: "var(--text)" }}
           >
             {post.title}

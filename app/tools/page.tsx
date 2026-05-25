@@ -22,7 +22,7 @@ export default function ToolsPage() {
       <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-6 py-16">
         <div className="mb-12">
           <h1
-            className="font-[family-name:var(--font-cormorant)] text-5xl font-light mb-4"
+            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             AI Tools
@@ -42,8 +42,8 @@ export default function ToolsPage() {
             >
               <div className="text-2xl mb-3 opacity-70">{cat.icon}</div>
               <h3
-                className="font-[family-name:var(--font-cormorant)] text-xl font-normal mb-1"
-                style={{ color: "var(--frost)" }}
+                className="font-[family-name:var(--font-inter)] text-xl font-bold mb-1"
+                style={{ color: "var(--tertiary)" }}
               >
                 {cat.title}
               </h3>

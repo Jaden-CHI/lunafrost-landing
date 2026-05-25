@@ -36,8 +36,8 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
   return (
     <div className="space-y-4">
       <h3
-        className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-widest"
-        style={{ color: 'rgba(170,212,249,0.6)' }}
+        className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-widest font-semibold"
+        style={{ color: 'var(--primary)' }}
       >
         {title}
       </h3>
@@ -50,7 +50,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
                 target="_blank"
                 rel="noopener noreferrer"
                 className="no-underline text-sm transition-colors duration-300 footer-col-link"
-                style={{ color: 'rgba(194,199,206,0.6)' }}
+                style={{ color: 'var(--text-muted)' }}
               >
                 {link.label}
               </a>
@@ -58,7 +58,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
               <Link
                 href={link.href}
                 className="no-underline text-sm transition-colors duration-300 footer-col-link"
-                style={{ color: 'rgba(194,199,206,0.6)' }}
+                style={{ color: 'var(--text-muted)' }}
               >
                 {link.label}
               </Link>
@@ -72,7 +72,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
 
 export default function Footer() {
   return (
-    <footer className="pt-24 pb-12 px-5 md:px-16 border-t" style={{ borderColor: 'rgba(66,71,77,0.15)' }}>
+    <footer className="pt-24 pb-12 px-5 md:px-16 border-t" style={{ borderColor: 'var(--border)' }}>
       <div className="max-w-[1280px] mx-auto">
 
         {/* 5-col sitemap */}
@@ -81,19 +81,19 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
             <Link href="/" className="no-underline">
               <span
-                className="font-[family-name:var(--font-cormorant)] italic block"
-                style={{ fontSize: '20px', color: 'var(--text)' }}
+                className="font-[family-name:var(--font-inter)] font-bold block"
+                style={{ fontSize: '18px', color: 'var(--primary)' }}
               >
                 lunafrost
               </span>
               <span
                 className="font-[family-name:var(--font-mono)] uppercase block mt-1"
-                style={{ fontSize: '9px', letterSpacing: '0.3em', color: 'rgba(194,199,206,0.3)' }}
+                style={{ fontSize: '9px', letterSpacing: '0.3em', color: 'var(--text-muted)' }}
               >
                 BY MOONYTH
               </span>
             </Link>
-            <p className="text-xs leading-relaxed" style={{ color: 'rgba(194,199,206,0.4)' }}>
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               AI와 기술, 창작의 경계에서<br />탐구하는 Moonyth의 기록.
             </p>
           </div>
@@ -111,9 +111,9 @@ export default function Footer() {
         <div className="mb-6">
           <p
             className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] leading-relaxed"
-            style={{ color: 'rgba(140,145,152,0.4)' }}
+            style={{ color: 'var(--text-muted)' }}
           >
-            COLOPHON · SET IN CORMORANT GARAMOND &amp; DM SANS · METADATA IN JETBRAINS MONO<br />
+            COLOPHON · SET IN INTER &amp; JETBRAINS MONO · METADATA IN JETBRAINS MONO<br />
             BUILT WITH NEXT.JS · HOSTED ON VERCEL · CONTENT VIA NOTION CMS
           </p>
         </div>
@@ -122,7 +122,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <span
             className="font-[family-name:var(--font-mono)] text-[10px]"
-            style={{ color: 'rgba(194,199,206,0.4)' }}
+            style={{ color: 'var(--text-muted)' }}
           >
             © 2026 lunafrost — Moonyth. All rights reserved.
           </span>
@@ -133,7 +133,7 @@ export default function Footer() {
                   href={link.href}
                   className="no-underline transition-colors duration-300 footer-col-link font-[family-name:var(--font-mono)] text-[10px]"
                   style={{
-                    color: 'rgba(194,199,206,0.5)',
+                    color: 'var(--text-muted)',
                     fontWeight: link.bold ? 700 : 400,
                   }}
                 >
@@ -146,7 +146,7 @@ export default function Footer() {
       </div>
 
       <style>{`
-        .footer-col-link:hover { color: var(--primary) !important; }
+        .footer-col-link:hover { color: var(--tertiary) !important; }
       `}</style>
     </footer>
   );

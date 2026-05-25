@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
 
       <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
         <h1
-          className="font-[family-name:var(--font-cormorant)] text-4xl font-light mb-4"
+          className="font-[family-name:var(--font-inter)] text-4xl font-bold mb-4"
           style={{ color: "var(--text)" }}
         >
           개인정보처리방침
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
         <div className="space-y-10" style={{ color: "var(--text-muted)" }}>
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제1조 (총칙)
             </h2>
             <p className="leading-relaxed">
@@ -36,10 +36,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제2조 (수집하는 개인정보 항목)
             </h2>
             <div className="space-y-4 leading-relaxed">
@@ -56,15 +56,15 @@ export default function PrivacyPolicyPage() {
                 <p>서버로의 데이터 전송 없이 모든 처리가 브라우저 내에서만 이루어집니다.</p>
               </div>
               <div className="p-4 rounded-lg border text-sm" style={{ borderColor: "var(--border)", background: "rgba(200,223,245,0.03)" }}>
-                <strong style={{ color: "var(--frost-dim)" }}>중요 안내:</strong> WellDay 앱의 건강 기록은 이용자의 개인 기기 내에만 안전하게 저장되며 회사 서버로 전송되지 않습니다.
+                <strong style={{ color: "var(--tertiary)" }}>중요 안내:</strong> WellDay 앱의 건강 기록은 이용자의 개인 기기 내에만 안전하게 저장되며 회사 서버로 전송되지 않습니다.
               </div>
             </div>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제3조 (개인정보 보유 및 이용 기간)
             </h2>
             <ul className="space-y-2 leading-relaxed list-none">
@@ -74,10 +74,10 @@ export default function PrivacyPolicyPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제4조 (개인정보의 제3자 제공)
             </h2>
             <p className="leading-relaxed">
@@ -85,10 +85,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제5조 (이용자 권리)
             </h2>
             <p className="leading-relaxed">
@@ -96,10 +96,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제6조 (쿠키 사용)
             </h2>
             <p className="leading-relaxed">
@@ -107,10 +107,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제7조 (개인정보 보호책임자)
             </h2>
             <p className="leading-relaxed">
@@ -120,17 +120,17 @@ export default function PrivacyPolicyPage() {
               <a
                 href="mailto:moonyth.blog@gmail.com"
                 className="transition-colors duration-200"
-                style={{ color: "var(--frost-dim)" }}
+                style={{ color: "var(--tertiary)" }}
               >
                 moonyth.blog@gmail.com
               </a>
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제8조 (방침 변경)
             </h2>
             <p className="leading-relaxed">

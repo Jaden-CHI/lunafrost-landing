@@ -23,7 +23,7 @@ export function LiveClock() {
   return (
     <div
       className="font-[family-name:var(--font-mono)] uppercase mt-1"
-      style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(194,199,206,0.4)' }}
+      style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'var(--text-muted)' }}
       aria-live="polite"
     >
       {time}

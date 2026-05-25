@@ -40,7 +40,7 @@ export default function AppsPage() {
       <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-6 py-16">
         <div className="mb-12">
           <h1
-            className="font-[family-name:var(--font-cormorant)] text-5xl font-light mb-4"
+            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             Apps & Projects
@@ -59,14 +59,14 @@ export default function AppsPage() {
             >
               <div className="flex items-start justify-between mb-4">
                 <h3
-                  className="font-[family-name:var(--font-cormorant)] text-2xl font-normal"
-                  style={{ color: "var(--frost)" }}
+                  className="font-[family-name:var(--font-inter)] text-2xl font-bold"
+                  style={{ color: "var(--text)" }}
                 >
                   {project.title}
                 </h3>
                 <span
                   className="text-xs px-2 py-1 rounded border"
-                  style={{ borderColor: "var(--frost-dim)", color: "var(--frost-dim)" }}
+                  style={{ borderColor: "rgba(0,122,255,0.2)", color: "var(--tertiary)" }}
                 >
                   {project.status}
                 </span>
@@ -94,7 +94,7 @@ export default function AppsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm no-underline transition-colors duration-200"
-                  style={{ color: "var(--frost-dim)" }}
+                  style={{ color: "var(--tertiary)" }}
                 >
                   방문하기 →
                 </a>

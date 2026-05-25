@@ -31,12 +31,12 @@ export default function ScrollVideoSection({ youtubeId }: Props) {
       >
         <p
           className="text-xs tracking-[0.3em] uppercase mb-4"
-          style={{ color: "var(--frost-dim)" }}
+          style={{ color: "var(--text-muted)" }}
         >
           Work in Motion
         </p>
         <h2
-          className="font-[family-name:var(--font-cormorant)] font-light"
+          className="font-[family-name:var(--font-inter)] font-bold"
           style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "var(--text)" }}
         >
           무엇을 만드는가
@@ -70,14 +70,14 @@ export default function ScrollVideoSection({ youtubeId }: Props) {
           >
             <div
               className="w-16 h-16 rounded-full border-2 flex items-center justify-center"
-              style={{ borderColor: "var(--frost-dim)" }}
+              style={{ borderColor: "var(--tertiary)" }}
             >
               <div
                 className="w-0 h-0 ml-1"
                 style={{
                   borderTop: "10px solid transparent",
                   borderBottom: "10px solid transparent",
-                  borderLeft: "16px solid var(--frost-dim)",
+                  borderLeft: "16px solid var(--tertiary)",
                 }}
               />
             </div>

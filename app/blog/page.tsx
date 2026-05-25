@@ -45,7 +45,7 @@ export default async function BlogPage({
       <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-6 py-16">
         <div className="mb-12">
           <h1
-            className="font-[family-name:var(--font-cormorant)] text-5xl font-light mb-4"
+            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             Blog
@@ -65,15 +65,15 @@ export default async function BlogPage({
               style={{
                 borderColor:
                   (category ?? "전체") === cat
-                    ? "var(--frost-dim)"
+                    ? "var(--tertiary)"
                     : "var(--border)",
                 color:
                   (category ?? "전체") === cat
-                    ? "var(--frost)"
+                    ? "var(--tertiary)"
                     : "var(--text-muted)",
                 background:
                   (category ?? "전체") === cat
-                    ? "rgba(200,223,245,0.08)"
+                    ? "rgba(0,122,255,0.08)"
                     : "transparent",
               }}
             >

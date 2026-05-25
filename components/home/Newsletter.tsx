@@ -25,19 +25,19 @@ export default function Newsletter() {
   return (
     <section
       className="py-32 px-5 md:px-16 border-y"
-      style={{ borderColor: 'rgba(66,71,77,0.1)', background: 'rgba(10,14,20,0.5)' }}
+      style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
     >
       <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Copy */}
         <div className="space-y-6">
           <span
             className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"
-            style={{ color: 'rgba(170,212,249,0.6)' }}
+            style={{ color: 'var(--tertiary)' }}
           >
             SUBSCRIBE · 매주 일요일 발행
           </span>
           <h2
-            className="font-[family-name:var(--font-cormorant)] italic font-normal leading-tight"
+            className="font-[family-name:var(--font-inter)] font-bold leading-tight"
             style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--text)' }}
           >
             새로운 글이<br />도착하면 알려드릴게요.
@@ -63,7 +63,7 @@ export default function Newsletter() {
                 <label
                   htmlFor="newsletter-email"
                   className="block font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] mb-3"
-                  style={{ color: 'rgba(194,199,206,0.5)' }}
+                  style={{ color: 'var(--text-muted)' }}
                 >
                   [01] EMAIL
                 </label>

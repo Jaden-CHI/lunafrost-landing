@@ -16,7 +16,7 @@ export default function TermsPage() {
 
       <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
         <h1
-          className="font-[family-name:var(--font-cormorant)] text-4xl font-light mb-2"
+          className="font-[family-name:var(--font-inter)] text-4xl font-bold mb-2"
           style={{ color: "var(--text)" }}
         >
           서비스 이용약관
@@ -31,7 +31,7 @@ export default function TermsPage() {
         <div className="space-y-10" style={{ color: "var(--text-muted)" }}>
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제1조 (목적)
             </h2>
             <p className="leading-relaxed">
@@ -39,10 +39,10 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제2조 (정의)
             </h2>
             <ul className="space-y-2 leading-relaxed">
@@ -52,10 +52,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제3조 (약관의 효력 및 변경)
             </h2>
             <ul className="space-y-2 leading-relaxed">
@@ -65,10 +65,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제4조 (서비스 이용)
             </h2>
             <ul className="space-y-2 leading-relaxed">
@@ -78,10 +78,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제5조 (이용자의 의무)
             </h2>
             <p className="leading-relaxed mb-3">이용자는 다음 행위를 하여서는 안 됩니다.</p>
@@ -93,10 +93,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제6조 (저작권 및 콘텐츠 이용)
             </h2>
             <ul className="space-y-2 leading-relaxed">
@@ -106,10 +106,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제7조 (개인정보 보호)
             </h2>
             <p className="leading-relaxed mb-3">
@@ -118,16 +118,16 @@ export default function TermsPage() {
             <Link
               href="/privacy-policy"
               className="text-sm no-underline transition-colors duration-200"
-              style={{ color: "var(--frost-dim)" }}
+              style={{ color: "var(--tertiary)" }}
             >
               → 개인정보처리방침 보기
             </Link>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제8조 (면책조항)
             </h2>
             <ul className="space-y-2 leading-relaxed">
@@ -137,10 +137,10 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제9조 (분쟁 해결)
             </h2>
             <p className="leading-relaxed">
@@ -148,10 +148,10 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-30" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
 
           <section>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4" style={{ color: "var(--frost)" }}>
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
               제10조 (문의)
             </h2>
             <p className="leading-relaxed mb-3">
@@ -160,7 +160,7 @@ export default function TermsPage() {
             <a
               href="mailto:moonyth.blog@gmail.com"
               className="text-sm no-underline transition-colors duration-200"
-              style={{ color: "var(--frost-dim)" }}
+              style={{ color: "var(--tertiary)" }}
             >
               → moonyth.blog@gmail.com
             </a>

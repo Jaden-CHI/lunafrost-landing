@@ -15,7 +15,7 @@ export default function AboutPage() {
 
       <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
         <h1
-          className="font-[family-name:var(--font-cormorant)] text-5xl font-light mb-12"
+          className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-12"
           style={{ color: "var(--text)" }}
         >
           About
@@ -24,8 +24,8 @@ export default function AboutPage() {
         <div className="space-y-8">
           <section>
             <h2
-              className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4"
-              style={{ color: "var(--frost)" }}
+              className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4"
+              style={{ color: "var(--tertiary)" }}
             >
               Moonyth
             </h2>
@@ -35,12 +35,12 @@ export default function AboutPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-40" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-40" style={{ background: "var(--border)" }} />
 
           <section>
             <h2
-              className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4"
-              style={{ color: "var(--frost)" }}
+              className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4"
+              style={{ color: "var(--tertiary)" }}
             >
               lunafrost란?
             </h2>
@@ -51,12 +51,12 @@ export default function AboutPage() {
             </p>
           </section>
 
-          <div className="w-10 h-px opacity-40" style={{ background: "var(--frost-dim)" }} />
+          <div className="w-10 h-px opacity-40" style={{ background: "var(--border)" }} />
 
           <section>
             <h2
-              className="font-[family-name:var(--font-cormorant)] text-2xl font-normal mb-4"
-              style={{ color: "var(--frost)" }}
+              className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4"
+              style={{ color: "var(--tertiary)" }}
             >
               Contact
             </h2>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               <a
                 href="mailto:moonyth.contact@gmail.com"
                 className="no-underline transition-colors duration-200"
-                style={{ color: "var(--frost-dim)" }}
+                style={{ color: "var(--tertiary)" }}
               >
                 moonyth.contact@gmail.com
               </a>

@@ -68,7 +68,7 @@ export default async function BlogPostPage({
               {post.category && (
                 <span
                   className="px-3 py-1 rounded-full text-xs border"
-                  style={{ borderColor: "var(--frost-dim)", color: "var(--frost-dim)" }}
+                  style={{ borderColor: "rgba(0,122,255,0.15)", color: "var(--tertiary)" }}
                 >
                   {post.category}
                 </span>
