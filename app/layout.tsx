@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   description: "AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 Moonyth의 공간입니다.",
   icons: {
-    icon: "/IC.png",
-    apple: "/IC.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     type: "website",
