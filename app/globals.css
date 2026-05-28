@@ -315,3 +315,22 @@ html, body {
   background: var(--surface-low) !important;
   border: 1px solid var(--border);
 }
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.9em;
+}
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.6em 1em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose th {
+  background: var(--surface-low);
+  color: var(--primary);
+  font-weight: 600;
+}
+.prose td { color: var(--text-muted); }
+.prose tr:nth-child(even) td { background: var(--surface); }
