@@ -179,11 +179,11 @@ export default function GolfWindyPrivacyPolicyPage() {
             </p>
             <p className="mt-4">
               <a
-                href="mailto:zeus1249@gmail.com"
+                href="mailto:moonyth.contact@gmail.com"
                 className="transition-colors duration-200"
                 style={{ color: "var(--tertiary)" }}
               >
-                zeus1249@gmail.com
+                moonyth.contact@gmail.com
               </a>
             </p>
           </section>
