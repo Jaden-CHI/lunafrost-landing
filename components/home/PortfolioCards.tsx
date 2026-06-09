@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { StatusDot } from '@/components/ui/StatusDot';
 
@@ -62,6 +63,19 @@ const projects = [
     status: 'shipped' as Status,
     href: '/apps',
     isAI: false,
+  },
+  {
+    id: 6,
+    featured: false,
+    title: 'Golf Windy',
+    category: 'APP · IOS',
+    description: '골프 라운드 일정과 날씨, 바람 정보를 함께 확인하는 iOS 앱. 라운드 당일 조건을 빠르게 살피고 근처 식당 추천까지 이어집니다.',
+    tech: ['Flutter', 'Firebase', 'Kakao Map API'],
+    status: 'shipped' as Status,
+    href: 'https://apps.apple.com/kr/app/golf-windy/id6776418580',
+    external: true,
+    isAI: false,
+    icon: '/golfwindy-icon-256.png',
   },
 ];
 
@@ -160,19 +174,31 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
           }}
         >
           <div className="flex justify-between items-start mb-4 gap-3">
-            <div className="space-y-0.5">
-              <span
-                className="block font-[family-name:var(--font-mono)] text-[10px] tracking-wider uppercase"
-                style={{ color: 'var(--tertiary)' }}
-              >
-                {project.category}
-              </span>
-              <h3
-                className="font-[family-name:var(--font-inter)] font-bold text-xl"
-                style={{ color: 'var(--text)' }}
-              >
-                {project.title}
-              </h3>
+            <div className="flex items-start gap-3">
+              {'icon' in project && project.icon ? (
+                <Image
+                  src={project.icon}
+                  alt={`${project.title} icon`}
+                  width={44}
+                  height={44}
+                  className="rounded-xl border"
+                  style={{ borderColor: 'var(--border)' }}
+                />
+              ) : null}
+              <div className="space-y-0.5">
+                <span
+                  className="block font-[family-name:var(--font-mono)] text-[10px] tracking-wider uppercase"
+                  style={{ color: 'var(--tertiary)' }}
+                >
+                  {project.category}
+                </span>
+                <h3
+                  className="font-[family-name:var(--font-inter)] font-bold text-xl"
+                  style={{ color: 'var(--text)' }}
+                >
+                  {project.title}
+                </h3>
+              </div>
             </div>
             <StatusDot status={project.status} />
           </div>

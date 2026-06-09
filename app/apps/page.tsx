@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -36,6 +37,14 @@ const projects = [
     status: "출시 완료",
     link: "",
   },
+  {
+    title: "Golf Windy",
+    description: "골프 라운드 일정과 날씨, 바람 정보를 한눈에 확인하는 iOS 앱. 라운드 당일 조건 확인과 근처 식당 추천을 함께 제공합니다.",
+    tech: ["Flutter", "Firebase", "Kakao Map API"],
+    status: "App Store 출시",
+    link: "https://apps.apple.com/kr/app/golf-windy/id6776418580",
+    icon: "/golfwindy-icon-256.png",
+  },
 ];
 
 export default function AppsPage() {
@@ -65,12 +74,24 @@ export default function AppsPage() {
               style={{ borderColor: "var(--border)", background: "var(--surface)" }}
             >
               <div className="flex items-start justify-between mb-4">
-                <h3
-                  className="font-[family-name:var(--font-inter)] text-2xl font-bold"
-                  style={{ color: "var(--text)" }}
-                >
-                  {project.title}
-                </h3>
+                <div className="flex items-center gap-3">
+                  {project.icon ? (
+                    <Image
+                      src={project.icon}
+                      alt={`${project.title} icon`}
+                      width={48}
+                      height={48}
+                      className="rounded-xl border"
+                      style={{ borderColor: "var(--border)" }}
+                    />
+                  ) : null}
+                  <h3
+                    className="font-[family-name:var(--font-inter)] text-2xl font-bold"
+                    style={{ color: "var(--text)" }}
+                  >
+                    {project.title}
+                  </h3>
+                </div>
                 <span
                   className="text-xs px-2 py-1 rounded border"
                   style={{ borderColor: "rgba(0,122,255,0.2)", color: "var(--tertiary)" }}
