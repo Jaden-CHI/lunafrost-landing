@@ -11,6 +11,7 @@ const BUILD_LINKS = [
   { label: 'lunafrost Landing', href: '/apps' },
   { label: 'AlwaysPDF Tools', href: '/apps' },
   { label: 'TaskSnap', href: '/apps' },
+  { label: 'WellDay', href: 'https://apps.apple.com/kr/app/wellday/id6748712466' },
   { label: 'Golf Windy', href: 'https://apps.apple.com/kr/app/golf-windy/id6776418580' },
   { label: 'AI 콘텐츠 스튜디오', href: '/tools' },
 ];

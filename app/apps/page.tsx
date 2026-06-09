@@ -32,10 +32,11 @@ const projects = [
   },
   {
     title: "WellDay",
-    description: "일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. 간편한 인터페이스로 건강한 생활 습관을 형성하도록 지원합니다.",
+    description: "물 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 iOS 건강 루틴 앱. 간편한 인터페이스로 매일의 건강 습관을 놓치지 않도록 돕습니다.",
     tech: ["React Native", "Expo", "TypeScript"],
-    status: "출시 완료",
-    link: "",
+    status: "App Store 출시",
+    link: "https://apps.apple.com/kr/app/wellday/id6748712466",
+    icon: "/wellday-icon-256.png",
   },
   {
     title: "Golf Windy",
