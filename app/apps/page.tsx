@@ -32,10 +32,13 @@ const projects = [
   },
   {
     title: "WellDay",
-    description: "물 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 iOS 건강 루틴 앱. 간편한 인터페이스로 매일의 건강 습관을 놓치지 않도록 돕습니다.",
+    description: "일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. iOS와 Android 모두에서 간편한 인터페이스로 매일의 건강 습관을 형성하도록 지원합니다.",
     tech: ["React Native", "Expo", "TypeScript"],
-    status: "App Store 출시",
-    link: "https://apps.apple.com/kr/app/wellday/id6748712466",
+    status: "iOS/Android 출시",
+    links: [
+      { name: "App Store", url: "https://apps.apple.com/kr/app/wellday/id6748712466" },
+      { name: "Google Play", url: "https://play.google.com/store/apps/details?id=com.moonyth.DailyCareApp" }
+    ],
     icon: "/wellday-icon-256.png",
   },
   {
@@ -117,7 +120,22 @@ export default function AppsPage() {
                 ))}
               </div>
 
-              {project.link && (
+              {project.links ? (
+                <div className="flex gap-4 flex-wrap">
+                  {project.links.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm no-underline transition-colors duration-200"
+                      style={{ color: "var(--tertiary)" }}
+                    >
+                      {link.name} →
+                    </a>
+                  ))}
+                </div>
+              ) : project.link && (
                 <a
                   href={project.link}
                   target="_blank"
