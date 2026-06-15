@@ -120,9 +120,9 @@ export default function Footer() {
               href="https://apps.apple.com/kr/app/golf-windy/id6776418580"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity inline-block"
             >
-              <Image
+              <img
                 src="/golfwindy-banner.png"
                 alt="Golf Windy"
                 width={64}
@@ -133,9 +133,9 @@ export default function Footer() {
             </a>
             <a
               href="/fishinghwindy/privacy"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity inline-block"
             >
-              <Image
+              <img
                 src="/fishinghwindy-logo-thumb.png"
                 alt="Fishing Windy"
                 width={64}
