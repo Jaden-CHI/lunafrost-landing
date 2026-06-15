@@ -146,19 +146,11 @@ export default function GolfWindyPrivacyPolicyPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link
               href="/privacy-policy"
-              className="p-4 rounded-lg border no-underline transition-colors duration-200"
+              className="p-4 rounded-lg border no-underline transition-all duration-200 hover:bg-opacity-5 hover:border-tertiary"
               style={{
                 borderColor: "var(--border)",
                 background: "var(--surface)",
                 color: "var(--text)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(0,122,255,0.05)";
-                e.currentTarget.style.borderColor = "var(--tertiary)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--surface)";
-                e.currentTarget.style.borderColor = "var(--border)";
               }}
             >
               <p className="font-medium" style={{ color: "var(--text)" }}>lunafrost</p>
@@ -166,7 +158,7 @@ export default function GolfWindyPrivacyPolicyPage() {
             </Link>
             <Link
               href="/golfwindy/privacy"
-              className="p-4 rounded-lg border no-underline transition-colors duration-200"
+              className="p-4 rounded-lg border no-underline"
               style={{
                 borderColor: "var(--tertiary)",
                 background: "rgba(0,122,255,0.05)",
@@ -178,19 +170,11 @@ export default function GolfWindyPrivacyPolicyPage() {
             </Link>
             <Link
               href="/fishinghwindy/privacy"
-              className="p-4 rounded-lg border no-underline transition-colors duration-200"
+              className="p-4 rounded-lg border no-underline transition-all duration-200 hover:bg-opacity-5 hover:border-tertiary"
               style={{
                 borderColor: "var(--border)",
                 background: "var(--surface)",
                 color: "var(--text)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(0,122,255,0.05)";
-                e.currentTarget.style.borderColor = "var(--tertiary)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--surface)";
-                e.currentTarget.style.borderColor = "var(--border)";
               }}
             >
               <p className="font-medium" style={{ color: "var(--text)" }}>🎣 Fishing Windy</p>
