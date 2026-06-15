@@ -14,7 +14,7 @@ const BUILD_LINKS = [
   { label: 'TaskSnap', href: '/apps' },
   { label: 'WellDay', href: 'https://apps.apple.com/kr/app/wellday/id6748712466' },
   { label: 'Golf Windy', href: 'https://apps.apple.com/kr/app/golf-windy/id6776418580' },
-  { label: 'Fishing Windy', href: '/fishinghwindy/privacy' },
+  { label: 'Fishing Windy', href: '/apps' },
   { label: 'AI 콘텐츠 스튜디오', href: '/tools' },
 ];
 
@@ -116,15 +116,28 @@ export default function Footer() {
           >
             OUR APPS
           </p>
-          <div className="flex gap-6 flex-wrap">
+          <div className="flex gap-4 flex-wrap">
             <a
-              href="https://apps.apple.com/kr/app/golf-windy/id6776418580"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/apps"
               className="hover:opacity-80 transition-opacity inline-block"
+              title="WellDay"
             >
               <img
-                src="/golfwindy-banner.png"
+                src="/wellday-icon-64.png"
+                alt="WellDay"
+                width={64}
+                height={64}
+                className="rounded-lg border"
+                style={{ borderColor: 'var(--border)' }}
+              />
+            </a>
+            <a
+              href="/apps"
+              className="hover:opacity-80 transition-opacity inline-block"
+              title="Golf Windy"
+            >
+              <img
+                src="/golfwindy-icon-64.png"
                 alt="Golf Windy"
                 width={64}
                 height={64}
@@ -133,8 +146,9 @@ export default function Footer() {
               />
             </a>
             <a
-              href="/fishinghwindy/privacy"
+              href="/apps"
               className="hover:opacity-80 transition-opacity inline-block"
+              title="Fishing Windy"
             >
               <img
                 src="/fishinghwindy-logo-thumb.png"

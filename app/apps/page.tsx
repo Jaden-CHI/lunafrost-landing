@@ -49,6 +49,13 @@ const projects = [
     link: "https://apps.apple.com/kr/app/golf-windy/id6776418580",
     icon: "/golfwindy-icon-256.png",
   },
+  {
+    title: "Fishing Windy",
+    description: "낚시 포인트별 날씨, 조류, 파도 정보를 실시간으로 제공하는 낚시 가이드 앱. 출조 일정 관리, 조황 기록, SOS 안전 기능까지 한 곳에서 제공합니다.",
+    tech: ["Flutter", "Firebase", "Weather API"],
+    status: "출시 예정",
+    icon: "/fishinghwindy-logo-thumb.png",
+  },
 ];
 
 export default function AppsPage() {
