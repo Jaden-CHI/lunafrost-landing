@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const READ_LINKS = [
   { label: '블로그', href: '/blog' },
@@ -104,6 +105,46 @@ export default function Footer() {
           <FooterColumn title="BUILD"     links={BUILD_LINKS} />
           <FooterColumn title="ELSEWHERE" links={ELSEWHERE_LINKS} />
           <FooterColumn title="CONTACT"   links={CONTACT_LINKS} />
+        </div>
+
+        {/* App Icons */}
+        <div className="mb-12">
+          <p
+            className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-widest font-semibold mb-4"
+            style={{ color: 'var(--primary)' }}
+          >
+            OUR APPS
+          </p>
+          <div className="flex gap-6 flex-wrap">
+            <a
+              href="https://apps.apple.com/kr/app/golf-windy/id6776418580"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/golfwindy-banner.png"
+                alt="Golf Windy"
+                width={64}
+                height={64}
+                className="rounded-lg border"
+                style={{ borderColor: 'var(--border)' }}
+              />
+            </a>
+            <a
+              href="/fishinghwindy/privacy"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/fishinghwindy-logo.png"
+                alt="Fishing Windy"
+                width={64}
+                height={64}
+                className="rounded-lg border"
+                style={{ borderColor: 'var(--border)' }}
+              />
+            </a>
+          </div>
         </div>
 
         {/* Grow rule separator */}

@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -15,12 +16,23 @@ export default function GolfWindyPrivacyPolicyPage() {
       <Header />
 
       <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
-        <h1
-          className="font-[family-name:var(--font-inter)] text-4xl font-bold mb-4 pb-4"
-          style={{ color: "var(--text)", borderBottom: "3px solid var(--tertiary)" }}
-        >
-          ⛳ Golf Windy 개인정보처리방침
-        </h1>
+        <div className="flex items-center gap-4 mb-4">
+          <Image
+            src="/golfwindy-banner.png"
+            alt="Golf Windy"
+            width={64}
+            height={64}
+            className="rounded-lg"
+          />
+          <h1
+            className="font-[family-name:var(--font-inter)] text-4xl font-bold"
+            style={{ color: "var(--text)" }}
+          >
+            Golf Windy<br />
+            <span style={{ fontSize: "1.2rem", color: "var(--text-muted)" }}>개인정보처리방침</span>
+          </h1>
+        </div>
+        <div className="pb-4 mb-8" style={{ borderBottom: "3px solid var(--tertiary)" }} />
         <p className="text-sm mb-12" style={{ color: "var(--text-muted)" }}>
           시행일: 2026년 6월
         </p>
