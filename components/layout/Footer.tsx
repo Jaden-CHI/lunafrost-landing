@@ -136,7 +136,7 @@ export default function Footer() {
               className="hover:opacity-80 transition-opacity"
             >
               <Image
-                src="/fishinghwindy-logo.png"
+                src="/fishinghwindy-logo-thumb.png"
                 alt="Fishing Windy"
                 width={64}
                 height={64}
