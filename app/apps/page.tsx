@@ -23,6 +23,7 @@ const projects = [
     tech: ["Chrome MV3", "Tesseract.js", "TypeScript"],
     status: "출시 완료",
     link: "",
+    icon: "/alwayspdf-icon.png",
   },
   {
     title: "TaskSnap",
