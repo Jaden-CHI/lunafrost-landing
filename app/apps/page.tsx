@@ -15,6 +15,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "Vercel", "Notion API"],
     status: "운영 중",
     link: "https://moonyth.app",
+    icon: "/lunafrost-icon-64.png",
   },
   {
     title: "AlwaysPDF Tools",
@@ -29,6 +30,7 @@ const projects = [
     tech: ["Chrome MV3", "TypeScript"],
     status: "출시 완료",
     link: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn",
+    icon: "/tasksnap-icon-64.png",
   },
   {
     title: "WellDay",
@@ -39,7 +41,7 @@ const projects = [
       { name: "App Store", url: "https://apps.apple.com/kr/app/wellday/id6748712466" },
       { name: "Google Play", url: "https://play.google.com/store/apps/details?id=com.moonyth.DailyCareApp" }
     ],
-    icon: "/wellday-icon-256.png",
+    icon: "/wellday-icon-64.png",
   },
   {
     title: "Golf Windy",
@@ -47,7 +49,7 @@ const projects = [
     tech: ["Flutter", "Firebase", "Kakao Map API"],
     status: "App Store 출시",
     link: "https://apps.apple.com/kr/app/golf-windy/id6776418580",
-    icon: "/golfwindy-icon-256.png",
+    icon: "/golfwindy-icon-64.png",
   },
   {
     title: "Fishing Windy",
