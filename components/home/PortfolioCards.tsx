@@ -29,6 +29,7 @@ const projects = [
     status: 'shipped' as Status,
     href: '/apps',
     isAI: false,
+    icon: '/alwayspdf-icon.png',
   },
   {
     id: 3,
@@ -52,6 +53,7 @@ const projects = [
     href: 'https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn',
     external: true,
     isAI: false,
+    icon: '/tasksnap-icon-64.png',
   },
   {
     id: 5,
