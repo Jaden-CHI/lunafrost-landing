@@ -78,6 +78,18 @@ const projects = [
     isAI: false,
     icon: '/golfwindy-icon-256.png',
   },
+  {
+    id: 7,
+    featured: false,
+    title: 'Fishing Windy',
+    category: 'APP · IOS/ANDROID',
+    description: '낚시 포인트별 날씨, 조류, 파도 정보를 실시간으로 제공하는 낚시 가이드 앱. 출조 일정 관리, 조황 기록, SOS 안전 기능까지 제공합니다.',
+    tech: ['Flutter', 'Firebase', 'Weather API'],
+    status: 'shipped' as Status,
+    href: '/apps',
+    isAI: false,
+    icon: '/fishinghwindy-logo-thumb.png',
+  },
 ];
 
 function FeaturedCard({ project }: { project: typeof projects[0] }) {
