@@ -189,7 +189,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
           <div className="flex justify-between items-start mb-4 gap-3">
             <div className="flex items-start gap-3">
               {'icon' in project && project.icon ? (
-                <Image
+                <img
                   src={project.icon}
                   alt={`${project.title} icon`}
                   width={44}
