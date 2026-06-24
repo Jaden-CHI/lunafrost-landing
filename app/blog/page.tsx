@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/lib/notion";
+import { getBlogPosts } from "@/lib/posts";
 import BlogCard from "@/components/blog/BlogCard";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";

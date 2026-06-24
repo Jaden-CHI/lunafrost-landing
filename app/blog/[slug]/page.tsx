@@ -1,4 +1,4 @@
-import { getBlogPost, getBlogPosts } from "@/lib/notion";
+import { getBlogPost, getBlogPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
