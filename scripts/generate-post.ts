@@ -79,7 +79,8 @@ async function generatePostWithClaude(topic: string, category: string): Promise<
       system: systemPrompt,
       messages: [{ role: "user", content: `주제: ${topic}\n카테고리: ${category}` }],
     }),
-  }) as { content: Array<{ type: string; text: string }> };
+  }) as { content?: Array<{ type: string; text: string }>; error?: unknown; type?: string };
+  if (!res.content) throw new Error(`Claude API 오류: ${JSON.stringify(res)}`);
 
   const text = res.content.find((b) => b.type === "text")?.text ?? "";
 
