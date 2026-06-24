@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBlogPosts } from '@/lib/notion';
+import { getBlogPosts } from '@/lib/posts';
 import type { BlogPost } from '@/types/blog';
 import { formatDate } from '@/lib/utils';
 
