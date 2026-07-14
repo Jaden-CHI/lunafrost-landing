@@ -1,0 +1,74 @@
+/* Fishing Windy 제휴 제안서 전용 스타일 — .fw-page 스코프 */
+
+html:has(.fw-page) {
+  scroll-behavior: smooth;
+}
+
+.fw-page {
+  background: #ffffff;
+  color: #1a2b3c;
+  word-break: keep-all;
+  -webkit-text-size-adjust: 100%;
+}
+
+.fw-page ::selection {
+  background: #c9a84c;
+  color: #0a2540;
+}
+
+.fw-page :focus-visible {
+  outline: 3px solid #1a8fd1;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.fw-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .fw-container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fw-container {
+    padding-inline: 3rem;
+  }
+}
+
+.fw-headline {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 640px) {
+  .fw-headline {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fw-headline {
+    font-size: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.fw-page) {
+    scroll-behavior: auto;
+  }
+  .fw-page *,
+  .fw-page *::before,
+  .fw-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* ─── Fishing Windy 제휴 제안서 브랜드 토큰 (/fishinghwindy/partnership) ── */
+@theme {
+  --color-navy: #0a2540;
+  --color-ocean: #0e4d7b;
+  --color-teal: #0b7a75;
+  --color-sky: #1a8fd1;
+  --color-gold: #c9a84c;
+  --color-golddeep: #8a6d1f;
+  --color-sand: #e8d5a3;
+  --color-lightbg: #f4f8fb;
+  --color-bordr: #d0e4f0;
+  --color-textdark: #1a2b3c;
+  --color-textmid: #3d5a73;
+  --color-textlight: #6b8fa8;
+}
+
 /* ─── Design Tokens — Light Theme ─────────────────────────────────── */
 :root {
   --primary: #1D1D1F;
