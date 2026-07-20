@@ -188,7 +188,7 @@ export default function ImageRescalerTool() {
                 AI STUDIO · IMAGE RESCALER
               </div>
               <h1 className="font-[family-name:var(--font-inter)] text-3xl font-semibold leading-tight md:text-4xl" style={{ color: 'var(--text)' }}>
-                업스케일부터 비교, 내보내기까지 한 번에.
+                업스케일부터 비교, 내보내기까지 한 번에 — Studio 모드
               </h1>
               <p className="leading-[1.75]" style={{ color: 'var(--text-muted)' }}>
                 AI Studio 스타일의 작업 흐름으로 재구성한 데모입니다. 업로드한 이미지를 즉시 업스케일하고, 결과를 미리 보고, 원하는 포맷으로 내보낼 수 있습니다.
