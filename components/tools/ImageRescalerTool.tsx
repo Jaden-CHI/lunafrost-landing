@@ -17,6 +17,7 @@ const studioTabs = [
 
 type PresetId = (typeof presets)[number]['id'];
 type StudioTab = (typeof studioTabs)[number]['id'];
+type ExportFormat = 'webp' | 'jpeg' | 'png';
 
 type ImageState = {
   src: string;
@@ -86,7 +87,7 @@ function applyUnsharpMask(imageData: ImageData, amount: number) {
   }
 }
 
-function createScaledDataUrl(image: HTMLImageElement, width: number, height: number) {
+function createScaledDataUrl(image: HTMLImageElement, width: number, height: number, format: ExportFormat, quality: number) {
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
@@ -102,7 +103,15 @@ function createScaledDataUrl(image: HTMLImageElement, width: number, height: num
   applyUnsharpMask(imageData, 0.24);
   ctx.putImageData(imageData, 0, 0);
 
-  return canvas.toDataURL('image/webp', 0.92);
+  if (format === 'png') {
+    return canvas.toDataURL('image/png');
+  }
+
+  if (format === 'jpeg') {
+    return canvas.toDataURL('image/jpeg', quality);
+  }
+
+  return canvas.toDataURL('image/webp', quality);
 }
 
 export default function ImageRescalerTool() {
@@ -117,6 +126,10 @@ export default function ImageRescalerTool() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [status, setStatus] = useState('샘플 이미지로 시작하거나 파일을 업로드해 보세요.');
+  const [exportFormat, setExportFormat] = useState<ExportFormat>('webp');
+  const [exportQuality, setExportQuality] = useState(0.92);
+  const [lockAspectRatio, setLockAspectRatio] = useState(true);
+  const [baseAspectRatio, setBaseAspectRatio] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const outputSize = useMemo(() => {
@@ -133,21 +146,27 @@ export default function ImageRescalerTool() {
     };
   }, [image, scale, preset, customWidth, customHeight]);
 
+  const applyTransform = (img: HTMLImageElement, targetWidth: number, targetHeight: number) => {
+    const nextUrl = createScaledDataUrl(img, targetWidth, targetHeight, exportFormat, exportQuality);
+    setResultUrl(nextUrl);
+    setIsProcessing(false);
+    setStatus(`처리 완료 · ${targetWidth} × ${targetHeight} · ${exportFormat.toUpperCase()} 출력`);
+    setShowToast(true);
+    window.setTimeout(() => setShowToast(false), 1800);
+  };
+
   const handleLoad = (src: string, name: string) => {
     setIsProcessing(true);
     setStatus('이미지를 분석하고 업스케일을 준비하는 중입니다…');
     loadImage(src, name, (nextImage) => {
       setImage(nextImage);
+      setBaseAspectRatio(nextImage.width / nextImage.height);
       setStatus(`${name} 로드 완료 · ${nextImage.width} × ${nextImage.height}`);
       const img = new Image();
       img.onload = () => {
         const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : Math.round(nextImage.width * scale);
         const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : Math.round(nextImage.height * scale);
-        setResultUrl(createScaledDataUrl(img, targetWidth, targetHeight));
-        setIsProcessing(false);
-        setStatus(`처리 완료 · ${targetWidth} × ${targetHeight}`);
-        setShowToast(true);
-        window.setTimeout(() => setShowToast(false), 1800);
+        applyTransform(img, targetWidth, targetHeight);
       };
       img.src = src;
     });
@@ -172,14 +191,30 @@ export default function ImageRescalerTool() {
     img.onload = () => {
       const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : outputSize.width;
       const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : outputSize.height;
-      const nextUrl = createScaledDataUrl(img, targetWidth, targetHeight);
-      setResultUrl(nextUrl);
-      setIsProcessing(false);
-      setStatus(`업스케일 완료 · ${targetWidth} × ${targetHeight} · 디테일 강화 적용`);
-      setShowToast(true);
-      window.setTimeout(() => setShowToast(false), 1800);
+      applyTransform(img, targetWidth, targetHeight);
     };
     img.src = image.src;
+  };
+
+  const updateCustomSize = (field: 'width' | 'height', value: number) => {
+    const nextValue = Math.max(1, value);
+
+    if (preset === 'custom' && lockAspectRatio && baseAspectRatio) {
+      if (field === 'width') {
+        setCustomWidth(nextValue);
+        setCustomHeight(Math.max(1, Math.round(nextValue / baseAspectRatio)));
+      } else {
+        setCustomHeight(nextValue);
+        setCustomWidth(Math.max(1, Math.round(nextValue * baseAspectRatio)));
+      }
+      return;
+    }
+
+    if (field === 'width') {
+      setCustomWidth(nextValue);
+    } else {
+      setCustomHeight(nextValue);
+    }
   };
 
   const handleDownload = () => {
@@ -187,9 +222,10 @@ export default function ImageRescalerTool() {
     const fileName = image?.name ? image.name.replace(/\.[^.]+$/, '') : 'upscaled-image';
     const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : outputSize.width;
     const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : outputSize.height;
+    const extension = exportFormat === 'jpeg' ? 'jpg' : exportFormat;
     const link = document.createElement('a');
     link.href = resultUrl;
-    link.download = `${fileName}-${targetWidth}x${targetHeight}.webp`;
+    link.download = `${fileName}-${targetWidth}x${targetHeight}.${extension}`;
     link.click();
   };
 
@@ -343,7 +379,7 @@ export default function ImageRescalerTool() {
                       type="number"
                       min="1"
                       value={customWidth}
-                      onChange={(event) => setCustomWidth(Number(event.target.value))}
+                      onChange={(event) => updateCustomSize('width', Number(event.target.value))}
                       className="w-full rounded-[12px] border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-sm outline-none"
                     />
                   </label>
@@ -353,7 +389,7 @@ export default function ImageRescalerTool() {
                       type="number"
                       min="1"
                       value={customHeight}
-                      onChange={(event) => setCustomHeight(Number(event.target.value))}
+                      onChange={(event) => updateCustomSize('height', Number(event.target.value))}
                       className="w-full rounded-[12px] border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-sm outline-none"
                     />
                   </label>
@@ -375,6 +411,44 @@ export default function ImageRescalerTool() {
                   </div>
                 </>
               )}
+            </div>
+
+            <div className="rounded-[16px] border border-[color:var(--border)] bg-[color:var(--surface)] p-4">
+              <div className="grid gap-3 md:grid-cols-[1.1fr_0.9fr]">
+                <label className="space-y-2 text-sm" style={{ color: 'var(--text-muted)' }}>
+                  <span className="block font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em]">Export Format</span>
+                  <select
+                    value={exportFormat}
+                    onChange={(event) => setExportFormat(event.target.value as ExportFormat)}
+                    className="w-full rounded-[12px] border border-[color:var(--border)] bg-[color:var(--surface-low)] px-3 py-2 text-sm outline-none"
+                  >
+                    <option value="webp">WebP</option>
+                    <option value="jpeg">JPEG</option>
+                    <option value="png">PNG</option>
+                  </select>
+                </label>
+                <label className="space-y-2 text-sm" style={{ color: 'var(--text-muted)' }}>
+                  <span className="block font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em]">Quality</span>
+                  <input
+                    type="range"
+                    min="0.6"
+                    max="1"
+                    step="0.01"
+                    value={exportQuality}
+                    onChange={(event) => setExportQuality(Number(event.target.value))}
+                    className="w-full accent-[color:var(--tertiary)]"
+                  />
+                  <div className="text-[11px] uppercase tracking-[0.2em]">{exportQuality.toFixed(2)}</div>
+                </label>
+              </div>
+              <button
+                type="button"
+                onClick={() => setLockAspectRatio((value) => !value)}
+                className="mt-3 rounded-full border border-[color:var(--border)] px-3 py-2 text-[10px] uppercase tracking-[0.2em] transition"
+                style={{ color: lockAspectRatio ? 'var(--tertiary)' : 'var(--text-muted)' }}
+              >
+                {lockAspectRatio ? 'Aspect Ratio Lock: ON' : 'Aspect Ratio Lock: OFF'}
+              </button>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
