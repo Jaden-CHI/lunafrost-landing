@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const NAV_ITEMS = [
   { ko: '블로그',  en: 'BLOG',     href: '/blog' },
+  { ko: '스튜디오', en: 'STUDIO',   href: '/tools/image-rescaler' },
   { ko: 'AI 도구', en: 'AI TOOLS', href: '/tools' },
   { ko: '앱',      en: 'APPS',     href: '/apps' },
   { ko: '영상',    en: 'YOUTUBE',  href: '/youtube' },

@@ -13,6 +13,14 @@ const toolCategories = [
   { title: "이미지/비디오", icon: "◆", count: 0 },
 ];
 
+const featuredTools = [
+  {
+    title: "Image Rescaler",
+    description: "AI Studio 스타일의 업스케일 데모를 바로 체험할 수 있는 작업 공간입니다.",
+    href: "/tools/image-rescaler",
+  },
+];
+
 export default function ToolsPage() {
   return (
     <>
@@ -51,6 +59,27 @@ export default function ToolsPage() {
                 {cat.count}개의 도구
               </p>
             </div>
+          ))}
+        </div>
+
+        <div className="mb-8 grid gap-4 md:grid-cols-1">
+          {featuredTools.map((tool) => (
+            <a
+              key={tool.title}
+              href={tool.href}
+              className="rounded-[24px] border p-6 transition hover:-translate-y-1"
+              style={{ borderColor: "var(--border)", background: "var(--surface)" }}
+            >
+              <div className="mb-3 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--tertiary)" }}>
+                Featured Demo
+              </div>
+              <h3 className="font-[family-name:var(--font-inter)] text-xl font-semibold" style={{ color: "var(--text)" }}>
+                {tool.title}
+              </h3>
+              <p className="mt-2 text-sm leading-[1.75]" style={{ color: "var(--text-muted)" }}>
+                {tool.description}
+              </p>
+            </a>
           ))}
         </div>
 
