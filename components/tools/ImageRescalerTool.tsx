@@ -6,6 +6,7 @@ const presets = [
   { id: 'web', label: 'Web', scale: 1.4, description: '웹용 고해상도' },
   { id: 'hero', label: 'Hero', scale: 2, description: '메인 배너 최적화' },
   { id: 'poster', label: 'Poster', scale: 2.6, description: '인쇄/포스터급' },
+  { id: 'custom', label: 'Custom', scale: 0, description: '사용자 지정 사이즈' },
 ] as const;
 
 const studioTabs = [
@@ -108,6 +109,8 @@ export default function ImageRescalerTool() {
   const [image, setImage] = useState<ImageState | null>(null);
   const [preset, setPreset] = useState<PresetId>('hero');
   const [scale, setScale] = useState(2);
+  const [customWidth, setCustomWidth] = useState(2048);
+  const [customHeight, setCustomHeight] = useState(1365);
   const [activeTab, setActiveTab] = useState<StudioTab>('enhance');
   const [resultUrl, setResultUrl] = useState('');
   const [compareValue, setCompareValue] = useState(50);
@@ -118,11 +121,17 @@ export default function ImageRescalerTool() {
 
   const outputSize = useMemo(() => {
     if (!image) return { width: 0, height: 0 };
+    if (preset === 'custom') {
+      return {
+        width: Math.max(1, customWidth),
+        height: Math.max(1, customHeight),
+      };
+    }
     return {
       width: Math.round(image.width * scale),
       height: Math.round(image.height * scale),
     };
-  }, [image, scale]);
+  }, [image, scale, preset, customWidth, customHeight]);
 
   const handleLoad = (src: string, name: string) => {
     setIsProcessing(true);
@@ -132,9 +141,11 @@ export default function ImageRescalerTool() {
       setStatus(`${name} 로드 완료 · ${nextImage.width} × ${nextImage.height}`);
       const img = new Image();
       img.onload = () => {
-        setResultUrl(createScaledDataUrl(img, Math.round(nextImage.width * scale), Math.round(nextImage.height * scale)));
+        const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : Math.round(nextImage.width * scale);
+        const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : Math.round(nextImage.height * scale);
+        setResultUrl(createScaledDataUrl(img, targetWidth, targetHeight));
         setIsProcessing(false);
-        setStatus(`처리 완료 · ${Math.round(nextImage.width * scale)} × ${Math.round(nextImage.height * scale)}`);
+        setStatus(`처리 완료 · ${targetWidth} × ${targetHeight}`);
         setShowToast(true);
         window.setTimeout(() => setShowToast(false), 1800);
       };
@@ -159,10 +170,12 @@ export default function ImageRescalerTool() {
     setStatus('업스케일을 적용하고 디테일을 강화하는 중입니다…');
     const img = new Image();
     img.onload = () => {
-      const nextUrl = createScaledDataUrl(img, outputSize.width, outputSize.height);
+      const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : outputSize.width;
+      const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : outputSize.height;
+      const nextUrl = createScaledDataUrl(img, targetWidth, targetHeight);
       setResultUrl(nextUrl);
       setIsProcessing(false);
-      setStatus(`업스케일 완료 · ${outputSize.width} × ${outputSize.height} · 디테일 강화 적용`);
+      setStatus(`업스케일 완료 · ${targetWidth} × ${targetHeight} · 디테일 강화 적용`);
       setShowToast(true);
       window.setTimeout(() => setShowToast(false), 1800);
     };
@@ -172,9 +185,11 @@ export default function ImageRescalerTool() {
   const handleDownload = () => {
     if (!resultUrl) return;
     const fileName = image?.name ? image.name.replace(/\.[^.]+$/, '') : 'upscaled-image';
+    const targetWidth = preset === 'custom' ? Math.max(1, customWidth) : outputSize.width;
+    const targetHeight = preset === 'custom' ? Math.max(1, customHeight) : outputSize.height;
     const link = document.createElement('a');
     link.href = resultUrl;
-    link.download = `${fileName}-upscaled.webp`;
+    link.download = `${fileName}-${targetWidth}x${targetHeight}.webp`;
     link.click();
   };
 
@@ -317,22 +332,49 @@ export default function ImageRescalerTool() {
                   Custom Scale
                 </div>
                 <div className="text-sm font-semibold" style={{ color: 'var(--text)' }}>
-                  ×{scale.toFixed(1)}
+                  ×{preset === 'custom' ? 'Custom' : scale.toFixed(1)}
                 </div>
               </div>
-              <input
-                type="range"
-                min="1"
-                max="3"
-                step="0.1"
-                value={scale}
-                onChange={(event) => setScale(Number(event.target.value))}
-                className="w-full accent-[color:var(--tertiary)]"
-              />
-              <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>
-                <span>1.0x</span>
-                <span>3.0x</span>
-              </div>
+              {preset === 'custom' ? (
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="space-y-2 text-sm" style={{ color: 'var(--text-muted)' }}>
+                    <span className="block font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em]">Width</span>
+                    <input
+                      type="number"
+                      min="1"
+                      value={customWidth}
+                      onChange={(event) => setCustomWidth(Number(event.target.value))}
+                      className="w-full rounded-[12px] border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-sm outline-none"
+                    />
+                  </label>
+                  <label className="space-y-2 text-sm" style={{ color: 'var(--text-muted)' }}>
+                    <span className="block font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em]">Height</span>
+                    <input
+                      type="number"
+                      min="1"
+                      value={customHeight}
+                      onChange={(event) => setCustomHeight(Number(event.target.value))}
+                      className="w-full rounded-[12px] border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-sm outline-none"
+                    />
+                  </label>
+                </div>
+              ) : (
+                <>
+                  <input
+                    type="range"
+                    min="1"
+                    max="3"
+                    step="0.1"
+                    value={scale}
+                    onChange={(event) => setScale(Number(event.target.value))}
+                    className="w-full accent-[color:var(--tertiary)]"
+                  />
+                  <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>
+                    <span>1.0x</span>
+                    <span>3.0x</span>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
