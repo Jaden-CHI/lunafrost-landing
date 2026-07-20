@@ -5,6 +5,7 @@ import PortfolioCards from '@/components/home/PortfolioCards';
 import AboutSection from '@/components/home/AboutSection';
 import LatestArticles from '@/components/home/LatestArticles';
 import Newsletter from '@/components/home/Newsletter';
+import ImageRescalerSpotlight from '@/components/home/ImageRescalerSpotlight';
 import { LensCursor } from '@/components/ui/LensCursor';
 import { ScrollAnimations } from '@/components/ScrollAnimations';
 
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <ImageRescalerSpotlight />
         <LatestArticles />
         <PortfolioCards />
         <AboutSection />

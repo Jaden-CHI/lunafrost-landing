@@ -258,7 +258,17 @@ html, body {
   letter-spacing: 0.12em;
   color: var(--text-muted);
   text-transform: uppercase;
-  border-radius: 8px;
+}
+
+/* ─── Spotlight section polish ─────────────────────────────────────── */
+.img-ph + .img-ph {
+  background:
+    linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(0, 122, 255, 0.05)),
+    repeating-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.18) 0px,
+      rgba(255, 255, 255, 0.18) 1px,
+      transparent 1px,
+      transparent 8px);
 }
 
 /* ─── Corner brackets ────────────────────────────────────────────────── */
