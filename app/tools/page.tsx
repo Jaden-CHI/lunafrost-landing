@@ -19,6 +19,11 @@ const featuredTools = [
     description: "AI Studio 스타일의 업스케일 데모를 바로 체험할 수 있는 작업 공간입니다.",
     href: "/tools/image-rescaler",
   },
+  {
+    title: "Stream Converter",
+    description: "유튜브 링크를 넣으면 MP3/MP4로 바로 변환할 수 있는 셀프 호스팅 미디어 변환기입니다.",
+    href: "/stream-converter",
+  },
 ];
 
 export default function ToolsPage() {

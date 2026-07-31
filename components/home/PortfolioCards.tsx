@@ -34,6 +34,17 @@ const projects = [
   {
     id: 3,
     featured: false,
+    title: 'Stream Converter',
+    category: 'TOOL · MEDIA CONVERTER',
+    description: '유튜브 링크를 입력하면 MP3/MP4로 바로 변환할 수 있는 셀프 호스팅 미디어 변환기입니다.',
+    tech: ['Vite', 'TypeScript', 'yt-dlp'],
+    status: 'shipped' as Status,
+    href: '/stream-converter',
+    isAI: false,
+  },
+  {
+    id: 4,
+    featured: false,
     title: 'AI 콘텐츠 스튜디오',
     category: 'TOOL · AI WORKFLOW',
     description: 'YouTube 쇼츠, 블로그 자동화 파이프라인. Claude API와 영상 생성 도구를 연결한 워크플로우.',
@@ -43,7 +54,7 @@ const projects = [
     isAI: true,
   },
   {
-    id: 4,
+    id: 5,
     featured: false,
     title: 'TaskSnap',
     category: 'APP · CHROME EXTENSION',
@@ -56,7 +67,7 @@ const projects = [
     icon: '/tasksnap-icon-64.png',
   },
   {
-    id: 5,
+    id: 6,
     featured: false,
     title: 'WellDay',
     category: 'APP · IOS/ANDROID',
@@ -68,7 +79,7 @@ const projects = [
     icon: '/wellday-icon.png',
   },
   {
-    id: 6,
+    id: 7,
     featured: false,
     title: 'Golf Windy',
     category: 'APP · IOS',
@@ -81,7 +92,7 @@ const projects = [
     icon: '/golfwindy-icon-256.png',
   },
   {
-    id: 7,
+    id: 8,
     featured: false,
     title: 'Fishing Windy',
     category: 'APP · IOS/ANDROID',
