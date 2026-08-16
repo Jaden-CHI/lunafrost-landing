@@ -15,6 +15,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "Vercel", "Notion API"],
     status: "운영 중",
     link: "https://moonyth.app",
+    linkLabel: "사이트 바로가기",
     icon: "/lunafrost-icon-64.png",
   },
   {
@@ -22,7 +23,8 @@ const projects = [
     description: "PDF 작업을 브라우저에서 바로 처리하는 크롬 확장 프로그램. OCR, 변환, 편집 등 12가지 기능 탑재.",
     tech: ["Chrome MV3", "Tesseract.js", "TypeScript"],
     status: "출시 완료",
-    link: "",
+    link: "https://chromewebstore.google.com/detail/alwayspdf-tools/hbehonlonoigfakfkhlggmdlgmogkaba",
+    linkLabel: "Chrome Web Store 바로가기",
     icon: "/alwayspdf-icon.png",
   },
   {
@@ -31,6 +33,7 @@ const projects = [
     tech: ["Chrome MV3", "TypeScript"],
     status: "출시 완료",
     link: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn",
+    linkLabel: "Chrome Web Store 바로가기",
     icon: "/tasksnap-icon-64.png",
   },
   {
@@ -50,13 +53,18 @@ const projects = [
     tech: ["Flutter", "Firebase", "Kakao Map API"],
     status: "App Store 출시",
     link: "https://apps.apple.com/kr/app/golf-windy/id6776418580",
+    linkLabel: "App Store 바로가기",
     icon: "/golfwindy-icon-64.png",
   },
   {
     title: "Fishing Windy",
     description: "낚시 포인트별 날씨, 조류, 파도 정보를 실시간으로 제공하는 낚시 가이드 앱. 출조 일정 관리, 조황 기록, SOS 안전 기능까지 한 곳에서 제공합니다.",
     tech: ["Flutter", "Firebase", "Weather API"],
-    status: "출시 예정",
+    status: "App Store 출시",
+    links: [
+      { name: "App Store", url: "https://apps.apple.com/kr/app/fishing-windy/id6780916105" },
+      { name: "제휴 제안서", url: "/fishinghwindy/partnership" },
+    ],
     icon: "/fishinghwindy-logo-thumb.png",
   },
 ];
@@ -153,7 +161,7 @@ export default function AppsPage() {
                   className="text-sm no-underline transition-colors duration-200"
                   style={{ color: "var(--tertiary)" }}
                 >
-                  방문하기 →
+                  {project.linkLabel ?? "방문하기"} →
                 </a>
               )}
             </div>

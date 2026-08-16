@@ -10,11 +10,11 @@ const READ_LINKS = [
 
 const BUILD_LINKS = [
   { label: 'lunafrost Landing', href: '/apps' },
-  { label: 'AlwaysPDF Tools', href: '/apps' },
-  { label: 'TaskSnap', href: '/apps' },
+  { label: 'AlwaysPDF Tools', href: 'https://chromewebstore.google.com/detail/alwayspdf-tools/hbehonlonoigfakfkhlggmdlgmogkaba' },
+  { label: 'TaskSnap', href: 'https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn' },
   { label: 'WellDay', href: 'https://apps.apple.com/kr/app/wellday/id6748712466' },
   { label: 'Golf Windy', href: 'https://apps.apple.com/kr/app/golf-windy/id6776418580' },
-  { label: 'Fishing Windy', href: '/apps' },
+  { label: 'Fishing Windy', href: 'https://apps.apple.com/kr/app/fishing-windy/id6780916105' },
   { label: 'AI 콘텐츠 스튜디오', href: '/tools' },
 ];
 
@@ -132,7 +132,9 @@ export default function Footer() {
               />
             </a>
             <a
-              href="/apps"
+              href="https://apps.apple.com/kr/app/golf-windy/id6776418580"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity inline-block"
               title="Golf Windy"
             >
@@ -146,7 +148,9 @@ export default function Footer() {
               />
             </a>
             <a
-              href="/apps"
+              href="https://apps.apple.com/kr/app/fishing-windy/id6780916105"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity inline-block"
               title="Fishing Windy"
             >
