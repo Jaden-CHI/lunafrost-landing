@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const CATEGORIES = ["전체", "AI Tools", "App Dev", "Content"];
+const CATEGORIES = ["전체", "Tech Trends", "AI Tools", "App Dev", "Content"];
 
 export default async function BlogPage({
   searchParams,
