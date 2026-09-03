@@ -12,6 +12,7 @@ const BUILD_LINKS = [
   { label: 'lunafrost Landing', href: '/apps' },
   { label: 'AlwaysPDF Tools', href: 'https://chromewebstore.google.com/detail/alwayspdf-tools/hbehonlonoigfakfkhlggmdlgmogkaba' },
   { label: 'TaskSnap', href: 'https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn' },
+  { label: 'Memoham', href: 'https://memoham.com/' },
   { label: 'WellDay', href: 'https://apps.apple.com/kr/app/wellday/id6748712466' },
   { label: 'Golf Windy', href: 'https://apps.apple.com/kr/app/golf-windy/id6776418580' },
   { label: 'Fishing Windy', href: 'https://apps.apple.com/kr/app/fishing-windy/id6780916105' },
@@ -118,11 +119,27 @@ export default function Footer() {
           </p>
           <div className="flex gap-4 flex-wrap">
             <a
+              href="https://memoham.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity inline-block"
+              title="Memoham"
+            >
+              <Image
+                src="/memoham-icon.png"
+                alt="Memoham"
+                width={64}
+                height={64}
+                className="rounded-lg border"
+                style={{ borderColor: 'var(--border)' }}
+              />
+            </a>
+            <a
               href="/apps"
               className="hover:opacity-80 transition-opacity inline-block"
               title="WellDay"
             >
-              <img
+              <Image
                 src="/wellday-icon-64.png"
                 alt="WellDay"
                 width={64}
@@ -138,7 +155,7 @@ export default function Footer() {
               className="hover:opacity-80 transition-opacity inline-block"
               title="Golf Windy"
             >
-              <img
+              <Image
                 src="/golfwindy-icon-64.png"
                 alt="Golf Windy"
                 width={64}
@@ -154,7 +171,7 @@ export default function Footer() {
               className="hover:opacity-80 transition-opacity inline-block"
               title="Fishing Windy"
             >
-              <img
+              <Image
                 src="/fishinghwindy-logo-thumb.png"
                 alt="Fishing Windy"
                 width={64}

@@ -37,6 +37,15 @@ const projects = [
     icon: "/tasksnap-icon-64.png",
   },
   {
+    title: "Memoham",
+    description: "화려함보다 신뢰성을 택한 로컬 우선 메모 앱. 인터넷이 없어도 즉시 기록하고, 앱 잠금과 메모별 잠금으로 중요한 생각을 안전하게 보관합니다.",
+    tech: ["iOS/Android", "Local-first", "AES-256"],
+    status: "출시 준비 중",
+    link: "https://memoham.com/",
+    linkLabel: "서비스 페이지 바로가기",
+    icon: "/memoham-icon.png",
+  },
+  {
     title: "WellDay",
     description: "일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. iOS와 Android 모두에서 간편한 인터페이스로 매일의 건강 습관을 형성하도록 지원합니다.",
     tech: ["React Native", "Expo", "TypeScript"],
@@ -84,7 +93,7 @@ export default function AppsPage() {
             Apps & Projects
           </h1>
           <p style={{ color: "var(--text-muted)" }}>
-            AI를 활용해 직접 만들어가는 앱과 서비스들
+            iOS·Android 모바일 앱과 브라우저 확장 프로그램을 중심으로 직접 만들어가는 서비스들
           </p>
         </div>
 

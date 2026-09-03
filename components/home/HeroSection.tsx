@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { LiveClock } from '@/components/ui/LiveClock';
 
-const CURRENTLY = 'AI 에이전트 시스템 설계';
+const CURRENTLY = '모바일 앱 · 브라우저 확장 프로그램';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -88,7 +88,7 @@ export default function HeroSection() {
             className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.4em]"
             style={{ color: 'var(--tertiary)' }}
           >
-            AI · DEV · APP · CONTENTS
+            MOBILE APP · BROWSER EXTENSION · AI
           </span>
         </motion.div>
 
@@ -114,8 +114,8 @@ export default function HeroSection() {
           className="max-w-xl mx-auto leading-[1.7] mb-14"
           style={{ fontSize: '18px', color: 'var(--text-muted)' }}
         >
-          AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 공간.<br />
-          기술과 창작의 경계를 걷는 Moonyth의 기록입니다.
+          iOS·Android 모바일 앱과 브라우저 확장 프로그램을 만들고,<br />
+          AI와 생산성 도구의 가능성을 기록하는 Moonyth의 공간입니다.
         </motion.p>
 
         <motion.div

@@ -70,6 +70,19 @@ const projects = [
   {
     id: 6,
     featured: false,
+    title: 'Memoham',
+    category: 'APP · IOS/ANDROID',
+    description: '인터넷이 없어도 즉시 열리고, 잠그면 안전하게 보관되는 로컬 우선 메모 앱. 음성 메모, 폴더·태그·검색, 리마인더까지 매일 쓰는 기록 기능에 집중합니다.',
+    tech: ['Mobile App', 'Local-first', 'AES-256'],
+    status: 'wip' as Status,
+    href: 'https://memoham.com/',
+    external: true,
+    isAI: false,
+    icon: '/memoham-icon.png',
+  },
+  {
+    id: 7,
+    featured: false,
     title: 'WellDay',
     category: 'APP · IOS/ANDROID',
     description: '일일 수분 섭취량 관리와 약 복용 알림을 한 곳에서 관리하는 건강 관리 앱. 간편한 인터페이스로 건강한 생활 습관을 형성하도록 지원합니다.',
@@ -80,7 +93,7 @@ const projects = [
     icon: '/wellday-icon.png',
   },
   {
-    id: 7,
+    id: 8,
     featured: false,
     title: 'Golf Windy',
     category: 'APP · IOS',
@@ -93,7 +106,7 @@ const projects = [
     icon: '/golfwindy-icon-256.png',
   },
   {
-    id: 8,
+    id: 9,
     featured: false,
     title: 'Fishing Windy',
     category: 'APP · IOS/ANDROID',
@@ -204,7 +217,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
           <div className="flex justify-between items-start mb-4 gap-3">
             <div className="flex items-start gap-3">
               {'icon' in project && project.icon ? (
-                <img
+                <Image
                   src={project.icon}
                   alt={`${project.title} icon`}
                   width={44}
