@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침",
-  description: "lunafrost 개인정보처리방침",
+  description: "Moonyth 및 AlwaysPDF Tools 개인정보처리방침",
 };
 
 export default function PrivacyPolicyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
           개인정보처리방침
         </h1>
         <p className="text-sm mb-12" style={{ color: "var(--text-muted)" }}>
-          최종 수정일: 2025년 6월 16일
+          최종 수정일: 2026년 9월 7일
         </p>
 
         <div className="space-y-10" style={{ color: "var(--text-muted)" }}>
@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="leading-relaxed">
               Moonyth(이하 "회사")는 이용자의 개인정보를 매우 중요하게 생각하며, 개인정보 보호 관련 법령을 준수합니다.
-              본 방침은 WellDay 모바일 앱 및 moonyth.app 웹사이트에 공통 적용됩니다.
+              본 방침은 WellDay 모바일 앱, lunafrost 웹사이트, AI 제작소 웹사이트, TaskSnap, AlwaysPDF Tools에 공통 적용됩니다.
             </p>
           </section>
 
@@ -54,14 +54,24 @@ export default function PrivacyPolicyPage() {
               </div>
               <div>
                 <p className="font-medium mb-1" style={{ color: "var(--text)" }}>AlwaysPDF Tools</p>
-                <p>서버로의 데이터 전송 없이 모든 처리가 브라우저 내에서만 이루어집니다.</p>
+                <p>
+                  PDF 합치기, 분할, 기본 압축, 이미지 변환, 페이지 회전, 페이지 정리, 서명, 워터마크,
+                  메타데이터 제거, OCR 텍스트 추출, PDF 뷰어, PDF 편집, 페이지 번호 추가, PDF 자르기,
+                  PDF → Text 등 무료 기능은 사용자의 브라우저 안에서 로컬로 처리되며 회사 서버로 전송되지 않습니다.
+                </p>
+                <p className="mt-3">
+                  PDF → Word, PDF → Excel, PDF → PowerPoint, Word/Excel/PowerPoint → PDF, 검색 가능한 PDF,
+                  PDF/A 변환, 강력 압축 등 Pro 서버 변환 기능은 사용자가 파일 업로드에 명시적으로 동의하고
+                  변환을 실행한 경우에만 선택한 파일을 https://api.memoham.com 서버로 전송합니다.
+                  전송된 파일은 변환 결과를 생성하기 위한 목적으로만 사용됩니다.
+                </p>
               </div>
               <div>
                 <p className="font-medium mb-1" style={{ color: "var(--text)" }}>TaskSnap</p>
                 <p>할 일 목록, 우선순위, 완료 상태 등 작업 데이터를 수집합니다. 모든 데이터는 사용자의 기기 로컬 스토리지에만 저장되며 외부 서버로 전송되지 않습니다.</p>
               </div>
               <div className="p-4 rounded-lg border text-sm" style={{ borderColor: "var(--border)", background: "rgba(200,223,245,0.03)" }}>
-                <strong style={{ color: "var(--tertiary)" }}>중요 안내:</strong> WellDay 앱의 건강 기록은 이용자의 개인 기기 내에만 안전하게 저장되며 회사 서버로 전송되지 않습니다.
+                <strong style={{ color: "var(--tertiary)" }}>중요 안내:</strong> WellDay 앱의 건강 기록과 AlwaysPDF Tools의 무료 로컬 기능 처리 파일은 이용자의 개인 기기 안에서만 처리되며 회사 서버로 전송되지 않습니다.
               </div>
             </div>
           </section>
@@ -76,6 +86,7 @@ export default function PrivacyPolicyPage() {
               <li>• 앱 데이터: 삭제 요청 시까지 보관</li>
               <li>• 웹사이트 방문 로그: 3개월 보관</li>
               <li>• 댓글: 삭제 요청 시까지 보관</li>
+              <li>• AlwaysPDF Tools Pro 변환 파일: 변환 처리 중 임시 보관 후 결과 응답 완료 시 자동 삭제</li>
             </ul>
           </section>
 
@@ -87,6 +98,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="leading-relaxed">
               동의 없이 외부에 개인정보를 공유하지 않습니다. 다만 Google Analytics 및 Google AdSense 서비스 운영을 위해 Google이 일부 데이터를 처리할 수 있습니다.
+              AlwaysPDF Tools의 Pro 변환 파일은 회사가 운영하는 변환 API에서만 처리되며 광고, 추적, 판매, 재판매 또는 별도 분석 목적으로 사용하지 않습니다.
             </p>
           </section>
 
@@ -98,6 +110,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="leading-relaxed">
               이용자는 앱 설정 또는 이메일 요청을 통해 언제든지 개인정보를 수정하거나 삭제할 수 있습니다.
+              AlwaysPDF Tools Pro 변환 파일은 변환 완료 후 자동 삭제되므로 별도 계정 데이터로 보관되지 않습니다.
             </p>
           </section>
 
