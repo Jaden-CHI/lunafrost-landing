@@ -6,7 +6,7 @@ category: "Content"
 tags: ["콘텐츠자동화", "Higgsfield", "Claude"]
 description: "Higgsfield의 AI 영상 생성과 Claude의 글쓰기 능력을 결합해 블로그 콘텐츠 제작 파이프라인을 완전 자동화하는 방법을 단계별로 소개합니다."
 cover: ""
-published: true
+published: false
 ---
 
 # Higgsfield + Claude로 블로그 콘텐츠 자동화하기

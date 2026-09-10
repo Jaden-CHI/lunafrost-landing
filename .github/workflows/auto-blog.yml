@@ -1,8 +1,8 @@
 name: Auto Blog Generator
 
 on:
-  schedule:
-    - cron: "0 0 * * 1,3,5"
+  # Automatic publishing is paused until the topic source is replaced with a
+  # reviewed, continuously refreshed editorial queue.
   workflow_dispatch:
     inputs:
       topic:

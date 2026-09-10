@@ -29,11 +29,25 @@ function parsePost(filename: string): BlogPost | null {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   ensurePostsDir();
-  return fs.readdirSync(POSTS_DIR)
+  const posts = fs.readdirSync(POSTS_DIR)
     .filter((f) => f.endsWith(".md"))
     .map(parsePost)
     .filter((p): p is BlogPost => p !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  const seenSlugs = new Set<string>();
+  const seenTitles = new Set<string>();
+  return posts.filter((post) => {
+    const normalizedTitle = post.title
+      .toLowerCase()
+      .replace(/\b(19|20)\d{2}\b/g, "")
+      .replace(/[^a-z0-9가-힣]+/g, " ")
+      .trim();
+    if (seenSlugs.has(post.slug) || seenTitles.has(normalizedTitle)) return false;
+    seenSlugs.add(post.slug);
+    seenTitles.add(normalizedTitle);
+    return true;
+  });
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPostWithContent> {

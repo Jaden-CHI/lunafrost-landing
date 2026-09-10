@@ -6,7 +6,7 @@ category: "AI Tools"
 tags: ["AI생산성", "자동화도구", "2025트렌드"]
 description: "2025년 업무 효율을 극대화할 AI 생산성 도구 5가지를 엄선했습니다. 자동화부터 콘텐츠 생성까지, 지금 당장 써야 할 툴을 소개합니다."
 cover: ""
-published: true
+published: false
 ---
 
 # 2025년 주목해야 할 AI 생산성 도구 TOP 5

@@ -6,7 +6,7 @@ category: "App Dev"
 tags: ["Next.js", "Vercel", "SaaS"]
 description: "Next.js와 Vercel을 활용해 SaaS 제품을 빠르게 런칭하는 실전 전략을 소개합니다. 인프라 설정부터 배포 자동화까지, 개발 속도를 극대화하는 핵심 노하우를 담았습니다."
 cover: ""
-published: true
+published: false
 ---
 
 # Next.js + Vercel로 SaaS를 2주 만에 런칭하는 실전 가이드

@@ -6,7 +6,7 @@ category: "AI Tools"
 tags: ["Claude", "ChatGPT", "Gemini"]
 description: "Claude, ChatGPT, Gemini를 실제 업무 시나리오로 비교했습니다. 글쓰기, 코딩, 데이터 분석 등 상황별로 어떤 AI가 진짜 강한지 확인해보세요."
 cover: ""
-published: true
+published: false
 ---
 
 # Claude vs ChatGPT vs Gemini: 실전 비교

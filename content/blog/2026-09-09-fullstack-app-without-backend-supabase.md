@@ -6,7 +6,7 @@ category: "App Dev"
 tags: ["Supabase", "풀스택", "백엔드리스"]
 description: "Supabase를 활용해 별도의 백엔드 서버 없이 인증, 데이터베이스, 실시간 기능까지 갖춘 풀스택 앱을 구축하는 방법을 단계별로 소개합니다."
 cover: ""
-published: true
+published: false
 ---
 
 # Supabase로 백엔드 없이 풀스택 앱 만들기

@@ -8,8 +8,6 @@ const HF_API_SECRET = process.env.HIGGSFIELD_API_SECRET!;
 
 const POSTS_DIR = path.join(process.cwd(), "content/blog");
 const COVERS_DIR = path.join(process.cwd(), "public/blog/covers");
-const HF_BASE = "https://cloud.higgsfield.ai";
-
 const TOPIC_POOL = [
   { category: "AI Tools", topic: "2025년 주목해야 할 AI 생산성 도구 TOP 5" },
   { category: "AI Tools", topic: "Claude vs ChatGPT vs Gemini 실전 비교" },
@@ -21,9 +19,6 @@ const TOPIC_POOL = [
 
 function today(): string {
   return new Date().toISOString().split("T")[0];
-}
-function randomTopic() {
-  return TOPIC_POOL[Math.floor(Math.random() * TOPIC_POOL.length)];
 }
 
 async function fetchJson(url: string, options: { method?: string; headers?: Record<string, string>; body?: string }): Promise<unknown> {
@@ -56,6 +51,66 @@ function downloadFile(url: string, dest: string): Promise<void> {
 }
 
 interface GeneratedPost { title: string; slug: string; description: string; category: string; tags: string[]; imagePrompt: string; content: string; }
+
+interface ExistingPost { title: string; slug: string; }
+
+function readFrontmatterValue(source: string, key: string): string {
+  const match = source.match(new RegExp(`^${key}:\\s*["']?(.+?)["']?\\s*$`, "m"));
+  return match?.[1]?.replace(/["']$/, "").trim() ?? "";
+}
+
+function getExistingPosts(): ExistingPost[] {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs.readdirSync(POSTS_DIR)
+    .filter((filename) => filename.endsWith(".md"))
+    .map((filename) => {
+      const source = fs.readFileSync(path.join(POSTS_DIR, filename), "utf-8");
+      return {
+        title: readFrontmatterValue(source, "title"),
+        slug: readFrontmatterValue(source, "slug"),
+      };
+    });
+}
+
+function normalizeText(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\b(19|20)\d{2}\b/g, "")
+    .replace(/[^a-z0-9가-힣]+/g, " ")
+    .trim();
+}
+
+function similarity(left: string, right: string): number {
+  const a = new Set(normalizeText(left).split(/\s+/).filter(Boolean));
+  const b = new Set(normalizeText(right).split(/\s+/).filter(Boolean));
+  if (a.size === 0 || b.size === 0) return 0;
+  const intersection = [...a].filter((token) => b.has(token)).length;
+  return intersection / new Set([...a, ...b]).size;
+}
+
+function assertNotDuplicate(post: GeneratedPost, existing: ExistingPost[]) {
+  const duplicate = existing.find((candidate) =>
+    candidate.slug === post.slug ||
+    normalizeText(candidate.title) === normalizeText(post.title) ||
+    similarity(candidate.title, post.title) >= 0.6
+  );
+
+  if (duplicate) {
+    throw new Error(
+      `중복 가능성이 높은 글입니다: "${post.title}" (기존: "${duplicate.title}", slug: ${duplicate.slug})`,
+    );
+  }
+}
+
+function pickUnusedTopic(existing: ExistingPost[]) {
+  const available = TOPIC_POOL.filter(({ topic }) =>
+    existing.every(({ title }) => similarity(topic, title) < 0.45),
+  );
+  if (available.length === 0) {
+    throw new Error("고정 주제 풀이 모두 사용되었습니다. 검토한 새 주제를 인자로 입력하세요.");
+  }
+  return available[Math.floor(Math.random() * available.length)];
+}
 
 async function generatePostWithClaude(topic: string, category: string): Promise<GeneratedPost> {
   console.log(`\n📝 Claude로 글 생성 중: "${topic}"`);
@@ -150,7 +205,7 @@ function saveMarkdownFile(post: GeneratedPost, coverPath: string): string {
     `tags: [${post.tags.map((t) => `"${t}"`).join(", ")}]`,
     `description: "${post.description.replace(/"/g, "'")}"`,
     `cover: "${coverPath}"`,
-    "published: true",
+    "published: false",
     "---",
     "",
     post.content,
@@ -167,13 +222,17 @@ async function main() {
   if (!HF_API_KEY) throw new Error("HIGGSFIELD_API_KEY 없음");
   if (!HF_API_SECRET) throw new Error("HIGGSFIELD_API_SECRET 없음");
 
+  const existingPosts = getExistingPosts();
   const topicArg = process.argv[2];
   const categoryArg = process.argv[3];
-  const { topic, category } = topicArg ? { topic: topicArg, category: categoryArg ?? "AI Tools" } : randomTopic();
+  const { topic, category } = topicArg
+    ? { topic: topicArg, category: categoryArg ?? "AI Tools" }
+    : pickUnusedTopic(existingPosts);
   console.log(`\n📌 주제: ${topic} [${category}]`);
 
   const post = await generatePostWithClaude(topic, category);
   console.log(`   제목: ${post.title}\n   슬러그: ${post.slug}`);
+  assertNotDuplicate(post, existingPosts);
 
   let coverPath = "";
   try { coverPath = await generateCoverWithHighsfield(post.imagePrompt, post.slug); }
