@@ -214,3 +214,48 @@ export async function deleteRepositoryFile({
     },
   );
 }
+
+export async function deleteRepositoryFiles({
+  paths,
+  message,
+}: {
+  paths: string[];
+  message: string;
+}) {
+  const { repoOwner, repoName, branch } = getStudioConfig();
+  const repoPath = `/repos/${encodeURIComponent(repoOwner)}/${encodeURIComponent(repoName)}`;
+  const ref = await githubRequest<{ object: { sha: string } }>(
+    `${repoPath}/git/ref/heads/${encodeRepoPath(branch)}`,
+  );
+  const parent = await githubRequest<{ tree: { sha: string } }>(
+    `${repoPath}/git/commits/${encodeURIComponent(ref.object.sha)}`,
+  );
+  const tree = await githubRequest<{ sha: string }>(`${repoPath}/git/trees`, {
+    method: "POST",
+    body: JSON.stringify({
+      base_tree: parent.tree.sha,
+      tree: paths.map((path) => ({
+        path,
+        mode: "100644",
+        type: "blob",
+        sha: null,
+      })),
+    }),
+  });
+  const commit = await githubRequest<{ sha: string; html_url: string }>(
+    `${repoPath}/git/commits`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        message,
+        tree: tree.sha,
+        parents: [ref.object.sha],
+      }),
+    },
+  );
+  await githubRequest(`${repoPath}/git/refs/heads/${encodeRepoPath(branch)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: commit.sha }),
+  });
+  return commit;
+}

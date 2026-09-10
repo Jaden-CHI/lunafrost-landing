@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getStudioSession } from "@/lib/studio-auth";
 import {
   deleteRepositoryFile,
+  deleteRepositoryFiles,
   findSimilarPosts,
   listStudioPosts,
   makePostPath,
@@ -113,34 +114,46 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   if (!(await getStudioSession())) return unauthorized();
 
-  let input: { path?: string };
+  let input: { path?: string; paths?: string[] };
   try {
-    input = (await request.json()) as { path?: string };
+    input = (await request.json()) as { path?: string; paths?: string[] };
   } catch {
     return NextResponse.json({ error: "요청 형식이 올바르지 않습니다." }, { status: 400 });
   }
 
-  if (!input.path || !isValidPostPath(input.path)) {
+  const requestedPaths = [
+    ...(Array.isArray(input.paths) ? input.paths : []),
+    ...(input.path ? [input.path] : []),
+  ];
+  const paths = [...new Set(requestedPaths)];
+
+  if (paths.length === 0 || paths.length > 50 || paths.some((path) => !isValidPostPath(path))) {
     return NextResponse.json({ error: "삭제할 글 경로가 올바르지 않습니다." }, { status: 400 });
   }
 
   try {
     const posts = await listStudioPosts();
-    const target = posts.find((post) => post.path === input.path);
-    if (!target) {
-      return NextResponse.json({ error: "삭제할 글을 찾지 못했습니다." }, { status: 404 });
+    const targets = posts.filter((post) => paths.includes(post.path));
+    if (targets.length !== paths.length) {
+      return NextResponse.json({ error: "삭제할 글 중 일부를 찾지 못했습니다. 목록을 새로고침해주세요." }, { status: 404 });
     }
 
-    const result = await deleteRepositoryFile({
-      path: target.path,
-      sha: target.sha,
-      message: `Delete blog post: ${target.title}`,
-    });
+    const result = targets.length === 1
+      ? await deleteRepositoryFile({
+          path: targets[0].path,
+          sha: targets[0].sha,
+          message: `Delete blog post: ${targets[0].title}`,
+        })
+      : await deleteRepositoryFiles({
+          paths: targets.map((post) => post.path),
+          message: `Delete ${targets.length} blog posts from studio`,
+        });
 
     return NextResponse.json({
       success: true,
-      commitUrl: result.commit.html_url,
-      message: "삭제 커밋이 완료되었습니다. Vercel 배포가 곧 시작됩니다.",
+      commitUrl: "commit" in result ? result.commit.html_url : result.html_url,
+      deletedCount: targets.length,
+      message: `${targets.length}개 글의 삭제 커밋이 완료되었습니다. Vercel 배포가 곧 시작됩니다.`,
     });
   } catch (error) {
     console.error("Failed to delete studio post", error);

@@ -44,6 +44,8 @@ export default function BlogEditor({ author }: { author: string }) {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [selectedPaths, setSelectedPaths] = useState<Set<string>>(new Set());
+  const [confirmBulkDelete, setConfirmBulkDelete] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -60,6 +62,8 @@ export default function BlogEditor({ author }: { author: string }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       setPosts(data.posts);
+      const availablePaths = new Set<string>(data.posts.map((post: StudioPost) => post.path));
+      setSelectedPaths((current) => new Set([...current].filter((path) => availablePaths.has(path))));
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : "글을 불러오지 못했습니다.");
     } finally {
@@ -93,6 +97,23 @@ export default function BlogEditor({ author }: { author: string }) {
 
   const selectedPath = form.originalPath;
   const publishedCount = posts.filter((post) => post.published).length;
+  const selectedCount = selectedPaths.size;
+  const allSelected = posts.length > 0 && selectedCount === posts.length;
+
+  function toggleSelection(path: string) {
+    setSelectedPaths((current) => {
+      const next = new Set(current);
+      if (next.has(path)) next.delete(path);
+      else next.add(path);
+      return next;
+    });
+    setConfirmBulkDelete(false);
+  }
+
+  function toggleAllPosts() {
+    setSelectedPaths(allSelected ? new Set() : new Set(posts.map((post) => post.path)));
+    setConfirmBulkDelete(false);
+  }
 
   function startNewPost() {
     setForm({ ...EMPTY_FORM, date: new Date().toISOString().slice(0, 10) });
@@ -191,6 +212,7 @@ export default function BlogEditor({ author }: { author: string }) {
 
   async function deletePost() {
     if (!form.originalPath) return;
+    const deletedPath = form.originalPath;
     setDeleting(true);
     setError("");
     setMessage("");
@@ -203,10 +225,41 @@ export default function BlogEditor({ author }: { author: string }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       startNewPost();
+      setSelectedPaths((current) => {
+        const next = new Set(current);
+        next.delete(deletedPath);
+        return next;
+      });
+      setConfirmBulkDelete(false);
       setMessage(data.message);
       await loadPosts();
     } catch (deleteError) {
       setError(deleteError instanceof Error ? deleteError.message : "글을 삭제하지 못했습니다.");
+    } finally {
+      setDeleting(false);
+    }
+  }
+
+  async function deleteSelectedPosts() {
+    if (selectedCount === 0) return;
+    setDeleting(true);
+    setError("");
+    setMessage("");
+    try {
+      const response = await fetch("/api/studio/posts", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paths: [...selectedPaths] }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      startNewPost();
+      setSelectedPaths(new Set());
+      setConfirmBulkDelete(false);
+      setMessage(data.message);
+      await loadPosts();
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : "선택한 글을 삭제하지 못했습니다.");
     } finally {
       setDeleting(false);
     }
@@ -231,28 +284,82 @@ export default function BlogEditor({ author }: { author: string }) {
 
       <main className="mx-auto grid max-w-[1440px] lg:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="border-b border-[var(--border)] bg-white lg:min-h-[calc(100vh-64px)] lg:border-b-0 lg:border-r">
-          <div className="flex items-center justify-between border-b border-[var(--border)] p-4">
-            <div>
-              <p className="text-sm font-semibold">글 목록</p>
-              <p className="mt-0.5 text-xs text-[var(--text-muted)]">공개 {publishedCount} · 전체 {posts.length}</p>
+          <div className="border-b border-[var(--border)] p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold">글 목록</p>
+                <p className="mt-0.5 text-xs text-[var(--text-muted)]">공개 {publishedCount} · 전체 {posts.length}</p>
+              </div>
+              <button onClick={startNewPost} className="rounded-md bg-[var(--primary)] px-3 py-2 text-xs font-semibold text-white">새 글</button>
             </div>
-            <button onClick={startNewPost} className="rounded-md bg-[var(--primary)] px-3 py-2 text-xs font-semibold text-white">새 글</button>
+            {!loading && posts.length > 0 && (
+              <div className="mt-3 border-t border-[var(--border)] pt-3">
+                <label className="flex cursor-pointer items-center gap-2 text-xs font-medium text-[var(--text-muted)]">
+                  <input
+                    type="checkbox"
+                    checked={allSelected}
+                    onChange={toggleAllPosts}
+                    className="h-4 w-4 accent-[var(--tertiary)]"
+                  />
+                  전체 선택{selectedCount > 0 ? ` · ${selectedCount}개 선택` : ""}
+                </label>
+                {selectedCount > 0 && (
+                  <div className="mt-2 flex gap-2">
+                    {confirmBulkDelete ? (
+                      <>
+                        <button
+                          disabled={deleting}
+                          onClick={() => setConfirmBulkDelete(false)}
+                          className="flex-1 rounded-md border border-[var(--border)] px-2 py-2 text-xs font-semibold disabled:opacity-50"
+                        >
+                          취소
+                        </button>
+                        <button
+                          disabled={deleting}
+                          onClick={() => void deleteSelectedPosts()}
+                          className="flex-1 rounded-md bg-[var(--bad)] px-2 py-2 text-xs font-semibold text-white disabled:opacity-50"
+                        >
+                          {deleting ? "삭제 중..." : `${selectedCount}개 삭제 확인`}
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => setConfirmBulkDelete(true)}
+                        className="w-full rounded-md border border-[var(--bad)] px-2 py-2 text-xs font-semibold text-[var(--bad)]"
+                      >
+                        선택 삭제 ({selectedCount})
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-          <div className="max-h-72 overflow-y-auto lg:max-h-[calc(100vh-145px)]">
+          <div className="max-h-72 overflow-y-auto lg:max-h-[calc(100vh-220px)]">
             {loading ? (
               <p className="p-5 text-sm text-[var(--text-muted)]">불러오는 중...</p>
             ) : posts.map((post) => (
-              <button
+              <div
                 key={post.path}
-                onClick={() => selectPost(post)}
-                className={`block w-full border-b border-[var(--border)] px-4 py-3 text-left transition-colors hover:bg-[var(--surface-low)] ${selectedPath === post.path ? "bg-[rgba(0,122,255,0.07)]" : ""}`}
+                className={`flex border-b border-[var(--border)] transition-colors hover:bg-[var(--surface-low)] ${selectedPath === post.path ? "bg-[rgba(0,122,255,0.07)]" : ""}`}
               >
-                <span className="mb-1 flex items-center gap-2 text-[10px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
-                  <span className={`h-1.5 w-1.5 rounded-full ${post.published ? "bg-[var(--good)]" : "bg-[var(--warn)]"}`} />
-                  {post.published ? "공개" : "임시저장"} · {post.date}
-                </span>
-                <span className="line-clamp-2 text-sm font-semibold leading-snug">{post.title}</span>
-              </button>
+                <label className="flex cursor-pointer items-start px-4 py-4 pr-1">
+                  <input
+                    type="checkbox"
+                    aria-label={`${post.title} 선택`}
+                    checked={selectedPaths.has(post.path)}
+                    onChange={() => toggleSelection(post.path)}
+                    className="h-4 w-4 accent-[var(--tertiary)]"
+                  />
+                </label>
+                <button onClick={() => selectPost(post)} className="min-w-0 flex-1 px-3 py-3 text-left">
+                  <span className="mb-1 flex items-center gap-2 text-[10px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
+                    <span className={`h-1.5 w-1.5 rounded-full ${post.published ? "bg-[var(--good)]" : "bg-[var(--warn)]"}`} />
+                    {post.published ? "공개" : "임시저장"} · {post.date}
+                  </span>
+                  <span className="line-clamp-2 text-sm font-semibold leading-snug">{post.title}</span>
+                </button>
+              </div>
             ))}
           </div>
         </aside>
