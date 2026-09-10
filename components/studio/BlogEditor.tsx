@@ -42,6 +42,8 @@ export default function BlogEditor({ author }: { author: string }) {
   const [form, setForm] = useState<EditorForm>(EMPTY_FORM);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -99,6 +101,7 @@ export default function BlogEditor({ author }: { author: string }) {
     setError("");
     setSimilar([]);
     setAllowSimilar(false);
+    setConfirmDelete(false);
   }
 
   function selectPost(post: StudioPost) {
@@ -119,6 +122,7 @@ export default function BlogEditor({ author }: { author: string }) {
     setError("");
     setSimilar([]);
     setAllowSimilar(false);
+    setConfirmDelete(false);
   }
 
   function update<K extends keyof EditorForm>(key: K, value: EditorForm[K]) {
@@ -185,6 +189,29 @@ export default function BlogEditor({ author }: { author: string }) {
     }
   }
 
+  async function deletePost() {
+    if (!form.originalPath) return;
+    setDeleting(true);
+    setError("");
+    setMessage("");
+    try {
+      const response = await fetch("/api/studio/posts", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ path: form.originalPath }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      startNewPost();
+      setMessage(data.message);
+      await loadPosts();
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : "글을 삭제하지 못했습니다.");
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[var(--secondary)] text-[var(--text)]">
       <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-white/95 backdrop-blur-xl">
@@ -237,11 +264,39 @@ export default function BlogEditor({ author }: { author: string }) {
               <h1 className="mt-1 text-2xl font-bold">{form.originalPath ? "글 수정" : "새 글 작성"}</h1>
             </div>
             <div className="flex items-center gap-2">
+              {form.originalPath && (
+                confirmDelete ? (
+                  <>
+                    <button
+                      disabled={deleting || saving}
+                      onClick={() => setConfirmDelete(false)}
+                      className="rounded-md border border-[var(--border)] px-3 py-2.5 text-sm font-semibold disabled:opacity-50"
+                    >
+                      취소
+                    </button>
+                    <button
+                      disabled={deleting || saving}
+                      onClick={() => void deletePost()}
+                      className="rounded-md bg-[var(--bad)] px-3 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
+                    >
+                      {deleting ? "삭제 중..." : "정말 삭제"}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    disabled={saving}
+                    onClick={() => setConfirmDelete(true)}
+                    className="rounded-md border border-[var(--bad)] px-3 py-2.5 text-sm font-semibold text-[var(--bad)] disabled:opacity-50"
+                  >
+                    삭제
+                  </button>
+                )
+              )}
               {form.published && form.slug && (
                 <Link href={`/blog/${form.slug}`} target="_blank" className="rounded-md border border-[var(--border)] px-4 py-2.5 text-sm font-semibold no-underline">게시글 보기</Link>
               )}
-              <button disabled={saving} onClick={() => save(false)} className="rounded-md border border-[var(--border)] px-4 py-2.5 text-sm font-semibold disabled:opacity-50">임시저장</button>
-              <button disabled={saving} onClick={() => save(true)} className="rounded-md bg-[var(--tertiary)] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{saving ? "저장 중..." : "발행"}</button>
+              <button disabled={saving || deleting} onClick={() => save(false)} className="rounded-md border border-[var(--border)] px-4 py-2.5 text-sm font-semibold disabled:opacity-50">임시저장</button>
+              <button disabled={saving || deleting} onClick={() => save(true)} className="rounded-md bg-[var(--tertiary)] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{saving ? "저장 중..." : "발행"}</button>
             </div>
           </div>
 

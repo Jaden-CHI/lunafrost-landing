@@ -195,3 +195,22 @@ export async function saveRepositoryFile({
     },
   );
 }
+
+export async function deleteRepositoryFile({
+  path,
+  sha,
+  message,
+}: {
+  path: string;
+  sha: string;
+  message: string;
+}) {
+  const { repoOwner, repoName, branch } = getStudioConfig();
+  return githubRequest<{ commit: { html_url: string } }>(
+    `/repos/${encodeURIComponent(repoOwner)}/${encodeURIComponent(repoName)}/contents/${encodeRepoPath(path)}`,
+    {
+      method: "DELETE",
+      body: JSON.stringify({ message, sha, branch }),
+    },
+  );
+}

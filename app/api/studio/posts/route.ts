@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStudioSession } from "@/lib/studio-auth";
 import {
+  deleteRepositoryFile,
   findSimilarPosts,
   listStudioPosts,
   makePostPath,
@@ -8,6 +9,14 @@ import {
   serializePost,
   type StudioPostInput,
 } from "@/lib/studio-github";
+
+function isValidPostPath(path: string) {
+  return (
+    path.startsWith("content/blog/") &&
+    path.endsWith(".md") &&
+    !path.includes("..")
+  );
+}
 
 function unauthorized() {
   return NextResponse.json({ error: "로그인이 필요합니다." }, { status: 401 });
@@ -44,12 +53,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (
-    input.originalPath &&
-    (!input.originalPath.startsWith("content/blog/") ||
-      !input.originalPath.endsWith(".md") ||
-      input.originalPath.includes(".."))
-  ) {
+  if (input.originalPath && !isValidPostPath(input.originalPath)) {
     return NextResponse.json({ error: "수정할 글 경로가 올바르지 않습니다." }, { status: 400 });
   }
 
@@ -101,6 +105,47 @@ export async function POST(request: Request) {
     console.error("Failed to save studio post", error);
     return NextResponse.json(
       { error: "글을 저장하지 못했습니다. GitHub 권한과 입력값을 확인해주세요." },
+      { status: 502 },
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  if (!(await getStudioSession())) return unauthorized();
+
+  let input: { path?: string };
+  try {
+    input = (await request.json()) as { path?: string };
+  } catch {
+    return NextResponse.json({ error: "요청 형식이 올바르지 않습니다." }, { status: 400 });
+  }
+
+  if (!input.path || !isValidPostPath(input.path)) {
+    return NextResponse.json({ error: "삭제할 글 경로가 올바르지 않습니다." }, { status: 400 });
+  }
+
+  try {
+    const posts = await listStudioPosts();
+    const target = posts.find((post) => post.path === input.path);
+    if (!target) {
+      return NextResponse.json({ error: "삭제할 글을 찾지 못했습니다." }, { status: 404 });
+    }
+
+    const result = await deleteRepositoryFile({
+      path: target.path,
+      sha: target.sha,
+      message: `Delete blog post: ${target.title}`,
+    });
+
+    return NextResponse.json({
+      success: true,
+      commitUrl: result.commit.html_url,
+      message: "삭제 커밋이 완료되었습니다. Vercel 배포가 곧 시작됩니다.",
+    });
+  } catch (error) {
+    console.error("Failed to delete studio post", error);
+    return NextResponse.json(
+      { error: "글을 삭제하지 못했습니다. GitHub 권한과 파일 상태를 확인해주세요." },
       { status: 502 },
     );
   }
