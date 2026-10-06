@@ -110,7 +110,7 @@ const projects: Project[] = [
     tech: ["Web Service", "Board Games", "Responsive Web"],
     status: "출시 완료",
     links: [{ name: "saitable.com", url: "https://saitable.com" }],
-    monogram: "S",
+    icon: "/apps/saitable.svg",
   },
   {
     title: "INTOVICE ERP",
@@ -118,7 +118,7 @@ const projects: Project[] = [
     tech: ["ERP", "Business Operations", "Web Platform"],
     status: "플랫폼 출시",
     links: [{ name: "ERP 플랫폼", url: "https://erp.moonyth.app" }],
-    monogram: "E",
+    icon: "/apps/intovice.svg",
   },
   {
     title: "CONVIA",
@@ -126,7 +126,7 @@ const projects: Project[] = [
     tech: ["Consulting", "Collaboration", "Web Platform"],
     status: "플랫폼 출시",
     links: [{ name: "getses.kr", url: "https://getses.kr" }],
-    monogram: "C",
+    icon: "/apps/convia.svg",
   },
   {
     title: "INTOVICE Website Renewal",
@@ -134,7 +134,7 @@ const projects: Project[] = [
     tech: ["Corporate Website", "UX Renewal", "Responsive Web"],
     status: "프로젝트 완료",
     links: [{ name: "intovice.co.kr", url: "https://intovice.co.kr" }],
-    monogram: "I",
+    icon: "/apps/intovice.svg",
   },
 ];
 
@@ -172,8 +172,8 @@ export default function AppsPage() {
                       alt={`${project.title} icon`}
                       width={48}
                       height={48}
-                      className="rounded-xl border"
-                      style={{ borderColor: "var(--border)" }}
+                      className="h-12 w-12 shrink-0 rounded-xl border object-contain p-1"
+                      style={{ borderColor: "var(--border)", background: "#fff" }}
                     />
                   ) : (
                     <span
