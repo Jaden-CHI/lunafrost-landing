@@ -73,6 +73,7 @@ jobs:
         with:
           name: blog-draft-recovery
           path: |
+            recovery/
             content/blog/
             public/images/posts/
           retention-days: 7
