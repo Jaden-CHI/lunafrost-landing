@@ -5,26 +5,37 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Apps & Projects",
-  description: "AI를 활용해 만든 앱과 프로젝트 쇼케이스",
+  description: "모바일 앱, 브라우저 확장 프로그램, 웹 플랫폼 및 구축 프로젝트 쇼케이스",
 };
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  status: string;
+  links: Array<{ name: string; url: string }>;
+  icon?: string;
+  monogram?: string;
+}
+
+const projects: Project[] = [
   {
     title: "lunafrost Landing",
     description: "AI 기반 개인 브랜드 플랫폼. Next.js + Tailwind + Vercel로 구축.",
     tech: ["Next.js", "Tailwind CSS", "Vercel", "Notion API"],
     status: "운영 중",
-    link: "https://moonyth.app",
-    linkLabel: "사이트 바로가기",
+    links: [{ name: "웹사이트", url: "https://moonyth.app" }],
     icon: "/lunafrost-icon-64.png",
   },
   {
     title: "AlwaysPDF Tools",
-    description: "PDF 작업을 브라우저에서 바로 처리하는 크롬 확장 프로그램. OCR, 변환, 편집 등 12가지 기능 탑재.",
-    tech: ["Chrome MV3", "Tesseract.js", "TypeScript"],
-    status: "출시 완료",
-    link: "https://chromewebstore.google.com/detail/alwayspdf-tools/hbehonlonoigfakfkhlggmdlgmogkaba",
-    linkLabel: "Chrome Web Store 바로가기",
+    description: "PDF 병합, 편집, 서명, OCR과 문서 변환을 제공하는 도큐봄 웹서비스와 크롬 확장 프로그램.",
+    tech: ["Web Service", "Chrome MV3", "OCR", "PDF Tools"],
+    status: "웹·확장 프로그램 출시",
+    links: [
+      { name: "도큐봄 웹서비스", url: "https://docubom.com" },
+      { name: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/alwayspdf-tools/hbehonlonoigfakfkhlggmdlgmogkaba" },
+    ],
     icon: "/alwayspdf-icon.png",
   },
   {
@@ -32,17 +43,20 @@ const projects = [
     description: "Todoist의 단순함과 ClickUp의 파워를 결합한 스마트 태스크 매니저. 브라우저 안에서 바로 사용하는 생산성 도구.",
     tech: ["Chrome MV3", "TypeScript"],
     status: "출시 완료",
-    link: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn",
-    linkLabel: "Chrome Web Store 바로가기",
+    links: [{ name: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/TaskSnap/ipdbelmbiebiejclgnpnphbcbmhijogn" }],
     icon: "/tasksnap-icon-64.png",
   },
   {
     title: "Memoham",
     description: "화려함보다 신뢰성을 택한 로컬 우선 메모 앱. 인터넷이 없어도 즉시 기록하고, 앱 잠금과 메모별 잠금으로 중요한 생각을 안전하게 보관합니다.",
-    tech: ["iOS/Android", "Local-first", "AES-256"],
-    status: "출시 준비 중",
-    link: "https://memoham.com/",
-    linkLabel: "서비스 페이지 바로가기",
+    tech: ["Web Service", "iOS", "Android", "Chrome Extension", "Local-first"],
+    status: "웹·앱·확장 프로그램 출시",
+    links: [
+      { name: "웹서비스", url: "https://memoham.com" },
+      { name: "App Store", url: "https://apps.apple.com/kr/app/memoham/id6808967369" },
+      { name: "Google Play", url: "https://play.google.com/store/apps/details?id=memoham.com" },
+      { name: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/memoham/fiedkogifoddiofhnkmohaepnjoljomk" },
+    ],
     icon: "/memoham-icon.png",
   },
   {
@@ -58,23 +72,69 @@ const projects = [
   },
   {
     title: "Golf Windy",
-    description: "골프 라운드 일정과 날씨, 바람 정보를 한눈에 확인하는 iOS 앱. 라운드 당일 조건 확인과 근처 식당 추천을 함께 제공합니다.",
+    description: "골프 라운드 일정과 날씨, 바람 정보를 한눈에 확인하는 모바일 앱. 라운드 당일 조건 확인과 근처 식당 추천을 함께 제공합니다.",
     tech: ["Flutter", "Firebase", "Kakao Map API"],
-    status: "App Store 출시",
-    link: "https://apps.apple.com/kr/app/golf-windy/id6776418580",
-    linkLabel: "App Store 바로가기",
+    status: "iOS/Android 출시",
+    links: [
+      { name: "App Store", url: "https://apps.apple.com/kr/app/golf-windy/id6776418580" },
+      { name: "Google Play", url: "https://play.google.com/store/apps/details?id=com.golfwindy.app" },
+    ],
     icon: "/golfwindy-icon-64.png",
   },
   {
     title: "Fishing Windy",
     description: "낚시 포인트별 날씨, 조류, 파도 정보를 실시간으로 제공하는 낚시 가이드 앱. 출조 일정 관리, 조황 기록, SOS 안전 기능까지 한 곳에서 제공합니다.",
     tech: ["Flutter", "Firebase", "Weather API"],
-    status: "App Store 출시",
+    status: "iOS/Android 출시",
     links: [
       { name: "App Store", url: "https://apps.apple.com/kr/app/fishing-windy/id6780916105" },
+      { name: "Google Play", url: "https://play.google.com/store/apps/details?id=com.moonyth.fishingwindy" },
       { name: "제휴 제안서", url: "/fishinghwindy/partnership" },
     ],
     icon: "/fishinghwindy-logo-thumb.png",
+  },
+  {
+    title: "팡팡 디펜스 (PangPang Defense)",
+    description: "귀여운 동물 블록을 맞춰 외계인을 막는 오프라인 매치3 퍼즐 디펜스 게임. 광고와 인앱 결제 없이 가볍게 즐길 수 있습니다.",
+    tech: ["iOS", "Android", "Capacitor", "Offline Game"],
+    status: "iOS/Android 출시",
+    links: [
+      { name: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pangpangdefense" },
+      { name: "게임 지원", url: "/pangpangdefense" },
+    ],
+    icon: "/pangpangdefense-icon.png",
+  },
+  {
+    title: "사이 (Saitable)",
+    description: "장기, 오목, 체스를 한곳에서 가볍게 즐기는 온라인 보드게임 라운지. 한 수의 여유를 위한 웹서비스입니다.",
+    tech: ["Web Service", "Board Games", "Responsive Web"],
+    status: "출시 완료",
+    links: [{ name: "saitable.com", url: "https://saitable.com" }],
+    monogram: "S",
+  },
+  {
+    title: "INTOVICE ERP",
+    description: "근태, 결재, 영업, 프로젝트 손익과 재무 업무를 하나로 연결하는 통합 ERP 플랫폼.",
+    tech: ["ERP", "Business Operations", "Web Platform"],
+    status: "플랫폼 출시",
+    links: [{ name: "ERP 플랫폼", url: "https://erp.moonyth.app" }],
+    monogram: "E",
+  },
+  {
+    title: "CONVIA",
+    description: "프로젝트, 산출물, 팀과 고객을 연결해 컨설팅 업무의 진행 상황과 협업을 체계적으로 관리하는 플랫폼.",
+    tech: ["Consulting", "Collaboration", "Web Platform"],
+    status: "플랫폼 출시",
+    links: [{ name: "getses.kr", url: "https://getses.kr" }],
+    monogram: "C",
+  },
+  {
+    title: "INTOVICE Website Renewal",
+    description: "기업의 전문성과 서비스 정보를 명확하게 전달하도록 정보 구조와 사용자 경험을 개편한 홈페이지 구축 프로젝트.",
+    tech: ["Corporate Website", "UX Renewal", "Responsive Web"],
+    status: "프로젝트 완료",
+    links: [{ name: "intovice.co.kr", url: "https://intovice.co.kr" }],
+    monogram: "I",
   },
 ];
 
@@ -93,7 +153,7 @@ export default function AppsPage() {
             Apps & Projects
           </h1>
           <p style={{ color: "var(--text-muted)" }}>
-            iOS·Android 모바일 앱과 브라우저 확장 프로그램을 중심으로 직접 만들어가는 서비스들
+            iOS·Android 앱, 브라우저 확장 프로그램, 웹서비스와 비즈니스 플랫폼 구축 프로젝트
           </p>
         </div>
 
@@ -115,7 +175,15 @@ export default function AppsPage() {
                       className="rounded-xl border"
                       style={{ borderColor: "var(--border)" }}
                     />
-                  ) : null}
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border text-lg font-bold"
+                      style={{ borderColor: "var(--border)", background: "var(--surface-low)", color: "var(--tertiary)" }}
+                    >
+                      {project.monogram ?? project.title.charAt(0)}
+                    </span>
+                  )}
                   <h3
                     className="font-[family-name:var(--font-inter)] text-2xl font-bold"
                     style={{ color: "var(--text)" }}
@@ -147,32 +215,20 @@ export default function AppsPage() {
                 ))}
               </div>
 
-              {project.links ? (
-                <div className="flex gap-4 flex-wrap">
-                  {project.links.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm no-underline transition-colors duration-200"
-                      style={{ color: "var(--tertiary)" }}
-                    >
-                      {link.name} →
-                    </a>
-                  ))}
-                </div>
-              ) : project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm no-underline transition-colors duration-200"
-                  style={{ color: "var(--tertiary)" }}
-                >
-                  {project.linkLabel ?? "방문하기"} →
-                </a>
-              )}
+              <div className="flex gap-4 flex-wrap">
+                {project.links.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold no-underline transition-colors duration-200"
+                    style={{ color: "var(--tertiary)" }}
+                  >
+                    {link.name} →
+                  </a>
+                ))}
+              </div>
             </div>
           ))}
         </div>
