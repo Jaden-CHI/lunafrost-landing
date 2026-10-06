@@ -5,8 +5,8 @@ The website reads Markdown in `content/blog/`. It does not read Notion. Only boo
 ## Review Workflow
 
 - `.github/workflows/auto-blog.yml`: Monday, Wednesday, Friday at 09:00 Asia/Seoul (00:00 UTC). GitHub schedules can start late.
-- It uses the existing Anthropic and Higgsfield repository secrets. These APIs can incur charges.
-- Research requires at least two official search results. A human still verifies factual claims, commands, source relevance and generated images.
+- Text research/writing uses the existing Anthropic repository secret and can incur charges. Images require no API keys or generation.
+- Research requires at least two official search results. A human still verifies factual claims, commands, source relevance and stock-image suitability.
 - The generator writes `published: true` on a non-production branch. Only merge into main approves site publication; no auto-merge is configured.
 - The repository and PRs are public, including pre-merge drafts. Do not submit confidential content.
 - An open `blog/draft-*` PR pauses further generation to avoid duplicate drafts and unnecessary cost. Merge or close it to resume.
@@ -27,6 +27,10 @@ Run `npm run test:blog` and `npm run build` before merging infrastructure change
 
 ## Activation Status
 
-2026-10-06: local tests, lint and production build passed; preview deployed. The live generation test reached cover generation but failed with Higgsfield HTTP 401. A second test against the current official `https://api.higgsfield.ai` endpoint confirmed authentication failure before spending on another article. Infrastructure PR #3 remains unmerged; the new schedule is not active yet.
+The previous Higgsfield HTTP 401 blocker was removed by replacing image generation with local stock images. Infrastructure PR #3 must be merged to activate the schedule; article approval remains a separate human review.
 
-Update `HIGGSFIELD_API_KEY` and `HIGGSFIELD_API_SECRET` in repository Actions secrets using credentials from the [official API console](https://open.higgsfield.ai/). Do not paste keys into issues or chat. Run `Auto Blog Generator` on `blog/markdown-pipeline`, verify the resulting article/cover PR, then merge the infrastructure PR. Article approval remains a separate human review.
+## Stock Images
+
+`scripts/stock-images.json` is a manually license-checked catalog, not an unrestricted web image search. The title, slug and tags choose the best keyword match. If no image matches or a related image is corrupt/missing, the generic AI brain illustration is used. `public/images/stock` is committed so image selection works without network access.
+
+Each post gets a local copy, `credit.json` and visible attribution. The fallback is explicitly described as illustrative, not a screenshot of a specific product. Source pages and [Unsplash license](https://unsplash.com/license) are recorded in the catalog. Add more individually reviewed images to expand topic coverage; run `node scripts/fetch-stock-images.mjs` only when adding approved assets.

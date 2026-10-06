@@ -46,8 +46,6 @@ jobs:
         if: steps.pending.outputs.count == '0'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          HIGGSFIELD_API_KEY: ${{ secrets.HIGGSFIELD_API_KEY }}
-          HIGGSFIELD_API_SECRET: ${{ secrets.HIGGSFIELD_API_SECRET }}
           BLOG_TOPIC: ${{ inputs.topic }}
           BLOG_CATEGORY: ${{ inputs.category }}
           PUBLISH_ON_MERGE: 'true'

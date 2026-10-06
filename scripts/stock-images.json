@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ai-brain",
+    "file": "ai-brain.webp",
+    "fallback": true,
+    "keywords": ["ai", "artificial intelligence", "machine learning", "neural", "claude", "gpt", "gemini", "인공지능", "머신러닝", "신경망"],
+    "alt": "머신러닝과 뇌의 관계를 표현한 와이어프레임 AI 일러스트",
+    "author": "Google DeepMind / Novoto Studio",
+    "source": "https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc",
+    "download": "https://images.unsplash.com/photo-1664447972779-316251bd8bd7?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-06"
+  },
+  {
+    "id": "developer-workspace",
+    "file": "developer-workspace.webp",
+    "fallback": false,
+    "keywords": ["github", "actions", "next.js", "flutter", "coding", "developer", "workflow", "cms", "notion", "개발", "코드", "블로그", "자동화", "생산성"],
+    "alt": "여러 모니터와 태블릿이 있는 개발 작업환경 사진",
+    "author": "Jakub Zerdzicki",
+    "source": "https://unsplash.com/photos/developer-working-on-multiple-screens-in-a-dark-office-v9iowyOH7QQ",
+    "download": "https://images.unsplash.com/photo-1754039985001-ccafee437736?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-06"
+  }
+]
