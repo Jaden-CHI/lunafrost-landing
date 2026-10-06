@@ -7,48 +7,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const posts = await getBlogPosts();
     blogUrls = posts.map((post) => ({
-      url: `https://aimoonyth.com/blog/${post.slug}`,
+      url: `https://moonyth.app/blog/${post.slug}`,
       lastModified: new Date(post.date),
       changeFrequency: "weekly",
       priority: 0.8,
     }));
   } catch {
-    // Notion not configured yet
+    console.error("Failed to load blog sitemap");
   }
 
   return [
     {
-      url: "https://aimoonyth.com",
+      url: "https://moonyth.app",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://aimoonyth.com/blog",
+      url: "https://moonyth.app/blog",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
-      url: "https://aimoonyth.com/tools",
+      url: "https://moonyth.app/tools",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: "https://aimoonyth.com/apps",
+      url: "https://moonyth.app/apps",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: "https://aimoonyth.com/youtube",
+      url: "https://moonyth.app/youtube",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: "https://aimoonyth.com/about",
+      url: "https://moonyth.app/about",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

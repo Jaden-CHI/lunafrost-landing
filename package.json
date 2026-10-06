@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:blog": "node --test scripts/blog-content.test.mjs"
   },
   "dependencies": {
     "@higgsfield/client": "^0.2.1",
