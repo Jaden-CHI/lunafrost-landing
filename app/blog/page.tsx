@@ -3,7 +3,6 @@ import BlogCard from "@/components/blog/BlogCard";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
-import type { BlogPost } from "@/types/blog";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -22,12 +21,7 @@ export default async function BlogPage({
 }) {
   const { category } = await searchParams;
 
-  let posts: BlogPost[] = [];
-  try {
-    posts = await getBlogPosts();
-  } catch {
-    // Notion not configured yet
-  }
+  const posts = await getBlogPosts();
 
   const filtered =
     category && category !== "전체"
@@ -88,7 +82,6 @@ export default async function BlogPage({
             style={{ color: "var(--text-muted)" }}
           >
             <p className="text-lg mb-2">아직 게시글이 없습니다.</p>
-            <p className="text-sm">Notion 데이터베이스를 연결하면 글이 표시됩니다.</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

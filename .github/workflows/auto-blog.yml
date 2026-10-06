@@ -1,78 +1,77 @@
 name: Auto Blog Generator
 
 on:
-  # Automatic publishing is paused until the topic source is replaced with a
-  # reviewed, continuously refreshed editorial queue.
+  schedule:
+    - cron: '0 0 * * 1,3,5'
   workflow_dispatch:
     inputs:
       topic:
-        description: "블로그 주제 (비워두면 랜덤)"
+        description: '주제 (비우면 공식 자료를 검색해서 선정)'
         required: false
-        default: ""
       category:
-        description: "카테고리 (AI Tools / App Dev / Content)"
+        description: 'AI Tools / App Dev / Content / Tech Trends'
         required: false
-        default: "AI Tools"
+
+concurrency:
+  group: blog-draft
+  cancel-in-progress: false
 
 jobs:
-  generate-and-publish:
+  draft-pr:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: write
-
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Check pending review
+        id: pending
+        run: |
+          COUNT=$(gh pr list --state open --limit 100 --json headRefName --jq '[.[] | select(.headRefName | startswith("blog/draft-"))] | length')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" != 0 ]; then
+            echo 'A blog draft is awaiting review. Skipped to avoid duplicate drafts and API costs.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.pending.outputs.count == '0'
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install ts-node
-        run: npm install -g ts-node typescript
-
-      - name: Generate blog post
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+        if: steps.pending.outputs.count == '0'
+      - name: Generate researched post and local cover
+        if: steps.pending.outputs.count == '0'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          HIGGSFIELD_API_KEY: ${{ secrets.HIGGSFIELD_API_KEY }}
-          HIGGSFIELD_API_SECRET: ${{ secrets.HIGGSFIELD_API_SECRET }}
+          BLOG_TOPIC: ${{ inputs.topic }}
+          BLOG_CATEGORY: ${{ inputs.category }}
+          PUBLISH_ON_MERGE: 'true'
+        run: node scripts/generate-post.mjs
+      - name: Validate draft
+        if: steps.pending.outputs.count == '0'
+        run: npm run test:blog
+      - name: Create review PR
+        if: steps.pending.outputs.count == '0'
         run: |
-          TOPIC="${{ github.event.inputs.topic }}"
-          CATEGORY="${{ github.event.inputs.category }}"
-          if [ -n "$TOPIC" ]; then
-            npx ts-node --compiler-options '{"module":"CommonJS"}' scripts/generate-post.ts "$TOPIC" "$CATEGORY"
-          else
-            npx ts-node --compiler-options '{"module":"CommonJS"}' scripts/generate-post.ts
-          fi
-
-      - name: Check for new files
-        id: check_files
-        run: |
-          if git status --porcelain | grep -q "content/blog\|public/blog"; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Commit and push
-        if: steps.check_files.outputs.has_changes == 'true'
-        run: |
-          git config user.name "lunafrost-bot"
-          git config user.email "bot@moonyth.app"
-          git add content/blog/ public/blog/
-          NEW_FILE=$(git diff --cached --name-only | grep "content/blog/" | head -1)
-          TITLE=$(grep "^title:" "$NEW_FILE" 2>/dev/null | sed 's/title: "//' | sed 's/"//' || echo "새 블로그 글")
-          git commit -m "✍️ auto: ${TITLE}"
-          git push origin main
-
-      - name: Summary
-        if: steps.check_files.outputs.has_changes == 'true'
-        run: echo "## ✅ 완료 — https://moonyth.app/blog" >> $GITHUB_STEP_SUMMARY
+          BRANCH="blog/draft-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git switch -c "$BRANCH"
+          git config user.name 'lunafrost-bot'
+          git config user.email 'bot@moonyth.app'
+          git add content/blog/ public/images/posts/
+          git commit -m 'Add researched blog post for review'
+          git push origin "$BRANCH"
+          URL=$(gh pr create --base main --head "$BRANCH" --title 'Blog draft: review before publishing' --body 'Review official sources, factual claims, code examples and the local cover. This repository is public: the PR text is publicly visible. The post is published on moonyth.app only after merging this PR and successful deployment. No automatic merge is configured.')
+          echo "Review PR: $URL" >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve generated files on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-draft-recovery
+          path: |
+            recovery/
+            content/blog/
+            public/images/posts/
+          retention-days: 7

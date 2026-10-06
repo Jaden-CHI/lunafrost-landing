@@ -193,7 +193,7 @@ export default function Footer() {
             style={{ color: 'var(--text-muted)' }}
           >
             COLOPHON · SET IN INTER &amp; JETBRAINS MONO · METADATA IN JETBRAINS MONO<br />
-            BUILT WITH NEXT.JS · HOSTED ON VERCEL · CONTENT VIA NOTION CMS
+            BUILT WITH NEXT.JS · HOSTED ON VERCEL
           </p>
         </div>
 

@@ -6,14 +6,14 @@ import type { BlogPost, BlogPostWithContent } from "@/types/blog";
 const POSTS_DIR = path.join(process.cwd(), "content/blog");
 
 function ensurePostsDir() {
-  if (!fs.existsSync(POSTS_DIR)) fs.mkdirSync(POSTS_DIR, { recursive: true });
+  if (!fs.existsSync(POSTS_DIR)) throw new Error("Blog content directory is missing");
 }
 
 function parsePost(filename: string): BlogPost | null {
   try {
     const raw = fs.readFileSync(path.join(POSTS_DIR, filename), "utf-8");
     const { data } = matter(raw);
-    if (!data.published) return null;
+    if (data.published !== true) return null;
     return {
       id: filename.replace(/\.md$/, ""),
       title: data.title ?? "",
@@ -56,7 +56,7 @@ export async function getBlogPost(slug: string): Promise<BlogPostWithContent> {
     const raw = fs.readFileSync(path.join(POSTS_DIR, filename), "utf-8");
     const { data, content } = matter(raw);
     const fileSlug = data.slug ?? filename.replace(/\.md$/, "");
-    if (fileSlug === slug && data.published) {
+    if (fileSlug === slug && data.published === true) {
       return {
         id: filename.replace(/\.md$/, ""),
         title: data.title ?? "",
