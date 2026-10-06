@@ -5,7 +5,7 @@ date: "2026-08-10"
 category: "App Dev"
 tags: ["Supabase", "풀스택", "백엔드리스", "PostgreSQL", "인증"]
 description: "Supabase를 활용해 별도의 백엔드 서버 없이 인증, 데이터베이스, 실시간 기능까지 갖춘 풀스택 앱을 구축하는 방법을 단계별로 알아봅니다."
-cover: ""
+cover: "/images/posts/fullstack-app-without-backend-with-supabase/cover.webp"
 published: true
 ---
 
@@ -115,3 +115,5 @@ Supabase가 모든 상황의 정답은 아닙니다. 복잡한 비즈니스 로�
 - 실시간 기능이 포함된 협업 도구
 
 인프라 고민 없이 아이디어를 코드로 빠르게 옮기고 싶다면, Supabase는 현재 존재하는 가장 강력한 도구 중 하나입니다. 백엔드를 직접 짜는 시간을 아껴 실제 사용자 가치를 만드는 데 집중하세요.
+
+커버 이미지: [Jakub Zerdzicki](https://unsplash.com/photos/developer-working-on-multiple-screens-in-a-dark-office-v9iowyOH7QQ) · [Unsplash License](https://unsplash.com/license). 개발 작업환경 자료 사진이며 Supabase 제품 화면은 아닙니다.

@@ -2,16 +2,17 @@
 
 The website reads Markdown in `content/blog/`. It does not read Notion. Only boolean `published: true` posts are visible. Images belong under `public/images/posts/SLUG/`.
 
-## Review Workflow
+## Daily Publishing
 
-- `.github/workflows/auto-blog.yml`: Monday, Wednesday, Friday at 09:00 Asia/Seoul (00:00 UTC). GitHub schedules can start late.
+- `.github/workflows/auto-blog.yml`: daily at 09:00 Asia/Seoul (00:00 UTC). GitHub schedules can start late.
 - Text research/writing uses the existing Anthropic repository secret and can incur charges. Images require no API keys or generation.
 - Research requires at least two official search results. A human still verifies factual claims, commands, source relevance and stock-image suitability.
-- The generator writes `published: true` on a non-production branch. Only merge into main approves site publication; no auto-merge is configured.
+- The user approved automatic public publishing on 2026-10-06. Scheduled runs write `published: true` and `automated: true`, validate content, build the site and push to main without a review PR. Vercel then deploys.
 - The repository and PRs are public, including pre-merge drafts. Do not submit confidential content.
-- An open `blog/draft-*` PR pauses further generation to avoid duplicate drafts and unnecessary cost. Merge or close it to resume.
-- Enable GitHub Actions PR creation in repository Settings > Actions > General > Workflow permissions. Workflow token permissions are scoped to contents and PR writes.
-- Check Actions logs after each failure; recovery artifacts expire after seven days. A failed generation never pushes to main.
+- Only one automated post per KST calendar day is allowed. Reruns skip if that day's automated article is already on main. Manual articles and unpublished drafts do not occupy this slot.
+- Scheduled jobs run only on main with contents-write permission. Open manual review PRs no longer block scheduled publication.
+- Check Actions logs after each failure; recovery artifacts expire after seven days. Failed generation, validation or build prevents the publication push. Automated checks cannot guarantee factual accuracy; review published content as needed.
+- Manual workflow runs can set `dry_run: true` to test configuration and build without generating or publishing another article.
 
 ## Manual Drafts and Migration
 
@@ -27,7 +28,7 @@ Run `npm run test:blog` and `npm run build` before merging infrastructure change
 
 ## Activation Status
 
-The previous Higgsfield HTTP 401 blocker was removed by replacing image generation with local stock images. Infrastructure PR #3 must be merged to activate the schedule; article approval remains a separate human review.
+Infrastructure PR #3 and initial article PR #4 are merged. The previous Higgsfield HTTP 401 blocker was removed by replacing image generation with local stock images. Daily automatic publication replaces the previous Mon/Wed/Fri review-PR schedule.
 
 ## Stock Images
 

@@ -2,7 +2,7 @@ name: Auto Blog Generator
 
 on:
   schedule:
-    - cron: '0 0 * * 1,3,5'
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       topic:
@@ -11,65 +11,68 @@ on:
       category:
         description: 'AI Tools / App Dev / Content / Tech Trends'
         required: false
+      dry_run:
+        description: '설정과 테스트만 확인 (글 생성 및 공개 없음)'
+        type: boolean
+        default: false
 
 concurrency:
   group: blog-draft
   cancel-in-progress: false
 
 jobs:
-  draft-pr:
+  publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: write
-      pull-requests: write
-    env:
-      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: Check pending review
-        id: pending
-        run: |
-          COUNT=$(gh pr list --state open --limit 100 --json headRefName --jq '[.[] | select(.headRefName | startswith("blog/draft-"))] | length')
-          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
-          if [ "$COUNT" != 0 ]; then
-            echo 'A blog draft is awaiting review. Skipped to avoid duplicate drafts and API costs.' >> "$GITHUB_STEP_SUMMARY"
-          fi
+        with:
+          ref: main
       - uses: actions/setup-node@v4
-        if: steps.pending.outputs.count == '0'
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
-        if: steps.pending.outputs.count == '0'
-      - name: Generate researched post and local cover
-        if: steps.pending.outputs.count == '0'
+      - name: Check daily publication slot
+        id: daily
+        run: node scripts/check-daily-post.mjs
+      - name: Generate post and select local stock cover
+        if: steps.daily.outputs.skip != 'true' && inputs.dry_run != true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BLOG_TOPIC: ${{ inputs.topic }}
           BLOG_CATEGORY: ${{ inputs.category }}
           PUBLISH_ON_MERGE: 'true'
+          AUTO_PUBLISH: 'true'
         run: node scripts/generate-post.mjs
-      - name: Validate draft
-        if: steps.pending.outputs.count == '0'
+      - name: Validate content
+        if: steps.daily.outputs.skip != 'true' || inputs.dry_run == true
         run: npm run test:blog
-      - name: Create review PR
-        if: steps.pending.outputs.count == '0'
+      - name: Verify production build
+        if: steps.daily.outputs.skip != 'true' || inputs.dry_run == true
+        run: npm run build
+      - name: Publish validated article
+        if: steps.daily.outputs.skip != 'true' && inputs.dry_run != true
         run: |
-          BRANCH="blog/draft-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-          git switch -c "$BRANCH"
           git config user.name 'lunafrost-bot'
           git config user.email 'bot@moonyth.app'
           git add content/blog/ public/images/posts/
-          git commit -m 'Add researched blog post for review'
-          git push origin "$BRANCH"
-          URL=$(gh pr create --base main --head "$BRANCH" --title 'Blog draft: review before publishing' --body 'Review official sources, factual claims, code examples and the local cover. This repository is public: the PR text is publicly visible. The post is published on moonyth.app only after merging this PR and successful deployment. No automatic merge is configured.')
-          echo "Review PR: $URL" >> "$GITHUB_STEP_SUMMARY"
+          git commit -m 'Publish daily researched blog post'
+          git pull --rebase origin main
+          npm run test:blog
+          git push origin HEAD:main
+          echo 'Article committed to main. Vercel deployment must succeed before it is live: https://moonyth.app/blog' >> "$GITHUB_STEP_SUMMARY"
+      - name: Skipped publication
+        if: steps.daily.outputs.skip == 'true' || inputs.dry_run == true
+        run: echo 'No new article published (daily slot already used or dry run requested).' >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve generated files on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: blog-draft-recovery
+          name: blog-recovery
           path: |
             recovery/
             content/blog/

@@ -4,7 +4,15 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { parsePost, assertNewPost, assertLocalCover } from './blog-content.mjs';
+import { parsePost, assertNewPost, assertLocalCover, alreadyPublishedToday } from './blog-content.mjs';
+
+test('Daily publishing is idempotent in KST, not UTC', () => {
+  const post = { date: '2026-10-07', published: true, automated: true };
+  assert.equal(alreadyPublishedToday([post], new Date('2026-10-06T15:01:00Z')), true);
+  assert.equal(alreadyPublishedToday([post], new Date('2026-10-06T14:59:00Z')), false);
+  assert.equal(alreadyPublishedToday([{ ...post, published: false }], new Date('2026-10-07T00:00:00Z')), false);
+  assert.equal(alreadyPublishedToday([{ ...post, automated: false }], new Date('2026-10-07T00:00:00Z')), false);
+});
 
 const metadata = { title: 'Test', slug: 'test-post', date: '2026-10-06', description: 'Test description', tags: ['test'], published: false };
 test('Markdown body and boolean draft status are preserved', () => {

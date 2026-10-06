@@ -3,6 +3,10 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 export const categories = ['AI Tools', 'App Dev', 'Content', 'Tech Trends'];
+export function alreadyPublishedToday(posts, now = new Date()) {
+  const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(now);
+  return posts.some(post => post.automated === true && post.published === true && post.date === day);
+}
 export function parsePost(source) {
   const { data, content } = matter(source);
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(data.slug ?? '')) throw new Error('Invalid slug');

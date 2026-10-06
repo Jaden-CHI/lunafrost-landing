@@ -5,7 +5,7 @@ date: "2026-07-01"
 category: "Content"
 tags: ["유튜브쇼츠", "AI자동화", "콘텐츠파이프라인"]
 description: "AI 도구를 활용해 유튜브 쇼츠를 기획, 제작, 업로드까지 완전 자동화하는 파이프라인을 직접 구축한 경험을 단계별로 공유합니다."
-cover: ""
+cover: "/images/posts/ai-youtube-shorts-automation-pipeline/cover.webp"
 published: true
 ---
 
@@ -71,3 +71,5 @@ Remotion은 코드로 영상을 선언적으로 설계할 수 있어서 **브랜
 파이프라인 가동 4주차 기준, **하루 평균 3개의 쇼츠**를 거의 무개입으로 발행 중이다. 사람이 직접 개입하는 시간은 아이디어 선택 10분, 결과물 QC 15분, 총 하루 **25분** 수준으로 줄었다. 조회수 자체보다 **운영 지속 가능성**이 크게 높아진 게 가장 큰 성과다.
 
 자동화는 창의성을 대체하지 않는다. 오히려 반복 노동에서 해방된 시간에 **전략과 퀄리티**에 집중할 수 있게 된다. 파이프라인은 도구일 뿐—그 방향을 설계하는 건 여전히 사람의 몫이다.
+
+커버 이미지: [Google DeepMind / Novoto Studio](https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 AI 자료 이미지입니다.

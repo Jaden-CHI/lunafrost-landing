@@ -61,7 +61,7 @@ async function main() {
   const post = JSON.parse(raw.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, ''));
   if (!categories.includes(post.category) || typeof post.content !== 'string') throw new Error('Invalid generated metadata');
   const content = `${post.content}\n\n## 참고 자료\n${evidence.sources.map((url, i) => `- [공식 자료 ${i + 1}](${url})`).join('\n')}\n`;
-  const metadata = { title: post.title, slug: post.slug, date, category: post.category, tags: post.tags, description: post.description, cover: '', published: process.env.PUBLISH_ON_MERGE === 'true', sources: evidence.sources };
+  const metadata = { title: post.title, slug: post.slug, date, category: post.category, tags: post.tags, description: post.description, cover: '', published: process.env.PUBLISH_ON_MERGE === 'true', automated: process.env.AUTO_PUBLISH === 'true', sources: evidence.sources };
   parsePost(matter.stringify(content, metadata));
   assertNewPost(metadata, existing);
   fs.mkdirSync('recovery', { recursive: true });
