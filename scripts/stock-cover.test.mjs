@@ -21,6 +21,21 @@ test('Bundled images decode and have provenance', async () => {
     assert.equal(entry.licenseUrl, 'https://unsplash.com/license');
   }
 });
+test('Existing cover credits prefer unused images and then least-used images', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'stock-rotation-'));
+  try {
+    const first = await stockCover('GitHub Actions', 'first-post', { publicDir: dir });
+    assert.equal(first.imageId, 'developer-workspace');
+    const second = await stockCover('GitHub Actions', 'second-post', { publicDir: dir });
+    assert.equal(second.imageId, 'ai-brain');
+    const third = await stockCover('GitHub Actions', 'third-post', { publicDir: dir });
+    assert.equal(third.imageId, 'developer-workspace');
+    const fourth = await stockCover('GitHub Actions', 'fourth-post', { publicDir: dir });
+    assert.equal(fourth.imageId, 'ai-brain');
+    assert.equal((await stockCover('GitHub Actions', 'first-post', { publicDir: dir })).imageId, 'developer-workspace');
+    assert.equal((await stockCover('Supabase PostgreSQL', 'database-post', { publicDir: dir })).imageId, 'data-servers');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
 test('Unknown topic receives a local AI cover without network or image API keys', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'stock-cover-'));
   try {

@@ -1,5 +1,18 @@
 [
   {
+    "id": "data-servers",
+    "file": "data-servers.webp",
+    "fallback": false,
+    "keywords": ["supabase", "database", "postgresql", "backend", "server", "데이터베이스", "서버", "백엔드"],
+    "alt": "네트워크 케이블이 연결된 데이터 서버 장비",
+    "author": "imgix",
+    "source": "https://unsplash.com/photos/black-imgix-server-system-pgdaAwf6IJg",
+    "download": "https://images.unsplash.com/photo-1506399309177-3b43e99fead2?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-06"
+  },
+  {
     "id": "ai-brain",
     "file": "ai-brain.webp",
     "fallback": true,
