@@ -19,7 +19,7 @@ The separate local `../blog-agent` project owns private drafts and backup script
 
 Notion originals and converted drafts remain local in `blog-agent/backups/notion` and `blog-agent/exports`; both are gitignored. Existing website content is never overwritten by migration. Review one archived article at a time before submitting.
 
-Disable the legacy Notion routine at https://claude.ai/code/routines/trig_01VRnTtnaYnt3CAhgiUEDTs5 to stop duplicate work. This GitHub workflow does not control the Claude routine.
+The legacy Notion routine was paused on 2026-10-06 and the disabled switch was verified at https://claude.ai/code/routines/trig_01VRnTtnaYnt3CAhgiUEDTs5. Keep it disabled to avoid duplicate work; this GitHub workflow does not control the Claude routine.
 
 ## Verification
 
