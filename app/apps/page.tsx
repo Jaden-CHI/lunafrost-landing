@@ -15,6 +15,7 @@ interface Project {
   status: string;
   links: Array<{ name: string; url: string }>;
   icon?: string;
+  iconBackground?: string;
   monogram?: string;
 }
 
@@ -136,6 +137,15 @@ const projects: Project[] = [
     links: [{ name: "intovice.co.kr", url: "https://intovice.co.kr" }],
     icon: "/apps/intovice.svg",
   },
+  {
+    title: "LUNAFROST Publishing",
+    description: "1인 출판사 LUNAFROST의 브랜드와 출간작을 소개하는 공식 홈페이지. 장편 과학 미스터리 스릴러 《미궁 속 그림자》의 작품 세계와 출판사 소식을 전달합니다.",
+    tech: ["Publisher Website", "Brand Experience", "Responsive Web"],
+    status: "홈페이지 구축 완료",
+    links: [{ name: "lunafrost.kr", url: "https://lunafrost.kr" }],
+    icon: "/apps/lunafrost-publishing.png",
+    iconBackground: "#101722",
+  },
 ];
 
 export default function AppsPage() {
@@ -173,7 +183,7 @@ export default function AppsPage() {
                       width={48}
                       height={48}
                       className="h-12 w-12 shrink-0 rounded-xl border object-contain p-1"
-                      style={{ borderColor: "var(--border)", background: "#fff" }}
+                      style={{ borderColor: "var(--border)", background: project.iconBackground ?? "#fff" }}
                     />
                   ) : (
                     <span
