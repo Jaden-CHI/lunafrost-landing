@@ -46,7 +46,7 @@ export default function YouTubePage() {
       <div className="fixed inset-0 z-0" style={{ background: "var(--dark)" }} />
       <Header />
 
-      <main className="relative z-10 flex-1 max-w-4xl mx-auto w-full px-6 py-16">
+      <main className="relative z-10 flex-1 max-w-4xl mx-auto w-full px-5 sm:px-6 py-12 sm:py-16">
 
         {/* Page header */}
         <div className="mb-16">
@@ -57,7 +57,7 @@ export default function YouTubePage() {
             YouTube
           </p>
           <h1
-            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
+            className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold mb-4 break-keep"
             style={{ color: "var(--text)" }}
           >
             영상으로 기록하는 탐구
@@ -73,7 +73,7 @@ export default function YouTubePage() {
             <div key={channel.handle}>
               {/* Channel card */}
               <div
-                className="p-10 border mb-6"
+                className="p-5 sm:p-10 border mb-6"
                 style={{
                   borderColor: "var(--border)",
                   background: "var(--surface)",
@@ -91,12 +91,12 @@ export default function YouTubePage() {
                       {channel.description}
                     </p>
                   </div>
-                  <div className="flex gap-3 flex-shrink-0">
+                  <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-shrink-0">
                     <a
                       href={channel.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 no-underline px-5 py-2.5 border transition-all duration-300"
+                      className="inline-flex items-center justify-center gap-2 no-underline px-5 py-2.5 border transition-all duration-300"
                       style={{
                         borderColor: "rgba(170, 212, 249, 0.3)",
                         color: "var(--primary)",
@@ -113,7 +113,7 @@ export default function YouTubePage() {
                       href={channel.subscribeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 no-underline px-5 py-2.5 transition-all duration-300 rim-light"
+                      className="inline-flex items-center justify-center gap-2 no-underline px-5 py-2.5 transition-all duration-300 rim-light"
                       style={{
                         background: "var(--primary-container)",
                         color: "var(--on-primary-container)",

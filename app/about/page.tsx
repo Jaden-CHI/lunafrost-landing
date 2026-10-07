@@ -13,9 +13,9 @@ export default function AboutPage() {
       <div className="fixed inset-0 z-0" style={{ background: "var(--dark)" }} />
       <Header />
 
-      <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
+      <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-5 sm:px-6 py-12 sm:py-16">
         <h1
-          className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-12"
+          className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold mb-12"
           style={{ color: "var(--text)" }}
         >
           About
@@ -64,7 +64,7 @@ export default function AboutPage() {
               문의사항은{' '}
               <a
                 href="mailto:moonyth.contact@gmail.com"
-                className="no-underline transition-colors duration-200"
+                className="break-all no-underline transition-colors duration-200"
                 style={{ color: "var(--tertiary)" }}
               >
                 moonyth.contact@gmail.com

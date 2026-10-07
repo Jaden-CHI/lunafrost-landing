@@ -154,10 +154,10 @@ export default function AppsPage() {
       <div className="fixed inset-0 z-0" style={{ background: "var(--dark)" }} />
       <Header />
 
-      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-6 py-16">
+      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 sm:px-6 py-12 sm:py-16">
         <div className="mb-12">
           <h1
-            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
+            className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             Apps & Projects
@@ -171,11 +171,11 @@ export default function AppsPage() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="p-8 rounded-lg border"
+              className="p-5 sm:p-8 rounded-lg border"
               style={{ borderColor: "var(--border)", background: "var(--surface)" }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                <div className="flex min-w-0 items-center gap-3">
                   {project.icon ? (
                     <Image
                       src={project.icon}
@@ -195,14 +195,14 @@ export default function AppsPage() {
                     </span>
                   )}
                   <h3
-                    className="font-[family-name:var(--font-inter)] text-2xl font-bold"
+                    className="min-w-0 font-[family-name:var(--font-inter)] text-xl sm:text-2xl font-bold break-words"
                     style={{ color: "var(--text)" }}
                   >
                     {project.title}
                   </h3>
                 </div>
                 <span
-                  className="text-xs px-2 py-1 rounded border"
+                  className="self-start shrink-0 text-xs px-2 py-1 rounded border"
                   style={{ borderColor: "rgba(0,122,255,0.2)", color: "var(--tertiary)" }}
                 >
                   {project.status}

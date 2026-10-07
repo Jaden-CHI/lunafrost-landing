@@ -42,7 +42,7 @@ function CornerMeta({
 
 export default function HeroSection() {
   return (
-    <header className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <header className="relative min-h-[calc(100svh-5rem)] flex flex-col items-center justify-center overflow-hidden py-20 sm:py-24">
       <div className="absolute inset-0 grid-bg" style={{ zIndex: -2 }} />
       <div className="absolute inset-0 hero-glow" style={{ zIndex: -1 }} />
 
@@ -82,10 +82,10 @@ export default function HeroSection() {
       </CornerMeta>
 
       {/* Center */}
-      <div className="max-w-3xl mx-auto text-center px-6 relative z-10">
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-12">
+      <div className="w-full max-w-3xl mx-auto text-center px-5 sm:px-6 relative z-10">
+        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-8 sm:mb-12">
           <span
-            className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.4em]"
+            className="font-[family-name:var(--font-mono)] text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.4em] leading-6"
             style={{ color: 'var(--tertiary)' }}
           >
             MOBILE APP · BROWSER EXTENSION · AI
@@ -94,16 +94,16 @@ export default function HeroSection() {
 
         <motion.h1
           custom={1} variants={fadeUp} initial="hidden" animate="visible"
-          className="font-[family-name:var(--font-inter)] font-bold leading-[0.95] mb-2 tracking-tight"
-          style={{ fontSize: 'clamp(4.5rem, 12vw, 7rem)', color: 'var(--primary)' }}
+          className="font-[family-name:var(--font-inter)] text-[3.25rem] sm:text-7xl md:text-8xl lg:text-[7rem] font-bold leading-[0.95] mb-2 tracking-tight"
+          style={{ color: 'var(--primary)' }}
         >
           luna<span style={{ fontWeight: 400, color: 'var(--tertiary)' }}>frost</span>
         </motion.h1>
 
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible">
           <div
-            className="font-[family-name:var(--font-mono)] mt-4 mb-12"
-            style={{ fontSize: '9px', letterSpacing: '0.5em', color: 'var(--text-muted)' }}
+            className="font-[family-name:var(--font-mono)] mt-4 mb-8 sm:mb-12 text-[8px] sm:text-[9px] tracking-[0.22em] sm:tracking-[0.5em]"
+            style={{ color: 'var(--text-muted)' }}
           >
             37.5665° N · 126.9780° E
           </div>
@@ -111,16 +111,16 @@ export default function HeroSection() {
 
         <motion.p
           custom={3} variants={fadeUp} initial="hidden" animate="visible"
-          className="max-w-xl mx-auto leading-[1.7] mb-14"
-          style={{ fontSize: '18px', color: 'var(--text-muted)' }}
+          className="max-w-xl mx-auto text-[16px] sm:text-[18px] leading-[1.75] mb-10 sm:mb-14 break-keep"
+          style={{ color: 'var(--text-muted)' }}
         >
-          iOS·Android 모바일 앱과 브라우저 확장 프로그램을 만들고,<br />
+          iOS·Android 모바일 앱과 브라우저 확장 프로그램을 만들고,<br className="hidden sm:block" />{' '}
           AI와 생산성 도구의 가능성을 기록하는 Moonyth의 공간입니다.
         </motion.p>
 
         <motion.div
           custom={4} variants={fadeUp} initial="hidden" animate="visible"
-          className="flex flex-col sm:flex-row items-center justify-center gap-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-7 sm:gap-10"
         >
           <Link
             href="/blog"
@@ -143,7 +143,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+        className="absolute bottom-5 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-4"
       >
         <span
           className="font-[family-name:var(--font-mono)] uppercase"
@@ -152,7 +152,7 @@ export default function HeroSection() {
           SCROLL
         </span>
         <div
-          className="w-px h-12"
+          className="w-px h-6 sm:h-12"
           style={{ background: 'linear-gradient(to bottom, rgba(0,122,255,0.3), transparent)' }}
         />
       </motion.div>

@@ -131,9 +131,8 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
     >
       <Link href={project.href} className="no-underline block h-full">
         <article
-          className="pf-card lens-target border h-full flex flex-col"
+          className="pf-card lens-target border h-full flex flex-col p-6 sm:p-12"
           style={{
-            padding: '3rem',
             borderColor: 'var(--border)',
             background: 'var(--surface)',
             backdropFilter: 'blur(12px)',
@@ -143,8 +142,8 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
           {/* corner brackets */}
           <span className="corner-tl" /><span className="corner-br" />
 
-          <div className="flex justify-between items-start mb-10 gap-4">
-            <div className="space-y-1">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-10 gap-4">
+            <div className="min-w-0 space-y-1">
               <span
                 className="block font-[family-name:var(--font-mono)] text-[11px] tracking-wider uppercase"
                 style={{ color: 'var(--tertiary)' }}
@@ -206,16 +205,15 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
     >
       <Link href={project.href} className="no-underline block h-full" {...linkProps}>
         <article
-          className="pf-card border h-full flex flex-col"
+          className="pf-card border h-full flex flex-col p-5 sm:p-8"
           style={{
-            padding: '2rem',
             borderColor: 'var(--border)',
             background: 'var(--surface)',
             backdropFilter: 'blur(12px)',
           }}
         >
-          <div className="flex justify-between items-start mb-4 gap-3">
-            <div className="flex items-start gap-3">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-3">
+            <div className="flex min-w-0 items-start gap-3">
               {'icon' in project && project.icon ? (
                 <Image
                   src={project.icon}
@@ -226,7 +224,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
                   style={{ borderColor: 'var(--border)' }}
                 />
               ) : null}
-              <div className="space-y-0.5">
+              <div className="min-w-0 space-y-0.5">
                 <span
                   className="block font-[family-name:var(--font-mono)] text-[10px] tracking-wider uppercase"
                   style={{ color: 'var(--tertiary)' }}
@@ -234,7 +232,7 @@ function SmallCard({ project, index }: { project: typeof projects[0]; index: num
                   {project.category}
                 </span>
                 <h3
-                  className="font-[family-name:var(--font-inter)] font-bold text-xl"
+                  className="font-[family-name:var(--font-inter)] font-bold text-xl break-words"
                   style={{ color: 'var(--text)' }}
                 >
                   {project.title}
@@ -283,7 +281,7 @@ export default function PortfolioCards() {
   return (
     <section className="py-32 px-5 md:px-16 max-w-[1280px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
         <div className="space-y-3">
           <span
             className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"

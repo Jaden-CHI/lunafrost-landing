@@ -8,7 +8,7 @@ export function StatusDot({ status }: { status: keyof typeof STATUS_CONFIG }) {
   const cfg = STATUS_CONFIG[status];
   return (
     <span
-      className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] flex items-center"
+      className="self-start shrink-0 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.12em] flex items-center"
       style={{ color: cfg.color }}
     >
       <span className={`status-dot ${cfg.dot}`} />

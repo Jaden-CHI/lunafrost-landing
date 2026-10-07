@@ -12,11 +12,10 @@ function FeaturedArticleCard({ article }: { article: BlogPost }) {
   return (
     <Link href={`/blog/${article.slug}`} className="no-underline block grow-line lg:col-span-3 group">
       <article
-        className="border h-full flex flex-col"
+        className="border h-full flex flex-col p-5 sm:p-10"
         style={{
           borderColor: 'var(--border)',
           background: 'var(--surface)',
-          padding: '2.5rem',
         }}
       >
         {/* Thumbnail */}
@@ -26,6 +25,7 @@ function FeaturedArticleCard({ article }: { article: BlogPost }) {
               src={COVER_OVERRIDES[article.slug] ?? article.cover}
               alt={article.title}
               fill
+              sizes="(max-width: 1023px) calc(100vw - 40px), 60vw"
               className="object-cover"
             />
           ) : (
@@ -70,11 +70,10 @@ function RecentArticleCard({ article }: { article: BlogPost }) {
   return (
     <Link href={`/blog/${article.slug}`} className="no-underline block grow-line group">
       <article
-        className="border flex flex-col"
+        className="border flex flex-col p-5 sm:p-7"
         style={{
           borderColor: 'var(--border)',
           background: 'var(--surface)',
-          padding: '1.75rem',
         }}
       >
         <div className="flex items-center gap-3 mb-3">
@@ -126,7 +125,7 @@ export default async function LatestArticles() {
   return (
     <section id="blog" className="py-32 px-5 md:px-16 max-w-[1280px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
         <div className="space-y-3">
           <span
             className="block font-[family-name:var(--font-mono)] text-xs tracking-widest uppercase"

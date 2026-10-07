@@ -54,7 +54,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="no-underline text-sm transition-colors duration-300 footer-col-link"
+                className="break-words no-underline text-sm transition-colors duration-300 footer-col-link"
                 style={{ color: 'var(--text-muted)' }}
               >
                 {link.label}
@@ -62,7 +62,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
             ) : (
               <Link
                 href={link.href}
-                className="no-underline text-sm transition-colors duration-300 footer-col-link"
+                className="break-words no-underline text-sm transition-colors duration-300 footer-col-link"
                 style={{ color: 'var(--text-muted)' }}
               >
                 {link.label}

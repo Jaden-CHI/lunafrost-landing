@@ -13,7 +13,7 @@ export default function ContactPage() {
       <div className="fixed inset-0 z-0" style={{ background: "var(--dark)" }} />
       <Header />
 
-      <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-6 py-16">
+      <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full px-5 sm:px-6 py-12 sm:py-16">
         <div className="mb-16">
           <p
             className="font-[family-name:var(--font-mono)] text-xs tracking-[0.3em] uppercase mb-4"
@@ -22,7 +22,7 @@ export default function ContactPage() {
             Contact
           </p>
           <h1
-            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-6"
+            className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold mb-6"
             style={{ color: "var(--text)" }}
           >
             연락하기
@@ -33,7 +33,7 @@ export default function ContactPage() {
         </div>
 
         <div
-          className="p-12 border"
+          className="p-5 sm:p-8 md:p-12 border"
           style={{
             borderColor: "var(--border)",
             background: "var(--surface)",
@@ -47,9 +47,8 @@ export default function ContactPage() {
           </p>
           <a
             href="mailto:moonyth.contact@gmail.com"
-            className="font-[family-name:var(--font-inter)] font-bold no-underline transition-colors duration-300 block mb-2"
+            className="block break-all font-[family-name:var(--font-inter)] text-[1.05rem] sm:text-2xl md:text-3xl font-bold no-underline transition-colors duration-300 mb-2"
             style={{
-              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
               color: "var(--text)",
             }}
           >

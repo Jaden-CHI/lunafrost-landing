@@ -32,10 +32,10 @@ export default function ToolsPage() {
       <div className="fixed inset-0 z-0" style={{ background: "var(--dark)" }} />
       <Header />
 
-      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-6 py-16">
+      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 sm:px-6 py-12 sm:py-16">
         <div className="mb-12">
           <h1
-            className="font-[family-name:var(--font-inter)] text-5xl font-bold mb-4"
+            className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold mb-4"
             style={{ color: "var(--text)" }}
           >
             AI Tools
