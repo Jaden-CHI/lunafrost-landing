@@ -156,6 +156,47 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
+          <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
+
+          <section id="ga4-analytics-privacy">
+            <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold mb-4" style={{ color: "var(--tertiary)" }}>
+              moonyth.app GA4 방문 통계 안내
+            </h2>
+            <div className="space-y-4 leading-relaxed">
+              <p>
+                이 사이트는 <strong>Google Analytics 4(GA4)</strong> 기능 하나를 통해 방문 통계를 수집할 수 있어요.
+                이 기능은 방문자가 동의 버튼을 눌러야만 작동하고, 동의 전에는 Google로 어떤 요청도 보내지 않아요.
+                이 안내는 위 쿠키 조항과 별개로, 이 사이트에 적용된 이 GA4 기능 하나만을 설명해요. 같은 사이트에서 함께 쓰이는
+                Vercel Analytics 등 다른 분석 도구는 이 안내의 대상이 아니에요.
+              </p>
+              <div>
+                <p className="font-medium mb-1" style={{ color: "var(--text)" }}>수집 및 전송되는 정보</p>
+                <ul className="space-y-1 list-none">
+                  <li>• 쿠키 식별자: _ga, _gid, _gat, _ga_&lt;ID&gt; 등 GA4가 발급하는 쿠키 값</li>
+                  <li>• 방문 페이지 주소(쿼리 문자열·해시 제외)와 참조 사이트의 도메인(상세 경로 제외)</li>
+                  <li>• 기기·브라우저·접속 환경 정보(화면 크기, 브라우저 종류, 대략적 위치 추정에 쓰이는 IP 주소)</li>
+                  <li>• 이 정보는 Google LLC(미국)로 전송되며, 대한민국 밖에서 처리될 수 있어요.</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium mb-1" style={{ color: "var(--text)" }}>수집하지 않는 정보</p>
+                <p>입력 폼 내용, 클릭한 텍스트/버튼의 구체적 내용, 페이지 본문 등 콘텐츠성 정보는 수집하지 않아요(GA4 향상된 측정 기능 꺼짐). 이 정보가 완전히 익명이라고 주장하지 않아요.</p>
+              </div>
+              <div>
+                <p className="font-medium mb-1" style={{ color: "var(--text)" }}>동의와 철회</p>
+                <p>
+                  이 기능은 방문자가 명시적으로 동의를 눌러야 작동해요. 이미 동의했더라도 화면의 [분석 설정] 버튼을 눌러
+                  언제든지 철회할 수 있어요. 철회하면 이후 데이터는 더 이상 전송되지 않고 관련 쿠키를 가능한 범위에서
+                  삭제해요. 다만 철회 이전에 이미 전송된 데이터를 소급 삭제하는 기능은 제공하지 않아요. 동의 선택은 변경하거나 브라우저 저장공간을 지울 때까지 저장돼요. 분석 쿠키의 만료기간은 60일이며 동의 상태에서 재방문하면 갱신될 수 있어요.
+                </p>
+              </div>
+              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                이 안내는 신규 GA4 방문 통계 기능에 적용됩니다. 기존 서비스의 다른 개인정보 처리에 관한 내용은 위 방침을 함께 확인해 주세요.
+              </p>
+            </div>
+<div lang="en"><h3>GA4 analytics notice (English)</h3><p>This GA4 feature runs only after you accept. It sends cookie identifiers, allowed public page paths without query strings or fragments, referrer origin, and device/connection information to Google LLC, which may process it outside Korea. It does not collect form fields, document or financial data, or page content. Advertising features and enhanced measurement are disabled.</p><p>Use Analytics settings to decline or withdraw. Withdrawal stops this feature and clears its cookies where possible; it does not erase previously transmitted data. Your choice stays in browser storage until changed or cleared. Analytics cookies have a renewable 60-day expiry. This notice covers GA4 only, not any other services described in the main policy.</p><p><a href="https://policies.google.com/privacy">Google Privacy Policy</a></p></div>
+</section>
+
         </div>
 
         {/* Privacy Policy Navigation */}

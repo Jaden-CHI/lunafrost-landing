@@ -9,7 +9,7 @@ export default function ShareButtons({ title, url }: Props) {
   const fullUrl =
     typeof window !== "undefined"
       ? `${window.location.origin}${url}`
-      : `https://aimoonyth.com${url}`;
+      : `https://moonyth.app${url}`;
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(fullUrl)}`;
 
