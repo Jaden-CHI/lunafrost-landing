@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/blog" },
   title: "Blog",
   description: "AI 트렌드, 앱 개발, 콘텐츠 전략에 대한 인사이트",
 };

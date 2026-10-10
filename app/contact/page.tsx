@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/contact" },
   title: "Contact",
   description: "Moonyth에게 연락하기 — moonyth.contact@gmail.com",
 };

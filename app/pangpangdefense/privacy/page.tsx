@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/pangpangdefense/privacy" },
   title: "팡팡 디펜스 개인정보처리방침",
   description: "팡팡 디펜스 개인정보처리방침",
 };

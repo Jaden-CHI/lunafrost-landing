@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/terms" },
   title: "서비스 이용약관",
   description: "lunafrost 서비스 이용약관",
 };

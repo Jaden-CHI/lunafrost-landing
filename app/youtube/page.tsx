@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/youtube" },
   title: "YouTube",
   description: "AI 트렌드, 생성형 AI 활용법, 앱 개발 과정을 담은 YouTube 채널 — Moonyth & GenAI1001",
 };

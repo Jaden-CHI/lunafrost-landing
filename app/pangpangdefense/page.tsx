@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/pangpangdefense" },
   title: "팡팡 디펜스 | 고객 지원",
   description: "귀여운 동물 블록을 맞춰 외계인을 막는 오프라인 매치3 퍼즐 디펜스 게임, 팡팡 디펜스 고객 지원 페이지",
 };

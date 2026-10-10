@@ -25,10 +25,13 @@ export async function generateMetadata({
   const { slug } = await params;
   try {
     const post = await getBlogPost(slug);
+    const canonical = `https://moonyth.app/blog/${encodeURIComponent(post.slug)}`;
     return {
+      alternates: { canonical },
       title: post.title,
       description: post.description,
       openGraph: {
+        url: canonical,
         title: post.title,
         description: post.description,
         images: post.cover ? [post.cover] : [],

@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/privacy-policy" },
   title: "개인정보처리방침",
   description: "Moonyth 및 AlwaysPDF Tools 개인정보처리방침",
 };

@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/copyright" },
   title: "저작권 정책",
   description: "lunafrost 저작권 정책 (Copyright Policy)",
 };

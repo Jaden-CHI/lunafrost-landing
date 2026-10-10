@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/about" },
   title: "About",
   description: "AI 트렌드, 앱 개발, 콘텐츠 전략을 탐구하는 Moonyth에 대해",
 };

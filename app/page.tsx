@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
@@ -8,6 +9,10 @@ import Newsletter from '@/components/home/Newsletter';
 import ImageRescalerSpotlight from '@/components/home/ImageRescalerSpotlight';
 import { LensCursor } from '@/components/ui/LensCursor';
 import { ScrollAnimations } from '@/components/ScrollAnimations';
+
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://moonyth.app/' },
+};
 
 export default function HomePage() {
   return (

@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/golfwindy/privacy" },
   title: "Golf Windy 개인정보처리방침",
   description: "Golf Windy 개인정보처리방침",
 };

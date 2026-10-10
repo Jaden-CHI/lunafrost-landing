@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://moonyth.app/apps" },
   title: "Apps & Projects",
   description: "모바일 앱, 브라우저 확장 프로그램, 웹 플랫폼 및 구축 프로젝트 쇼케이스",
 };
