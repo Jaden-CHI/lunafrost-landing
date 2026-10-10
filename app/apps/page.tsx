@@ -135,7 +135,7 @@ const projects: Project[] = [
     description: "기업의 전문성과 서비스 정보를 명확하게 전달하도록 정보 구조와 사용자 경험을 개편한 홈페이지 구축 프로젝트.",
     tech: ["Corporate Website", "UX Renewal", "Responsive Web"],
     status: "프로젝트 완료",
-    links: [{ name: "intovice.co.kr", url: "https://intovice.co.kr" }],
+    links: [{ name: "intovice.com", url: "https://intovice.com" }],
     icon: "/apps/intovice.svg",
   },
   {
