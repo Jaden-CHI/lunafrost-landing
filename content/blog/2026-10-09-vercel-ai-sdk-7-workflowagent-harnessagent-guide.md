@@ -13,7 +13,7 @@ tags:
 description: >-
   2026년 6월 출시된 Vercel AI SDK 7의 핵심 변화인 WorkflowAgent, HarnessAgent, Top-level
   Reasoning을 공식 문서 기반으로 분석합니다. ESM 전용·Node.js 22 요구사항과 마이그레이션 포인트까지 정리했습니다.
-cover: /images/posts/vercel-ai-sdk-7-workflowagent-harnessagent-guide/ai-brain.webp
+cover: /images/posts/vercel-ai-sdk-7-workflowagent-harnessagent-guide/ai-accountability.webp
 published: true
 automated: true
 sources:
@@ -58,14 +58,14 @@ sources:
   - 'https://vercel.com/changelog/page/32'
   - 'https://vercel.com/blog/vercel-ship-2026-recap'
   - 'https://vercel.com/kb/guide/durableagent-to-workflowagent'
-coverAlt: 머신러닝과 뇌의 관계를 표현한 와이어프레임 AI 일러스트
+coverAlt: AI 시스템의 책임성을 표현한 개념 일러스트
 coverCredit:
-  author: Google DeepMind / Novoto Studio
+  author: Google DeepMind / Champ Panupong Techawongthawonas
   source: >-
-    https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc
+    https://unsplash.com/photos/diagram-schematic-mWztzk66I7Q
   license: Unsplash License
   licenseUrl: 'https://unsplash.com/license'
-  alt: 머신러닝과 뇌의 관계를 표현한 와이어프레임 AI 일러스트
+  alt: AI 시스템의 책임성을 표현한 개념 일러스트
 ---
 ## TL;DR
 
@@ -225,4 +225,4 @@ Vercel AI SDK 7은 TypeScript 스택 위에서 프로덕션 에이전트를 운�
 - [공식 자료 37](https://vercel.com/blog/vercel-ship-2026-recap)
 - [공식 자료 38](https://vercel.com/kb/guide/durableagent-to-workflowagent)
 
-커버 이미지: [Google DeepMind / Novoto Studio](https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지입니다.
+커버 이미지: [Google DeepMind / Champ Panupong Techawongthawonas](https://unsplash.com/photos/diagram-schematic-mWztzk66I7Q) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지이며 제품 화면은 아닙니다.

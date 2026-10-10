@@ -21,18 +21,19 @@ test('Bundled images decode and have provenance', async () => {
     assert.equal(entry.licenseUrl, 'https://unsplash.com/license');
   }
 });
-test('Existing cover credits prefer unused images and then least-used images', async () => {
+test('Used images are excluded; exhaustion blocks publication and same-slug retries work', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'stock-rotation-'));
   try {
-    const first = await stockCover('GitHub Actions', 'first-post', { publicDir: dir });
+    const options = { publicDir: dir, catalog: catalog.filter(entry => ['ai-brain', 'developer-workspace'].includes(entry.id)) };
+    const first = await stockCover('GitHub Actions', 'first-post', options);
     assert.equal(first.imageId, 'developer-workspace');
-    const second = await stockCover('GitHub Actions', 'second-post', { publicDir: dir });
+    const second = await stockCover('GitHub Actions', 'second-post', options);
     assert.equal(second.imageId, 'ai-brain');
-    const third = await stockCover('GitHub Actions', 'third-post', { publicDir: dir });
-    assert.equal(third.imageId, 'developer-workspace');
-    const fourth = await stockCover('GitHub Actions', 'fourth-post', { publicDir: dir });
-    assert.equal(fourth.imageId, 'ai-brain');
-    assert.equal((await stockCover('GitHub Actions', 'first-post', { publicDir: dir })).imageId, 'developer-workspace');
+    await assert.rejects(stockCover('GitHub Actions', 'third-post', options), /No unused valid stock/);
+    assert.ok(!fs.existsSync(path.join(dir, 'images/posts/third-post')));
+    assert.equal((await stockCover('GitHub Actions', 'first-post', options)).imageId, 'developer-workspace');
+    const aliased = options.catalog.map(entry => ({ ...entry, source: entry.source + '?alias=1' }));
+    await assert.rejects(stockCover('GitHub Actions', 'third-post', { ...options, catalog: aliased }), /No unused valid stock/);
     assert.equal((await stockCover('Supabase PostgreSQL', 'database-post', { publicDir: dir })).imageId, 'data-servers');
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });

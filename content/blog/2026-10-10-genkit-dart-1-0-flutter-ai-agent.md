@@ -13,7 +13,7 @@ tags:
 description: >-
   2026년 10월 8일 정식 출시된 Genkit Dart 1.0의 핵심 기능과 Flutter 풀스택 AI 앱 개발 패턴을 공식 자료 기반으로
   정리합니다.
-cover: /images/posts/genkit-dart-1-0-flutter-ai-agent/developer-workspace.webp
+cover: /images/posts/genkit-dart-1-0-flutter-ai-agent/ai-pattern-recognition.webp
 published: true
 automated: true
 sources:
@@ -48,14 +48,14 @@ sources:
   - 'https://dart.dev/blog/announcing-dart-3-12'
   - 'https://docs.flutter.dev/install/archive'
   - 'https://flutter.dev/blog/whats-new-in-flutter-3-44'
-coverAlt: 여러 모니터와 태블릿이 있는 개발 작업환경 사진
+coverAlt: 패턴 인식을 시각화한 다채로운 입체 점 배열
 coverCredit:
-  author: Jakub Zerdzicki
+  author: Google DeepMind / Vincent Schwenk
   source: >-
-    https://unsplash.com/photos/developer-working-on-multiple-screens-in-a-dark-office-v9iowyOH7QQ
+    https://unsplash.com/photos/a-group-of-colorful-dots-kPpnfia1EqI
   license: Unsplash License
   licenseUrl: 'https://unsplash.com/license'
-  alt: 여러 모니터와 태블릿이 있는 개발 작업환경 사진
+  alt: 패턴 인식을 시각화한 다채로운 입체 점 배열
 ---
 ## TL;DR
 
@@ -186,4 +186,4 @@ Flutter 단일 코드베이스로 AI 에이전트 앱을 만들고 싶었다면,
 - [공식 자료 27](https://docs.flutter.dev/install/archive)
 - [공식 자료 28](https://flutter.dev/blog/whats-new-in-flutter-3-44)
 
-커버 이미지: [Jakub Zerdzicki](https://unsplash.com/photos/developer-working-on-multiple-screens-in-a-dark-office-v9iowyOH7QQ) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지입니다.
+커버 이미지: [Google DeepMind / Vincent Schwenk](https://unsplash.com/photos/a-group-of-colorful-dots-kPpnfia1EqI) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지이며 제품 화면은 아닙니다.

@@ -11,7 +11,7 @@ tags:
   - 멀티에이전트
   - AI개발
 description: 'OpenAI Agents API 퍼블릭 베타의 핵심 기능, API 키 설정부터 세션 모니터링까지 공식 문서 기반으로 정리했습니다.'
-cover: /images/posts/openai-agents-api-guide-2026/ai-brain.webp
+cover: /images/posts/openai-agents-api-guide-2026/ai-neural-inputs.webp
 published: true
 automated: true
 sources:
@@ -47,14 +47,14 @@ sources:
     https://community.openai.com/t/introducing-the-agents-api-and-hosted-sandboxes/1396481
   - 'https://developers.openai.com/cookbook/topic/agents'
   - 'https://community.openai.com/c/announcements/6'
-coverAlt: 머신러닝과 뇌의 관계를 표현한 와이어프레임 AI 일러스트
+coverAlt: 신경망의 입력과 출력을 표현한 다채로운 입체 구조
 coverCredit:
-  author: Google DeepMind / Novoto Studio
+  author: Google DeepMind / Rose Pilkington
   source: >-
-    https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc
+    https://unsplash.com/photos/a-close-up-of-a-puzzle-erunoELfh50
   license: Unsplash License
   licenseUrl: 'https://unsplash.com/license'
-  alt: 머신러닝과 뇌의 관계를 표현한 와이어프레임 AI 일러스트
+  alt: 신경망의 입력과 출력을 표현한 다채로운 입체 구조
 ---
 ## TL;DR
 
@@ -190,4 +190,4 @@ Agents API는 "에이전트 인프라를 직접 구축하지 않고 에이전트
 - [공식 자료 24](https://developers.openai.com/cookbook/topic/agents)
 - [공식 자료 25](https://community.openai.com/c/announcements/6)
 
-커버 이미지: [Google DeepMind / Novoto Studio](https://unsplash.com/photos/wireframe-brain-with-purple-highlights-LaKwLAmcnBc) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지입니다.
+커버 이미지: [Google DeepMind / Rose Pilkington](https://unsplash.com/photos/a-close-up-of-a-puzzle-erunoELfh50) · [Unsplash License](https://unsplash.com/license). 본문 이해를 돕기 위한 자료 이미지이며 제품 화면은 아닙니다.

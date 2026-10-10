@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { imageHash } from './stock-cover.mjs';
 import { parsePost, assertNewPost, assertLocalCover, alreadyPublishedToday } from './blog-content.mjs';
 
 test('Daily publishing is idempotent in KST, not UTC', () => {
@@ -39,10 +40,15 @@ test('Cover must exist within public directory', () => {
   } finally { fs.rmSync(root, { recursive: true }); }
 });
 test('All published repository posts parse; local covers exist', () => {
+  const hashes = new Map();
   for (const name of fs.readdirSync('content/blog').filter(f => f.endsWith('.md'))) {
     const source = fs.readFileSync(path.join('content/blog', name), 'utf8');
     if (matter(source).data.published !== true) continue;
     const { data } = parsePost(source);
-    if (data.cover?.startsWith('/')) assertLocalCover(data.cover, 'public');
+    if (data.cover?.startsWith('/')) {
+      const hash = imageHash(assertLocalCover(data.cover, 'public'));
+      assert.ok(!hashes.has(hash), `Duplicate cover: ${name} and ${hashes.get(hash)}`);
+      hashes.set(hash, name);
+    }
   }
 });

@@ -72,5 +72,71 @@
     "license": "Unsplash License",
     "licenseUrl": "https://unsplash.com/license",
     "verifiedOn": "2026-10-06"
+  },
+  {
+    "id": "ai-neural-inputs",
+    "file": "ai-neural-inputs.webp",
+    "fallback": true,
+    "keywords": [
+      "openai",
+      "agents",
+      "api"
+    ],
+    "alt": "신경망의 입력과 출력을 표현한 다채로운 입체 구조",
+    "author": "Google DeepMind / Rose Pilkington",
+    "source": "https://unsplash.com/photos/a-close-up-of-a-puzzle-erunoELfh50",
+    "download": "https://images.unsplash.com/photo-1664448007527-2c49742dbb24?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-11"
+  },
+  {
+    "id": "ai-agi-pattern",
+    "file": "ai-agi-pattern.webp",
+    "fallback": true,
+    "keywords": [
+      "vercel",
+      "workflowagent",
+      "harnessagent"
+    ],
+    "alt": "범용 인공지능을 시각화한 입체 패턴",
+    "author": "Google DeepMind / Wes Cockx",
+    "source": "https://unsplash.com/photos/background-pattern-0vw8EOgHsYY",
+    "download": "https://images.unsplash.com/photo-1655635131633-a36ecd7f5b33?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-11"
+  },
+  {
+    "id": "ai-accountability",
+    "file": "ai-accountability.webp",
+    "fallback": true,
+    "keywords": [
+      "safety",
+      "responsibility"
+    ],
+    "alt": "AI 시스템의 책임성을 표현한 개념 일러스트",
+    "author": "Google DeepMind / Champ Panupong Techawongthawonas",
+    "source": "https://unsplash.com/photos/diagram-schematic-mWztzk66I7Q",
+    "download": "https://images.unsplash.com/photo-1655720033654-a4239dd42d10?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-11"
+  },
+  {
+    "id": "ai-pattern-recognition",
+    "file": "ai-pattern-recognition.webp",
+    "fallback": true,
+    "keywords": [
+      "genkit",
+      "dart"
+    ],
+    "alt": "패턴 인식을 시각화한 다채로운 입체 점 배열",
+    "author": "Google DeepMind / Vincent Schwenk",
+    "source": "https://unsplash.com/photos/a-group-of-colorful-dots-kPpnfia1EqI",
+    "download": "https://images.unsplash.com/photo-1655634627107-da33d1c1cf02?w=1600&q=85&fm=jpg",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "verifiedOn": "2026-10-11"
   }
 ]
