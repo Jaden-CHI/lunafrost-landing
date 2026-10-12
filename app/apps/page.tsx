@@ -115,6 +115,14 @@ const projects: Project[] = [
     icon: "/apps/saitable.svg",
   },
   {
+    title: "Easy-FS (이지프스)",
+    description: "재무제표를 쉬운 말로 읽어 주고, 근거 있는 진단과 숫자를 바탕으로 다음에 해야 할 일까지 제안하는 재무 분석 웹서비스.",
+    tech: ["Next.js", "Supabase", "Python", "AI Analysis"],
+    status: "웹서비스 출시",
+    links: [{ name: "easyfs.moonyth.app", url: "https://easyfs.moonyth.app" }],
+    icon: "/apps/easy-fs.svg",
+  },
+  {
     title: "INTOVICE ERP",
     description: "근태, 결재, 영업, 프로젝트 손익과 재무 업무를 하나로 연결하는 통합 ERP 플랫폼.",
     tech: ["ERP", "Business Operations", "Web Platform"],
