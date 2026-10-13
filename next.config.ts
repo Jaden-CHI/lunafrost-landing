@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
     ],
   },
   compress: true,
+  async rewrites() {
+    return [
+      {
+        source: "/stream-converter",
+        destination: "/stream-converter/index.html",
+      },
+    ];
+  },
   async redirects() {
     return [];
   },
