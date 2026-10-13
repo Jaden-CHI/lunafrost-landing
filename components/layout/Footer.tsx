@@ -22,6 +22,8 @@ const BUILD_LINKS = [
 const ELSEWHERE_LINKS = [
   { label: '@Moonyth', href: 'https://www.youtube.com/@Moonyth' },
   { label: '@genai1001', href: 'https://www.youtube.com/@genai1001' },
+  { label: '@jipilmug', href: 'https://www.youtube.com/@jipilmug' },
+  { label: '@moonyth-lunafrost', href: 'https://www.youtube.com/@moonyth-lunafrost' },
   { label: 'GitHub', href: 'https://github.com/Jaden-CHI' },
 ];
 

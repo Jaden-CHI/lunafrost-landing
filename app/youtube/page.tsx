@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://moonyth.app/youtube" },
   title: "YouTube",
-  description: "AI 트렌드, 생성형 AI 활용법, 앱 개발 과정을 담은 YouTube 채널 — Moonyth & GenAI1001",
+  description: "AI, 앱 개발, 콘텐츠 제작과 출판 프로젝트를 담은 Moonyth의 YouTube 채널 모음",
 };
 
 const channels = [
@@ -29,6 +29,28 @@ const channels = [
     series: [
       { tag: "Workflow", title: "콘텐츠 자동화", description: "Claude, GPT 등 AI API를 활용해 콘텐츠 제작 파이프라인을 구축하는 방법을 다룹니다." },
       { tag: "Tutorial", title: "GenAI 튜토리얼", description: "생성형 AI 도구를 처음 접하는 분들을 위한 단계별 가이드를 제공합니다." },
+    ],
+  },
+  {
+    handle: "@jipilmug",
+    url: "https://www.youtube.com/@jipilmug",
+    subscribeUrl: "https://www.youtube.com/@jipilmug?sub_confirmation=1",
+    description:
+      "출판 브랜드 LUNAFROST의 이야기와 작품 세계를 영상으로 전하는 채널. 장편 과학 미스터리 스릴러 《미궁 속 그림자》의 공식 티저와 짧은 서사를 선보입니다.",
+    series: [
+      { tag: "Book Trailer", title: "작품 공식 티저", description: "《미궁 속 그림자》의 사건과 분위기를 짧고 밀도 높은 영상으로 소개합니다." },
+      { tag: "Story Shorts", title: "짧은 서사", description: "소설 속 단서와 질문을 Shorts 형식으로 전하며 작품 세계로 안내합니다." },
+    ],
+  },
+  {
+    handle: "@moonyth-lunafrost",
+    url: "https://www.youtube.com/@moonyth-lunafrost",
+    subscribeUrl: "https://www.youtube.com/@moonyth-lunafrost?sub_confirmation=1",
+    description:
+      "콘텐츠를 만드는 Moonyth와 콘텐츠를 선보이는 LUNAFROST의 프로젝트 채널. 직접 개발하고 출시한 앱과 웹서비스의 핵심 경험을 영상으로 소개합니다.",
+    series: [
+      { tag: "App Showcase", title: "출시 앱 쇼케이스", description: "Golf Windy, Fishing Windy, WellDay, Memoham 등 출시 제품의 기능과 사용 장면을 보여줍니다." },
+      { tag: "Web Product", title: "웹서비스 이야기", description: "직접 기획하고 구축한 웹서비스와 디지털 제품을 만드는 과정과 결과를 기록합니다." },
     ],
   },
 ];
@@ -64,7 +86,7 @@ export default function YouTubePage() {
             영상으로 기록하는 탐구
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            AI와 개발, 콘텐츠 창작의 과정을 두 채널에 나눠 담습니다.
+            AI와 개발, 콘텐츠 창작과 출판 프로젝트를 채널별 주제에 맞춰 기록합니다.
           </p>
         </div>
 
@@ -148,7 +170,7 @@ export default function YouTubePage() {
                       </span>
                       <div>
                         <p
-                          className="font-[family-name:var(--font-cormorant)] text-lg mb-1"
+                          className="font-[family-name:var(--font-inter)] text-lg font-semibold mb-1"
                           style={{ color: "var(--text)" }}
                         >
                           {item.title}
