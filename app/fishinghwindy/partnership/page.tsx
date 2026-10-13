@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
 import Proposal from "./components/Proposal";
 import "./partnership.css";
-
-const notoSansKR = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Fishing Windy 제휴 제안서",
@@ -21,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function FishingWindyPartnershipPage() {
   return (
-    <div className={`fw-page ${notoSansKR.className}`}>
+    <div className="fw-page">
       <Proposal />
     </div>
   );
