@@ -52,3 +52,12 @@ test('All published repository posts parse; local covers exist', () => {
     }
   }
 });
+test('Published automated posts occupy at most one slot per day', () => {
+  const dates = new Set();
+  for (const name of fs.readdirSync('content/blog').filter(f => f.endsWith('.md'))) {
+    const { data } = matter.read(path.join('content/blog', name));
+    if (data.published !== true || data.automated !== true) continue;
+    assert.ok(!dates.has(data.date), `Duplicate daily slot: ${data.date}`);
+    dates.add(data.date);
+  }
+});

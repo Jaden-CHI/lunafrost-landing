@@ -27,6 +27,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,7 +40,15 @@ jobs:
       - name: Check daily publication slot
         id: daily
         run: node scripts/check-daily-post.mjs
-      - name: Generate post and select local stock cover
+      - name: Check live image provider without publishing
+        if: inputs.dry_run == true
+        run: node scripts/check-image-provider.mjs
+      - name: Check live structured writer without publishing
+        if: inputs.dry_run == true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/check-writer-provider.mjs
+      - name: Secure cover and generate structured article
         if: steps.daily.outputs.skip != 'true' && inputs.dry_run != true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -77,4 +86,17 @@ jobs:
             recovery/
             content/blog/
             public/images/posts/
-          retention-days: 7
+          retention-days: 30
+      - name: Report publication failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title='Automatic blog publication failed'
+          url="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          issue=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "Publication failed: $url. Inspect logs and the blog-recovery artifact before retrying."
+          else
+            gh issue create --title "$title" --body "Publication failed: $url. Inspect logs and the blog-recovery artifact before retrying."
+          fi

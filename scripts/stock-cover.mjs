@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { createHash } from 'node:crypto';
+import { openCover } from './open-cover.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 export const catalog = JSON.parse(fs.readFileSync(new URL('./stock-images.json', import.meta.url), 'utf8'));
@@ -31,7 +32,8 @@ export async function stockCover(topic, slug, options = {}) {
       }
       const creditFile = path.join(postsDir, directory.name, 'credit.json');
       if (!fs.existsSync(creditFile)) continue;
-      const { source } = JSON.parse(fs.readFileSync(creditFile, 'utf8'));
+      const { source, originalHash } = JSON.parse(fs.readFileSync(creditFile, 'utf8'));
+      if (originalHash) usedHashes.add(originalHash);
       usage.set(source, (usage.get(source) ?? 0) + 1);
     }
   }
@@ -56,5 +58,6 @@ export async function stockCover(topic, slug, options = {}) {
       return { cover, credit, imageId: entry.id };
     } catch (error) { console.warn(`Stock image ${entry.id} unavailable: ${error.message}`); }
   }
+  if (options.remote) return openCover(topic, slug, { publicDir, usage, usedHashes, fetcher: options.fetcher });
   throw new Error('No unused valid stock image remains. Add licensed images to scripts/stock-images.json before publishing; duplicate covers are blocked.');
 }
