@@ -40,6 +40,22 @@ test('Remote selection downloads, records original attribution, and blocks hash/
     const result = await openCover('AI', 'new-post', options);
     assert.ok(fs.existsSync(path.join(dir, result.cover)));
     assert.equal(result.credit.author, 'Original & Author');
+    let openverseCalls = 0;
+    const fallbackFetcher = async (input, options) => {
+      const url = new URL(input);
+      if (url.hostname === 'api.openverse.org') { openverseCalls++; throw new Error('timeout'); }
+      if (url.searchParams.has('generator')) {
+        const info = { ...page.imageinfo[0], width: 1000, height: 600, size: bytes.length, mime: 'image/jpeg' };
+        return Response.json({ query: { pages: { 123: { pageid: 123, index: 1, title: 'File:AI processor.jpg', imageinfo: [info] } } } });
+      }
+      return fetcher(input, options);
+    };
+    const fallback = await openCover('AI', 'fallback-post', { ...options, fetcher: fallbackFetcher });
+    assert.equal(fallback.credit.provider, 'Wikimedia Commons direct');
+    assert.equal(openverseCalls, 1);
+    openverseCalls = 0;
+    await assert.rejects(openCover('AI', 'fallback-used', { ...options, fetcher: fallbackFetcher, usage: new Map([[candidate.foreign_landing_url, 1]]) }), /No unused verified/);
+    assert.equal(openverseCalls, 1);
     await assert.rejects(openCover('AI', 'duplicate', { ...options, usedHashes: new Set([createHash('sha256').update(bytes).digest('hex')]) }), /No unused verified/);
     await assert.rejects(openCover('AI', 'duplicate', { ...options, usage: new Map([[candidate.foreign_landing_url, 1]]) }), /No unused verified/);
     await assert.rejects(openCover('AI', 'outage', { ...options, fetcher: async () => new Response('', { status: 429 }) }), /No unused verified/);

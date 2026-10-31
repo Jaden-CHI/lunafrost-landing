@@ -32,6 +32,8 @@ Infrastructure PR #3 and initial article PR #4 are merged. The previous Higgsfie
 
 ## Stock Images
 
+If Openverse times out or returns an HTTP error, the run stops querying it and switches to Wikimedia Commons' direct search API. Empty Openverse results also fall back to direct search. The same original-license, attribution, size, host and duplicate checks apply to both paths. Wikimedia itself remains a shared dependency; failures there still stop publication safely.
+
 `scripts/stock-images.json` is a manually license-checked local catalog. Production generation enables remote fallback when local eligible images are exhausted: Openverse searches Wikimedia Commons for CC BY / CC0 raster images, then the Commons API rechecks the original license, author, restrictions and file URL before downloading. No additional API key is required for anonymous Openverse access. Requests are bounded and subject to provider rate limits. Technical keyword/category filters exclude known event and portrait results, but do not replace human visual review.
 
 Previously used sources, original hashes and optimized file hashes are excluded. Images are secured before paid research/writing. Unavailable providers or unverified licenses still block publication instead of silently reusing a cover. Published posts are also checked for identical local covers. Credits record source, license, original author, verification time and resizing/WebP conversion; attribution is rendered in the article. Hashes detect byte-identical files, not every visually similar or re-encoded image.
