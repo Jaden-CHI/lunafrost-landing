@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       topic:
-        description: '주제 (비우면 공식 자료를 검색해서 선정)'
+        description: '주제 (비우면 KST 요일별 GitHub/유튜브/실전/업데이트 편성 적용)'
         required: false
       category:
         description: 'AI Tools / App Dev / Content / Tech Trends'
