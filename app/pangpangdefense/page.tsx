@@ -57,7 +57,7 @@ export default function PangPangDefenseSupportPage() {
         <div className="space-y-10" style={{ color: "var(--text-muted)" }}>
           <p className="leading-relaxed">
             귀여운 동물 블록을 맞춰 하늘에서 내려오는 외계인을 막는 퍼즐 디펜스 게임입니다.
-            적 바로 옆에서 같은 동물 3개를 맞춰 공격하고, 특수 블록과 아이템으로 10개 스테이지의 성을 지켜 보세요.
+            적 바로 옆에서 같은 동물 3개를 맞춰 공격하고, 특수 블록과 아이템으로 20개 스테이지의 성을 지켜 보세요.
           </p>
 
           <div className="w-10 h-px opacity-30" style={{ background: "var(--border)" }} />
