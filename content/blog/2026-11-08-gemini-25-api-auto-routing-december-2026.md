@@ -167,7 +167,7 @@ grep -r "gemini-2\.5" .
 
 ## 불확실한 점
 
-Google은 이번 발표에서 2.5 모델과 대체 모델을 비교한 공식 벤치마크를 공개하지 않았습니다. 또한 라우팅 발표 시점(11월 2일)과 실제 적용일(12월 1일) 사이에 Google이 추가 고지를 낼 가능성이 있습니다. [공식 Gemini API 릴리스 노트](https://releasebot.io/updates/google)를 직접 구독해 두는 것이 안전합니다.
+기존 앱에서 대체 모델의 품질과 비용이 어떻게 달라지는지는 별도 테스트가 필요합니다. 라우팅 발표 시점(11월 2일)과 실제 적용일(12월 1일) 사이에 안내가 변경될 수 있으므로 [공식 Gemini API 릴리스 노트](https://aistudio.google.com/docs/changelog)와 [지원 종료 일정](https://aistudio.google.com/docs/deprecations)을 확인하세요.
 
 ---
 
@@ -184,7 +184,7 @@ Google은 이번 발표에서 2.5 모델과 대체 모델을 비교한 공식 �
 
 ---
 
-*공식 출처: [Gemini API 릴리스 노트 (2026-11-02 기준, aicoder.com 경유)](https://aicoder.com/news/news-20261102-gemini-api-deprecates-gemini-2-5-pro-flash-dec-1-auto-route-3-8-flash-3-5-flash-lite), [Firebase AI Logic 지원 모델 문서](https://firebase.google.com/docs/ai-logic/models)*
+*공식 출처: [Gemini API 릴리스 노트 (2026-11-02 항목)](https://aistudio.google.com/docs/changelog), [Gemini 지원 종료 일정](https://aistudio.google.com/docs/deprecations), [Firebase AI Logic 지원 모델 문서](https://firebase.google.com/docs/ai-logic/models)*
 
 ## 참고 자료
 - [참고 자료 1](https://en.wikipedia.org/wiki/ChatGPT)

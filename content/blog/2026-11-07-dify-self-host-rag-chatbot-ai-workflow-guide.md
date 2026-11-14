@@ -14,7 +14,7 @@ tags:
 description: >-
   오픈소스 LLM 앱 플랫폼 Dify를 Docker Compose로 셀프호스트하고, RAG 챗봇·다단계 AI 워크플로·에이전트를 직접 구축하는
   실전 가이드.
-cover: /images/posts/daily-2026-11-07/commons-202787677.webp
+cover: /images/posts/daily-2026-11-07/commons-97505116.webp
 published: true
 automated: true
 sources:
@@ -76,27 +76,22 @@ editorialLane: practical
 recoveredAt: '2026-11-14T01:50:50.851Z'
 coverAlt: AI와 기술 관련 공유 자료 이미지 (제품 화면 아님)
 coverCredit:
-  author: >-
-    Sumaiya Yeasmin, Mst Masuma Akter Semi, Moustaq Karim Khan Rony, Srabani
-    Das, Anseena Anees Sabeena, Rukshanda Rahman, Barna Biswas, Fahad Ahmed, and
-    Adib Hossain
-  title: >-
-    Sumaiya Yeasmin and al 2025 Artificial Intelligence for Mental Health
-    Monitoring 01.png
-  source: 'https://commons.wikimedia.org/w/index.php?curid=202787677'
-  license: CC BY 4.0
-  licenseUrl: 'https://creativecommons.org/licenses/by/4.0/'
+  author: 'Peter Shanks from Hobart, Australia'
+  title: Green circuit board I (2389301860).jpg
+  source: 'https://commons.wikimedia.org/w/index.php?curid=97505116'
+  license: CC BY 2.0
+  licenseUrl: 'https://creativecommons.org/licenses/by/2.0/'
   alt: AI와 기술 관련 공유 자료 이미지 (제품 화면 아님)
   provider: Wikimedia Commons direct
-  imageId: commons-202787677
+  imageId: commons-97505116
   originalUrl: >-
-    https://upload.wikimedia.org/wikipedia/commons/f/fd/Sumaiya_Yeasmin_and_al_2025_Artificial_Intelligence_for_Mental_Health_Monitoring_01.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
-  originalHash: 2b60c9fdcffe490e6605649ebe094cb186a4f1163269bc165b88903b8c6fb771
-  verifiedAt: '2026-11-14T01:47:43.282Z'
+    https://upload.wikimedia.org/wikipedia/commons/f/f8/Green_circuit_board_I_%282389301860%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  originalHash: ef451b27db9b15f7be210871a1dfc790b8bf911a580fa0fe682fd0ec6b47398a
+  verifiedAt: '2026-11-14T02:11:25.867Z'
   originalArtist: >-
-    Sumaiya Yeasmin, Mst Masuma Akter Semi, Moustaq Karim Khan Rony, Srabani
-    Das, Anseena Anees Sabeena, Rukshanda Rahman, Barna Biswas, Fahad Ahmed, and
-    Adib Hossain
+    <a rel="nofollow" class="external text"
+    href="https://www.flickr.com/people/87273935@N00">Peter Shanks</a> from
+    Hobart, Australia
   changes: Resized and converted to WebP
 ---
 > 2026-11-07 누락분을 2026-11-14에 보완 발행한 글입니다.
@@ -289,4 +284,4 @@ Dify는 "LLM 앱 스택 전체를 직접 운영하고 싶지만 각 부품을 �
 - [참고 자료 44](https://en.wikipedia.org/wiki/ComfyUI)
 - [참고 자료 45](https://openorchestrators.org/news/dify-1-19-0-nested-tracing-portable-workflow-tools/)
 
-커버 이미지: [Sumaiya Yeasmin, Mst Masuma Akter Semi, Moustaq Karim Khan Rony, Srabani Das, Anseena Anees Sabeena, Rukshanda Rahman, Barna Biswas, Fahad Ahmed, and Adib Hossain](https://commons.wikimedia.org/w/index.php?curid=202787677) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 자료 이미지이며 제품 화면은 아닙니다. 크기 조정 및 WebP 변환.
+커버 이미지: [Peter Shanks from Hobart, Australia](https://commons.wikimedia.org/w/index.php?curid=97505116) · [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). 자료 이미지이며 제품 화면은 아닙니다. 크기 조정 및 WebP 변환.

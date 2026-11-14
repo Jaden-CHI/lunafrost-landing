@@ -25,7 +25,7 @@ export function safeUrl(value, hosts) {
 export function eligible(image) {
   return image.source === 'wikimedia' && ['by', 'cc0'].includes(image.license) && image.mature === false
     && /\bAI\b|artificial intelligence|neural network|processor|microchip|circuit|motherboard/i.test(image.title ?? '')
-    && !/summit|forum|conference|president|minister|speaking|portrait|garbage|waste|medical|cancer|diagnos|religion|psycholog|trend data|girl|\bMs\b|\bMr\b/i.test(image.title ?? '')
+    && !/summit|forum|conference|president|minister|speaking|portrait|garbage|waste|medical|mental health|personalized learning|cancer|diagnos|religion|psycholog|trend data|girl|\bMs\b|\bMr\b/i.test(image.title ?? '')
     && (!image.filesize || image.filesize <= 15 * 1024 * 1024)
     && !image.unstable__sensitivity?.length && image.width >= 800 && image.height >= 450
     && ['jpg', 'jpeg', 'png', 'webp'].includes(image.filetype) && image.creator?.length > 0 && image.creator.length < 180
@@ -77,7 +77,7 @@ export async function openCover(topic, slug, { publicDir, usage, usedHashes, fet
   providers: for (const provider of ['commons', 'openverse']) {
   for (const query of queries) {
     let attempts = 0;
-    for (let page = 1; page <= 3; page++) {
+    for (let page = 1; page <= 10; page++) {
       let results;
       try {
         if (provider === 'commons') {

@@ -12,6 +12,7 @@ const candidate = { id: '11111111-1111-1111-1111-111111111111', source: 'wikimed
 const page = { imageinfo: [{ url: candidate.url, descriptionurl: candidate.foreign_landing_url, extmetadata: { LicenseUrl: { value: 'https://creativecommons.org/licenses/by/4.0/' }, Artist: { value: '<a href="/wiki/User:Author">Original &amp; Author</a>' } } }] };
 test('Only eligible reusable raster images and approved HTTPS hosts are allowed', () => {
   assert.ok(eligible(candidate));
+  assert.ok(!eligible({ ...candidate, title: 'Artificial Intelligence for Mental Health Monitoring' }));
   for (const change of [{ license: 'by-nc' }, { license: 'by-nd' }, { mature: true }, { width: 300 }, { filetype: 'svg' }, { unstable__sensitivity: ['sensitive'] }]) assert.ok(!eligible({ ...candidate, ...change }));
   for (const url of ['http://upload.wikimedia.org/a', 'https://127.0.0.1/a', 'https://upload.wikimedia.org.evil.test/a', 'https://user@upload.wikimedia.org/a']) assert.throws(() => safeUrl(url, ['upload.wikimedia.org']));
   assert.equal(plainText(page.imageinfo[0].extmetadata.Artist.value), 'Original & Author');
@@ -102,4 +103,24 @@ test('Structured article preserves quotes/code and rejects truncated responses',
   assert.deepEqual(extractArticle(response), input);
   assert.throws(() => extractArticle({ ...response, stop_reason: 'max_tokens' }));
   assert.throws(() => extractArticle({ stop_reason: 'end_turn', content: [] }));
+});
+test('Search continues past the first three exhausted Commons pages', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'open-cover-pages-'));
+  const bytes = await sharp({ create: { width: 1000, height: 600, channels: 3, background: '#667788' } }).jpeg().toBuffer();
+  const offsets = [];
+  const fetcher = async input => {
+    const url = new URL(input);
+    if (url.searchParams.has('generator')) {
+      const offset = Number(url.searchParams.get('gsroffset'));
+      offsets.push(offset);
+      if (offset < 60) return Response.json({ query: { pages: {} } });
+      return Response.json({ query: { pages: { 123: { pageid: 123, title: 'File:AI circuit.jpg', imageinfo: [{ ...page.imageinfo[0], width: 1000, height: 600, mime: 'image/jpeg', size: bytes.length }] } } } });
+    }
+    if (url.searchParams.has('pageids')) return Response.json({ query: { pages: { 123: page } } });
+    return new Response(bytes, { headers: { 'content-type': 'image/jpeg' } });
+  };
+  try {
+    await openCover('AI', 'deeper-pages', { publicDir: dir, usage: new Map(), usedHashes: new Set(), fetcher });
+    assert.deepEqual(offsets, [0, 20, 40, 60]);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
