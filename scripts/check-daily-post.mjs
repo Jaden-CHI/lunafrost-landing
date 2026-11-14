@@ -1,6 +1,8 @@
 import fs from 'node:fs';
-import { alreadyPublishedToday, existingPosts } from './blog-content.mjs';
+import { existingPosts } from './blog-content.mjs';
+import { publicationDates, missingDates } from './blog-dates.mjs';
 
-const skip = alreadyPublishedToday(existingPosts('content/blog'));
+const dates = publicationDates(process.env.BLOG_START_DATE, process.env.BLOG_END_DATE);
+const skip = missingDates(dates, existingPosts('content/blog')).length === 0;
 if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=${skip}\n`);
-console.log(skip ? 'An automated post is already published for today (KST).' : 'Daily publication slot is available.');
+console.log(skip ? 'All requested publication dates are already occupied.' : `Available publication slots: ${missingDates(dates, existingPosts('content/blog')).join(', ')}`);

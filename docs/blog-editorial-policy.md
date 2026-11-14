@@ -28,3 +28,11 @@ Failed days are not silently reassigned. Recovery is explicit; this is a target 
 Search is no longer restricted to a fixed vendor-domain list, so new project documentation can be discovered. The code checks minimum source counts and lane-specific repository/video URLs; primary-source authenticity, semantic duplication and factual claims remain model-directed checks, not a deterministic guarantee. Search results are untrusted data, never instructions.
 
 Published metadata records `editorialLane` for auditing. Existing licensed-image and duplicate-image safeguards remain in place.
+
+## Recovery (2026-11-14)
+
+Manual workflow dispatch accepts `start_date` and `end_date` (inclusive, at most 14 days, no future dates). Both must be supplied together. With neither supplied, scheduled execution still targets today in Asia/Seoul. Existing published automated dates are skipped, including when the generator is called directly.
+
+Backfilled posts preserve the intended `date`, record actual `recoveredAt`, and display a recovery notice. Research must not present announcements after the intended date as news from that date. The normal weekday policy remains in effect.
+
+Image search checks Wikimedia's original metadata first, then Openverse if needed. Each provider/query has a separate candidate budget, so rejected candidates do not prevent other searches. License, source and byte-hash duplicate checks are not relaxed. If both providers have no usable image, publication still fails rather than reusing an image or assuming a license.

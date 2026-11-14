@@ -15,6 +15,12 @@ on:
         description: '설정과 테스트만 확인 (글 생성 및 공개 없음)'
         type: boolean
         default: false
+      start_date:
+        description: '소급 시작일 YYYY-MM-DD (종료일과 함께 지정, 최대 14일)'
+        required: false
+      end_date:
+        description: '소급 종료일 YYYY-MM-DD (미래 날짜 불가)'
+        required: false
 
 concurrency:
   group: blog-draft
@@ -24,7 +30,10 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
+    env:
+      BLOG_START_DATE: ${{ inputs.start_date }}
+      BLOG_END_DATE: ${{ inputs.end_date }}
     permissions:
       contents: write
       issues: write
@@ -56,7 +65,7 @@ jobs:
           BLOG_CATEGORY: ${{ inputs.category }}
           PUBLISH_ON_MERGE: 'true'
           AUTO_PUBLISH: 'true'
-        run: node scripts/generate-post.mjs
+        run: node scripts/publish-dates.mjs
       - name: Validate content
         if: steps.daily.outputs.skip != 'true' || inputs.dry_run == true
         run: npm run test:blog

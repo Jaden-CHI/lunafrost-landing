@@ -52,14 +52,48 @@ test('Remote selection downloads, records original attribution, and blocks hash/
     };
     const fallback = await openCover('AI', 'fallback-post', { ...options, fetcher: fallbackFetcher });
     assert.equal(fallback.credit.provider, 'Wikimedia Commons direct');
-    assert.equal(openverseCalls, 1);
+    assert.equal(openverseCalls, 0);
     openverseCalls = 0;
     await assert.rejects(openCover('AI', 'fallback-used', { ...options, fetcher: fallbackFetcher, usage: new Map([[candidate.foreign_landing_url, 1]]) }), /No unused verified/);
-    assert.equal(openverseCalls, 1);
+    assert.ok(openverseCalls > 0);
     await assert.rejects(openCover('AI', 'duplicate', { ...options, usedHashes: new Set([createHash('sha256').update(bytes).digest('hex')]) }), /No unused verified/);
     await assert.rejects(openCover('AI', 'duplicate', { ...options, usage: new Map([[candidate.foreign_landing_url, 1]]) }), /No unused verified/);
     await assert.rejects(openCover('AI', 'outage', { ...options, fetcher: async () => new Response('', { status: 429 }) }), /No unused verified/);
     assert.ok(!fs.existsSync(path.join(dir, 'images/posts/outage')));
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+test('Exhausted or rejected candidates do not consume another query or provider budget', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'open-cover-fallback-'));
+  const bytes = await sharp({ create: { width: 1000, height: 600, channels: 3, background: '#885533' } }).jpeg().toBuffer();
+  const info = { ...page.imageinfo[0], width: 1000, height: 600, mime: 'image/jpeg', size: bytes.length };
+  let rejected = 0;
+  const fetcher = async input => {
+    const url = new URL(input);
+    if (url.searchParams.has('generator')) {
+      if (url.searchParams.get('gsrsearch').startsWith('ai ')) {
+        return Response.json({ query: { pages: Object.fromEntries(Array.from({ length: 21 }, (_, i) => [i + 200, { pageid: i + 200, index: i, title: 'File:AI circuit.jpg', imageinfo: [info] }])) } });
+      }
+      return Response.json({ query: { pages: { 123: { pageid: 123, title: 'File:circuit board.jpg', imageinfo: [info] } } } });
+    }
+    if (url.searchParams.has('pageids')) {
+      const id = url.searchParams.get('pageids');
+      if (id !== '123') { rejected++; return Response.json({ query: { pages: {} } }); }
+      return Response.json({ query: { pages: { 123: page } } });
+    }
+    return new Response(bytes, { headers: { 'content-type': 'image/jpeg' } });
+  };
+  try {
+    const result = await openCover('AI', 'fallback-budget', { publicDir: dir, usage: new Map(), usedHashes: new Set(), fetcher });
+    assert.equal(rejected, 20);
+    assert.equal(result.credit.imageId, 'commons-123');
+    const noCommons = async (input, options) => {
+      const url = new URL(input);
+      if (url.searchParams.has('generator')) return Response.json({ query: { pages: {} } });
+      if (url.hostname === 'api.openverse.org') return Response.json({ results: [candidate] });
+      return fetcher(input, options);
+    };
+    const fallback = await openCover('AI', 'index-fallback', { publicDir: dir, usage: new Map(), usedHashes: new Set(), fetcher: noCommons });
+    assert.equal(fallback.credit.provider, 'Wikimedia Commons / Openverse');
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 test('Structured article preserves quotes/code and rejects truncated responses', () => {

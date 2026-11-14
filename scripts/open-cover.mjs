@@ -71,30 +71,31 @@ export async function searchCommons(query, page, fetcher = fetch) {
 export async function openCover(topic, slug, { publicDir, usage, usedHashes, fetcher = fetch } = {}) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error('Invalid image slug');
   const keywords = /microprocessor/i.test(topic) ? 'microprocessor' : topic.toLowerCase().match(/[a-z][a-z0-9]+/g)?.slice(0, 3).join(' ');
-  const queries = [...new Set([keywords, 'microprocessor', 'artificial intelligence', 'circuit board'].filter(Boolean))];
+  const queries = [...new Set([keywords, 'circuit board', 'motherboard', 'microprocessor', 'artificial intelligence'].filter(Boolean))];
   const seen = new Set();
-  let attempts = 0;
-  let openverseUnavailable = false;
+  // Prefer current original metadata. A stale index must not exhaust the fallback's budget.
+  providers: for (const provider of ['commons', 'openverse']) {
   for (const query of queries) {
+    let attempts = 0;
     for (let page = 1; page <= 3; page++) {
       let results;
       try {
-        if (openverseUnavailable) throw new Error('Openverse circuit open');
+        if (provider === 'commons') {
+          results = await searchCommons(query, page, fetcher);
+        } else {
         const params = new URLSearchParams({ q: query, license: 'by,cc0', source: 'wikimedia', page_size: '20', page: String(page) });
         results = (await (await get(`https://api.openverse.org/v1/images/?${params}`, ['api.openverse.org'], fetcher)).json()).results;
+        }
       } catch (error) {
-        if (!openverseUnavailable) console.warn(`Openverse unavailable; switching to Commons: ${error.message}`);
-        openverseUnavailable = true;
+        console.warn(`${provider} search unavailable for ${query}: ${error.message}`);
+        continue providers;
       }
-      if (!results?.length) {
-        try { results = await searchCommons(query, page, fetcher); }
-        catch (error) { console.warn(`Commons search unavailable: ${error.message}`); break; }
-      }
-      if (!results?.length) break;
+      // Commons filters licenses before returning: an empty eligible page can have more results after it.
+      if (!results?.length) { if (provider === 'commons') continue; break; }
       for (const image of results) {
         if (!eligible(image) || seen.has(image.id) || usage.has(image.foreign_landing_url)) continue;
         seen.add(image.id);
-        if (++attempts > 20) throw new Error('Image candidate limit reached; retry later');
+        if (++attempts > 20) break;
         try {
           const landing = safeUrl(image.foreign_landing_url, ['commons.wikimedia.org']);
           const pageId = landing.searchParams.get('curid');
@@ -133,7 +134,9 @@ export async function openCover(topic, slug, { publicDir, usage, usedHashes, fet
           return { cover, credit, imageId: image.id };
         } catch (error) { console.warn(`Skipped image ${image.id}: ${error.message}`); }
       }
+      if (attempts >= 20) break;
     }
+  }
   }
   throw new Error('No unused verified open image available; providers may be unavailable. No duplicate image published.');
 }
